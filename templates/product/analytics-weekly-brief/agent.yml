@@ -1,0 +1,40 @@
+name: Analytics weekly brief
+mode: zeroshot
+triggers:
+  schedule: "0 8 * * 1"
+connectors:
+  - posthog
+  - mixpanel
+limits:
+  max_steps: 60
+output_schema:
+  type: object
+  required: [summary, metrics, anomalies]
+  properties:
+    summary: { type: string }
+    metrics:
+      type: array
+      items:
+        type: object
+        required: [name, value, change_pct]
+        properties:
+          name: { type: string }
+          value: { type: number }
+          previous: { type: number }
+          change_pct: { type: number }
+          four_week_avg: { type: number }
+          source:
+            type: string
+            enum: [posthog, mixpanel]
+    anomalies:
+      type: array
+      items:
+        type: object
+        required: [metric, description]
+        properties:
+          metric: { type: string }
+          description: { type: string }
+          likely_driver: { type: string }
+    missing:
+      type: array
+      items: { type: string }

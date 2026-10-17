@@ -1,0 +1,35 @@
+name: Employee document redactor
+mode: zeroshot
+triggers:
+  http: true
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  properties:
+    redact_salary:
+      type: boolean
+      description: Optional. true also redacts salary, bonus and pay amounts. Default false.
+    keep_names:
+      type: array
+      items: { type: string }
+      description: Optional. Names to keep, for example the company name or a signer.
+output_schema:
+  type: object
+  required: [files]
+  properties:
+    files:
+      type: array
+      items:
+        type: object
+        required: [file_id, status]
+        properties:
+          file_id: { type: string }
+          redacted_file: { type: string }
+          status:
+            type: string
+            enum: [redacted, nothing_found, failed]
+          counts:
+            type: object
+            additionalProperties: { type: integer }
+            description: The number of redacted items for each category.

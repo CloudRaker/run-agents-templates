@@ -1,0 +1,28 @@
+name: News digest
+mode: zeroshot
+triggers:
+  schedule: "0 7 * * 1-5"
+connectors:
+  - exa
+limits:
+  max_steps: 40
+output_schema:
+  type: object
+  required: [date, items]
+  properties:
+    date: { type: string }
+    items:
+      type: array
+      items:
+        type: object
+        required: [topic, title, url, why_it_matters]
+        properties:
+          topic: { type: string }
+          title: { type: string }
+          url: { type: string }
+          source: { type: string }
+          published: { type: string }
+          why_it_matters: { type: string }
+    quiet_topics:
+      type: array
+      items: { type: string }

@@ -1,0 +1,11 @@
+name: Call recording QA
+category: support
+icon: headset
+description: Transcribes a support call recording and scores it against your quality rubric with quotes.
+what_it_does: |
+  Transcribes a call recording that arrives by email or HTTP.
+  Scores greeting, empathy, resolution and compliance phrases from 0 to 5.
+  Quotes the transcript for each score.
+  Lists coaching points for the support agent.
+connectors: []
+tags: [quality, calls, coaching, transcription]

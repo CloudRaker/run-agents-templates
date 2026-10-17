@@ -1,0 +1,27 @@
+name: dsar
+label: Data subject request
+label_field: requester
+fields:
+  requester:
+    type: text
+    required: true
+  email:
+    type: email
+    required: true
+  request_type:
+    type: select
+    options: [access, deletion, correction, portability, objection, other]
+  received_date:
+    type: date
+    required: true
+  due_date:
+    type: date
+    required: true
+  status:
+    type: select
+    options: [received, in_progress, completed, rejected]
+  summary:
+    type: long_text
+  message_id:
+    type: text
+    unique: true

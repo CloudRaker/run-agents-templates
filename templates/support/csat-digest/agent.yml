@@ -1,0 +1,31 @@
+name: CSAT digest
+mode: zeroshot
+triggers:
+  schedule: "0 8 * * 1"
+connectors:
+  - intercom
+limits:
+  max_steps: 40
+output_schema:
+  type: object
+  required: [week_start, ratings, csat, low_reasons]
+  properties:
+    week_start: { type: string, description: The Monday of the week, YYYY-MM-DD. }
+    ratings: { type: integer }
+    csat: { type: number, description: Percent of ratings that are 4 or 5. }
+    previous_csat: { type: number }
+    low_reasons:
+      type: array
+      items:
+        type: object
+        required: [reason, count]
+        properties:
+          reason: { type: string }
+          count: { type: integer }
+          example: { type: string }
+          conversation_ids:
+            type: array
+            items: { type: string }
+    digest:
+      type: string
+      description: The digest as markdown.

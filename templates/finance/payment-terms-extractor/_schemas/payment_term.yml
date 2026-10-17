@@ -1,0 +1,28 @@
+name: payment_term
+label: Payment term
+label_field: contract_name
+fields:
+  contract_name:
+    type: text
+    required: true
+    unique: true
+  counterparty:
+    type: text
+  amount:
+    type: number
+  currency:
+    type: text
+  schedule:
+    type: select
+    options: [one_time, monthly, quarterly, annual, milestone, other]
+  due_days:
+    type: number
+  late_fee:
+    type: text
+  invoicing_contact:
+    type: text
+  status:
+    type: select
+    options: [ok, needs_review, no_payment_terms]
+  notes:
+    type: long_text

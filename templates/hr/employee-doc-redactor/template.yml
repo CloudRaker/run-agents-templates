@@ -1,0 +1,11 @@
+name: Employee document redactor
+category: hr
+description: Redacts names, addresses, identifiers and, on request, salaries from HR documents.
+what_it_does: |
+  Redacts personal data from HR documents before you share them.
+  Removes names, addresses, identity numbers and contact data.
+  Removes salary amounts when the request asks for it.
+  Returns the redacted files and only the count of each category.
+connectors: []
+tags: [redaction, privacy, documents]
+icon: shield-check

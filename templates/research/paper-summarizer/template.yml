@@ -1,0 +1,14 @@
+name: Paper summarizer
+category: research
+description: Summarizes a research paper PDF into question, method, results, limits and relevance.
+what_it_does: |
+  Reads a research paper PDF from a request or an email.
+  Returns the question, the method, the key results and the limits.
+  Rates the relevance to a topic that you give.
+  Finds related work with Exa when the connector is available.
+connectors:
+  - id: exa
+    required: false
+    purpose: Find related papers and later work that cites the paper.
+tags: [papers, summaries, literature]
+icon: graduation-cap

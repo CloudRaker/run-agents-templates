@@ -1,0 +1,52 @@
+name: Blog brief writer
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - exa
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  required: [topic, audience]
+  properties:
+    topic: { type: string }
+    audience:
+      type: string
+      description: Who reads the post, for example "finance managers at mid-size companies".
+    keywords:
+      type: array
+      items: { type: string }
+      description: Optional. Target keywords.
+output_schema:
+  type: object
+  required: [title, angle, outline, sources]
+  properties:
+    title: { type: string }
+    angle: { type: string }
+    audience: { type: string }
+    primary_keyword: { type: string }
+    secondary_keywords:
+      type: array
+      items: { type: string }
+    outline:
+      type: array
+      items:
+        type: object
+        required: [heading, points]
+        properties:
+          heading: { type: string }
+          points:
+            type: array
+            items: { type: string }
+    sources:
+      type: array
+      items:
+        type: object
+        required: [url, title, takeaway]
+        properties:
+          url: { type: string }
+          title: { type: string }
+          published: { type: string }
+          takeaway: { type: string }
+    word_count: { type: integer }

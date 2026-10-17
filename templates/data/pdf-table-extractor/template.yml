@@ -1,0 +1,11 @@
+name: PDF table extractor
+category: data
+description: Extracts the tables of PDF files into rows with the columns that you describe.
+what_it_does: |
+  Extracts tables from PDF reports, statements and price lists.
+  Uses the columns that you describe in the request.
+  Joins tables that continue across pages and checks the totals.
+  Returns the rows, and saves them as records when you name a schema.
+connectors: []
+tags: [pdf, tables, extraction]
+icon: table

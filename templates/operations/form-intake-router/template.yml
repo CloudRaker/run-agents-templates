@@ -1,0 +1,11 @@
+name: Form intake router
+category: operations
+icon: tray
+description: Reads request forms that arrive by email, records each request and answers with a reference.
+what_it_does: |
+  Turns emailed request forms into tracked intake records.
+  Extracts the form type, the requester and the urgency from each attachment.
+  Routes the request to the queue for its form type.
+  Answers the sender once with the ticket reference.
+connectors: []
+tags: [intake, forms, extraction, email]

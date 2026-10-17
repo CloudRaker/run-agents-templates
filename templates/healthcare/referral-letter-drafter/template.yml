@@ -1,0 +1,11 @@
+name: Referral letter drafter
+category: healthcare
+icon: envelope-simple-open
+description: Drafts a referral letter to a specialist from a patient summary and renders it as a PDF for review.
+what_it_does: |
+  Writes a referral letter to a specialist from a patient summary, a reason and the specialist details.
+  Follows a fixed letter structure in the referral-letter skill.
+  Renders the letter as a PDF and returns it with a list of facts to check.
+  Never sends the letter. A clinician reviews and signs it.
+connectors: []
+tags: [referrals, letters, pdf, drafts]

@@ -1,0 +1,14 @@
+name: PR review digest
+category: engineering
+description: Sends a digest of open pull requests each workday, with stale reviews and PRs that need a reviewer.
+icon: git-pull-request
+what_it_does: |
+  Lists the open pull requests of your repositories at 13:00 UTC on each workday.
+  Flags PRs without a reviewer and reviews that wait for more than two days.
+  Groups the PRs by repository and by state.
+  Returns a short digest that the team can read in two minutes.
+connectors:
+  - id: github
+    required: true
+    purpose: List open pull requests, reviewers, review states and checks.
+tags: [pull-requests, code-review, schedule]

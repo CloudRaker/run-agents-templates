@@ -1,0 +1,40 @@
+name: Meeting prep brief
+mode: zeroshot
+triggers:
+  schedule: "30 6 * * 1-5"
+connectors:
+  - hubspot
+delegation:
+  tools:
+    calendar: [read]
+    directory: [search]
+  as: seller@example.com
+limits:
+  max_steps: 60
+output_schema:
+  type: object
+  required: [date, briefs]
+  properties:
+    date: { type: string, description: ISO 8601 date. }
+    briefs:
+      type: array
+      items:
+        type: object
+        required: [meeting, start, brief]
+        properties:
+          meeting: { type: string }
+          start: { type: string, description: ISO 8601 date and time. }
+          company: { type: string }
+          deal: { type: string }
+          deal_stage: { type: string }
+          attendees:
+            type: array
+            items:
+              type: object
+              required: [email]
+              properties:
+                name: { type: string }
+                email: { type: string }
+                title: { type: string }
+                known_in_crm: { type: boolean }
+          brief: { type: string }

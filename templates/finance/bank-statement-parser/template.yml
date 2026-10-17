@@ -1,0 +1,10 @@
+name: Bank statement parser
+category: finance
+icon: bank
+description: Turns a bank statement PDF into transaction records and reports the totals and unusual items.
+what_it_does: |
+  Converts a bank statement PDF into one record for each transaction.
+  Checks the running balance against the opening and the closing balance.
+  Reports the total in, the total out and the unusual items.
+connectors: []
+tags: [bank, transactions, extraction]

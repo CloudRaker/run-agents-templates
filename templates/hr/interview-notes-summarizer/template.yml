@@ -1,0 +1,14 @@
+name: Interview notes summarizer
+category: hr
+description: Turns an interview recording or notes into feedback by competency with evidence quotes.
+what_it_does: |
+  Transcribes an interview recording or reads the interview notes.
+  Rates each competency with quotes from the candidate as evidence.
+  Reads the Fellow meeting notes when the connector is available.
+  Returns strengths, concerns and open questions for the debrief.
+connectors:
+  - id: fellow
+    required: false
+    purpose: Read the interviewer notes of the meeting in Fellow.
+tags: [interviews, feedback, recruiting]
+icon: chat-centered-text

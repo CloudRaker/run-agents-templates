@@ -1,0 +1,45 @@
+name: Survey response coder
+mode: zeroshot
+triggers:
+  http: true
+data:
+  write:
+    - survey_code
+limits:
+  max_steps: 80
+timeout: 30m
+input_schema:
+  type: object
+  properties:
+    survey:
+      type: string
+      description: The survey name, for example "NPS October".
+    column:
+      type: string
+      description: Optional. The column with the open answers. The agent finds it when this is empty.
+    id_column:
+      type: string
+      description: Optional. The column with the response id.
+output_schema:
+  type: object
+  required: [survey, responses, coded, counts]
+  properties:
+    survey: { type: string }
+    responses: { type: integer }
+    coded: { type: integer }
+    uncoded: { type: integer }
+    counts:
+      type: array
+      items:
+        type: object
+        required: [code, count]
+        properties:
+          code: { type: string }
+          count: { type: integer }
+          share: { type: number }
+          examples:
+            type: array
+            items: { type: string }
+    new_code_suggestions:
+      type: array
+      items: { type: string }

@@ -1,0 +1,26 @@
+name: transaction
+label: Transaction
+label_field: description
+fields:
+  date:
+    type: date
+    required: true
+  description:
+    type: text
+    required: true
+  amount:
+    type: number
+    required: true
+  balance:
+    type: number
+  currency:
+    type: text
+  account_label:
+    type: text
+  statement_file:
+    type: text
+  line_key:
+    type: text
+    unique: true
+  unusual:
+    type: boolean

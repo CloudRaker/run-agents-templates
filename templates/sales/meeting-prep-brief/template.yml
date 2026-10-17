@@ -1,0 +1,14 @@
+name: Meeting prep brief
+category: sales
+icon: calendar-check
+description: Writes a short brief for each external meeting on a seller's calendar every workday morning.
+what_it_does: |
+  Runs at 06:30 UTC on each workday and reads the seller's calendar.
+  Matches external attendees to HubSpot contacts, companies and deals.
+  Writes one brief for each meeting: who attends, deal status, open points and goals.
+  Skips internal meetings.
+connectors:
+  - id: hubspot
+    required: true
+    purpose: Find contacts, companies, deals and recent activity for each attendee.
+tags: [meetings, calendar, briefs, schedule]

@@ -1,0 +1,49 @@
+name: Webinar recap
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+limits:
+  max_steps: 25
+timeout: 20m
+input_schema:
+  type: object
+  properties:
+    title:
+      type: string
+      description: Optional. The webinar title.
+    speakers:
+      type: array
+      items: { type: string }
+      description: Optional. Speaker names and titles, to label the transcript.
+output_schema:
+  type: object
+  required: [status]
+  properties:
+    status:
+      type: string
+      enum: [done, no_recording]
+    title: { type: string }
+    file_name: { type: string }
+    key_points:
+      type: array
+      items: { type: string }
+    questions:
+      type: array
+      items:
+        type: object
+        required: [question]
+        properties:
+          question: { type: string }
+          answer: { type: string }
+    quotes:
+      type: array
+      items:
+        type: object
+        required: [text]
+        properties:
+          text: { type: string }
+          speaker: { type: string }
+    follow_ups:
+      type: array
+      items: { type: string }

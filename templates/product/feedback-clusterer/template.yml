@@ -1,0 +1,17 @@
+name: Feedback clusterer
+category: product
+description: Clusters the feedback of the week into themes, saves each theme and proposes Linear issues.
+icon: chats-circle
+what_it_does: |
+  Reads the Intercom conversations of the last 7 days each Monday at 07:00 UTC.
+  Clusters the product feedback into themes with counts and example quotes.
+  Saves each theme as a record that grows week after week.
+  Proposes Linear issues for new themes, and links themes that already have one.
+connectors:
+  - id: intercom
+    required: true
+    purpose: Read conversations, tags and customer attributes of the last week.
+  - id: linear
+    required: true
+    purpose: Search issues to link existing themes. The agent does not create issues.
+tags: [feedback, product-discovery, schedule]

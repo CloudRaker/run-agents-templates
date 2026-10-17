@@ -1,0 +1,44 @@
+name: Exit interview digest
+mode: zeroshot
+triggers:
+  http: true
+data:
+  read:
+    - exit_theme
+  write:
+    - exit_theme
+limits:
+  max_steps: 50
+timeout: 20m
+input_schema:
+  type: object
+  properties:
+    period:
+      type: string
+      description: Optional. The period of the interviews, for example 2026-Q3.
+    department:
+      type: string
+      description: Optional. The department of the interviews.
+output_schema:
+  type: object
+  required: [interviews, themes]
+  properties:
+    interviews: { type: integer }
+    themes:
+      type: array
+      items:
+        type: object
+        required: [theme, count, sentiment]
+        properties:
+          theme: { type: string }
+          count: { type: integer }
+          sentiment:
+            type: string
+            enum: [negative, mixed, positive]
+          quotes:
+            type: array
+            items: { type: string }
+    retention_risks:
+      type: array
+      items: { type: string }
+    summary: { type: string }

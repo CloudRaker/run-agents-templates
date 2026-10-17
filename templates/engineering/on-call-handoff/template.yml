@@ -1,0 +1,14 @@
+name: On-call handoff
+category: engineering
+description: Writes the daily on-call handoff with the incidents of the last 24 hours, open items and the next on-call person.
+icon: bell-ringing
+what_it_does: |
+  Runs at 08:00 UTC each day, before the on-call shift changes.
+  Summarizes the PagerDuty incidents of the last 24 hours and their state.
+  Lists open items that the next person must watch.
+  Names who is on call next for each schedule.
+connectors:
+  - id: pagerduty
+    required: true
+    purpose: Read incidents, notes, services and on-call schedules.
+tags: [on-call, incidents, schedule]

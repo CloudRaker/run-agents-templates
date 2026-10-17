@@ -1,0 +1,11 @@
+name: Resume screener
+category: hr
+description: Scores each resume against your role profile and saves one candidate record for each.
+what_it_does: |
+  Reads resumes from an HTTP request or an email.
+  Extracts the name, contact, years of experience, skills and last roles.
+  Scores each candidate against a role profile that you edit.
+  Saves one candidate record and never decides on protected characteristics.
+connectors: []
+tags: [recruiting, resumes, screening]
+icon: user-focus

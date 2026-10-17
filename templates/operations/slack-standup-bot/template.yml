@@ -1,0 +1,14 @@
+name: Slack standup bot
+category: operations
+icon: chats-teardrop
+description: Runs the daily standup in Slack, records the answers and gives a team summary on request.
+what_it_does: |
+  Replaces the standup meeting with a short Slack conversation.
+  Asks the three standup questions and records the answers.
+  Adds the Asana tasks of each person when Asana is connected.
+  Gives a summary of the team and its blockers when asked.
+connectors:
+  - id: asana
+    required: false
+    purpose: Read the tasks that each person completed or has due today.
+tags: [standup, slack, team, daily]

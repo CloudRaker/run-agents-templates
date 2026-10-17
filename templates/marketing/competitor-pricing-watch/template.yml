@@ -1,0 +1,14 @@
+name: Competitor pricing watch
+category: marketing
+icon: tag
+description: Checks competitor pricing pages each week and reports only the price changes.
+what_it_does: |
+  Runs each Monday at 06:00 UTC on the pricing pages in your list.
+  Reads each plan, its price and its billing period.
+  Compares them with the last stored price points.
+  Reports new, removed and changed prices only.
+connectors:
+  - id: firecrawl
+    required: true
+    purpose: Read the content of each competitor pricing page.
+tags: [competitors, pricing, monitoring, schedule]

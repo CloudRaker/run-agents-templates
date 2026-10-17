@@ -1,0 +1,46 @@
+name: Source fact checker
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - tavily
+limits:
+  max_steps: 60
+timeout: 15m
+input_schema:
+  type: object
+  properties:
+    text:
+      type: string
+      description: The text to check. Send a file instead when the text is in a document.
+    max_claims:
+      type: integer
+      description: Optional. The maximum number of claims to check. Default 20.
+output_schema:
+  type: object
+  required: [claims]
+  properties:
+    claims:
+      type: array
+      items:
+        type: object
+        required: [claim, verdict]
+        properties:
+          claim: { type: string }
+          verdict:
+            type: string
+            enum: [supported, partly_supported, contradicted, unverified]
+          correction: { type: string }
+          sources:
+            type: array
+            items:
+              type: object
+              required: [url]
+              properties:
+                title: { type: string }
+                url: { type: string }
+                quote: { type: string }
+    skipped:
+      type: integer
+      description: The number of claims over max_claims.
+    summary: { type: string }

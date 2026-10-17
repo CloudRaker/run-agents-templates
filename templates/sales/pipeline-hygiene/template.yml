@@ -1,0 +1,17 @@
+name: Pipeline hygiene
+category: sales
+icon: broom
+description: Finds stale deals, missing next steps and past close dates each Monday, grouped by owner.
+what_it_does: |
+  Runs each Monday at 07:00 UTC on your Pipedrive pipeline.
+  Finds stale deals, missing next steps and close dates in the past.
+  Groups the problems by owner with one fix for each deal.
+  Checks Close leads too when the connector is present.
+connectors:
+  - id: pipedrive
+    required: true
+    purpose: List open deals with owner, stage, close date, activities and last update.
+  - id: close
+    required: false
+    purpose: List open opportunities in Close with the same checks.
+tags: [pipeline, crm, data-quality, schedule]

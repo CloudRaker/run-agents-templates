@@ -1,0 +1,17 @@
+name: Escalation summary
+category: support
+icon: warning-circle
+description: Turns a long Intercom conversation into one clear Linear issue for engineering.
+what_it_does: |
+  Writes the timeline, the customer impact and what support already tried.
+  States the exact ask for engineering.
+  Creates one Linear issue, or updates the issue that already exists.
+  Returns the summary and the issue link.
+connectors:
+  - id: intercom
+    required: true
+    purpose: Read the conversation, the contact and the company.
+  - id: linear
+    required: true
+    purpose: Search, create and update the engineering issue.
+tags: [escalation, engineering, linear, intercom]

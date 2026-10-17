@@ -1,0 +1,50 @@
+name: Paper summarizer
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+email:
+  reply: true
+connectors:
+  - exa
+limits:
+  max_steps: 25
+input_schema:
+  type: object
+  properties:
+    topic:
+      type: string
+      description: Optional. The topic of the reader, used to rate the relevance.
+output_schema:
+  type: object
+  required: [title, question, method, results, limits]
+  properties:
+    title: { type: string }
+    authors:
+      type: array
+      items: { type: string }
+    year: { type: integer }
+    question: { type: string }
+    method: { type: string }
+    results:
+      type: array
+      items: { type: string }
+    limits:
+      type: array
+      items: { type: string }
+    relevance:
+      type: object
+      properties:
+        rating:
+          type: string
+          enum: [high, medium, low, not_rated]
+        reason: { type: string }
+    related_work:
+      type: array
+      items:
+        type: object
+        required: [title, url]
+        properties:
+          title: { type: string }
+          url: { type: string }
+          why: { type: string }

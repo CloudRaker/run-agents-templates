@@ -1,0 +1,25 @@
+name: knowledge_gap
+label: Knowledge gap
+label_field: topic
+fields:
+  topic:
+    type: text
+    required: true
+    unique: true
+  question:
+    type: long_text
+    required: true
+  answer_summary:
+    type: long_text
+  count:
+    type: number
+    required: true
+  example_conversations:
+    type: long_text
+  first_seen:
+    type: date
+  last_seen:
+    type: date
+  status:
+    type: select
+    options: [open, article_planned, article_published, ignored]

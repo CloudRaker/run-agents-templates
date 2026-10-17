@@ -1,0 +1,43 @@
+name: Escalation summary
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - intercom
+  - linear
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  required: [conversation_id]
+  properties:
+    conversation_id:
+      type: string
+      description: The Intercom conversation id or URL.
+    team:
+      type: string
+      description: Optional. The Linear team key. Default is the team in AGENTS.md.
+output_schema:
+  type: object
+  required: [action, summary]
+  properties:
+    action:
+      type: string
+      enum: [created, updated, none]
+    issue_url: { type: string }
+    summary:
+      type: object
+      required: [title, impact, ask]
+      properties:
+        title: { type: string }
+        timeline:
+          type: array
+          items: { type: string }
+        impact: { type: string }
+        tried:
+          type: array
+          items: { type: string }
+        ask: { type: string }
+        severity:
+          type: string
+          enum: [urgent, high, medium, low]

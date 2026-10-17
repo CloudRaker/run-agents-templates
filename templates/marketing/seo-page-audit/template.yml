@@ -1,0 +1,14 @@
+name: SEO page audit
+category: marketing
+icon: magnifying-glass
+description: Crawls one page and lists its on-page SEO issues with fixes by priority.
+what_it_does: |
+  Crawls one URL and reads the rendered page.
+  Checks the title, the meta description, the headings, internal links and readability.
+  Lists each issue with a concrete fix and a priority.
+  Gives an overall score from 0 to 100.
+connectors:
+  - id: firecrawl
+    required: true
+    purpose: Crawl the page and return its content, metadata and links.
+tags: [seo, audit, content]

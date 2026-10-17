@@ -1,0 +1,11 @@
+name: CSV to records
+category: data
+description: Imports a CSV or spreadsheet into data store records, and reports the rows written and rejected.
+what_it_does: |
+  Reads a CSV or spreadsheet file and maps its columns to a record schema.
+  Creates the schema when it does not exist yet.
+  Validates each row and writes the valid rows as records.
+  Reports the rows written and each rejected row with the reason.
+connectors: []
+tags: [import, csv, data-store]
+icon: file-csv

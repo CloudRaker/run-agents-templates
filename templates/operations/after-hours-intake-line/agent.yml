@@ -1,0 +1,23 @@
+name: After-hours intake line
+mode: turns
+triggers:
+  phone: true
+connectors: []
+data:
+  read:
+    - intake
+  write:
+    - intake
+phone:
+  greeting: "Hello, you reached us after hours. This call is recorded so that our team can follow up. I can take your request now. May I have your name?"
+  record: true
+  voice: sage
+  style: "Calm and reassuring. Short sentences. Confirm each detail before you move on."
+  turn_timeout: 8s
+  max_duration: 10m
+  transfers:
+    emergency:
+      number: "+15555550199"
+      label: "the on-call emergency contact"
+limits:
+  max_steps: 25

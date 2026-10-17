@@ -1,0 +1,22 @@
+name: insight
+label: Insight
+label_field: theme
+fields:
+  theme:
+    type: text
+    required: true
+  study:
+    type: text
+    required: true
+  type:
+    type: select
+    options: [pain, need, behavior, request, praise]
+  count:
+    type: number
+    required: true
+  interviews:
+    type: number
+  quotes:
+    type: long_text
+  first_seen:
+    type: date

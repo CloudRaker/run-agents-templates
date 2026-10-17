@@ -1,0 +1,14 @@
+name: Feature request router
+category: product
+description: Takes a feature request in Slack, finds duplicates, and files or links a Linear issue.
+icon: lightbulb
+what_it_does: |
+  Takes a feature request from anyone in a Slack thread.
+  Asks a maximum of two clarifying questions about the user and the problem.
+  Searches Linear for duplicates and adds the new evidence to the existing issue.
+  Files a new issue only when no match exists, and answers with the link.
+connectors:
+  - id: linear
+    required: true
+    purpose: Search issues, create an issue in the triage state and add comments.
+tags: [feature-requests, chat, intake]

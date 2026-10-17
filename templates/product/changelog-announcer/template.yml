@@ -1,0 +1,14 @@
+name: Changelog announcer
+category: product
+description: Turns the Linear issues completed this week into a customer-facing changelog in Markdown.
+icon: megaphone
+what_it_does: |
+  Runs each Friday at 15:00 UTC, before the weekend.
+  Collects the Linear issues completed in the last 7 days.
+  Keeps only the changes that customers can see, and writes them in plain words.
+  Returns a Markdown changelog that is ready for review and publication.
+connectors:
+  - id: linear
+    required: true
+    purpose: List the issues completed this week, with labels, projects and descriptions.
+tags: [changelog, announcements, schedule]

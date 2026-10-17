@@ -1,0 +1,25 @@
+name: Prescription refill line
+mode: turns
+triggers:
+  phone: true
+phone:
+  greeting: "Hello, you reached the prescription refill line. This call is recorded for quality and to keep an accurate record of your request. I can take a refill request for you. If this is a medical emergency, hang up and call emergency services now. May I have your full name, please?"
+  record: true
+  voice: marin
+  style: "Calm, warm and patient. Speak slowly. Use short sentences. Say dates and numbers digit by digit. Use the caller first name once you know it."
+  turn_timeout: 10s
+  max_duration: 15m
+  transfers:
+    pharmacist:
+      number: "+15555550101"
+      label: the pharmacist on duty
+    front_desk:
+      number: "+15555550102"
+      label: the front desk
+data:
+  read:
+    - refill_request
+  write:
+    - refill_request
+limits:
+  max_steps: 40

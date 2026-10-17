@@ -1,0 +1,17 @@
+name: table_row
+label: Table row
+label_field: source_file
+fields:
+  source_file:
+    type: text
+    required: true
+  table:
+    type: text
+  page:
+    type: number
+  row_number:
+    type: number
+    required: true
+  values:
+    type: long_text
+    required: true

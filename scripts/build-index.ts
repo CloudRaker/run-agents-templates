@@ -1,6 +1,6 @@
 // Builds index.json from templates/<category>/<id>/.
 // `bun run build` writes index.json. `bun run check` validates and fails when index.json is stale.
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { parse } from 'yaml'
 import { z } from 'zod'
@@ -8,9 +8,16 @@ import { z } from 'zod'
 const ROOT = join(import.meta.dir, '..')
 const TEMPLATES = join(ROOT, 'templates')
 const INDEX = join(ROOT, 'index.json')
+const README = join(ROOT, 'README.md')
+const README_START = '<!-- templates:start -->'
+const README_END = '<!-- templates:end -->'
 const SOURCE = 'https://github.com/CloudRaker/run-agents-templates'
 const MAX_FILE_BYTES = 256 * 1024
 const ID = /^[a-z0-9][a-z0-9-]{0,62}$/
+const ICON = /^[a-z0-9]+(-[a-z0-9]+)*$/
+const ICON_URL = (name: string) =>
+  `https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/${name}.svg`
+const CHECK = process.argv.includes('--check')
 
 const CATEGORIES = {
   engineering: 'Engineering',
@@ -20,6 +27,11 @@ const CATEGORIES = {
   finance: 'Finance',
   research: 'Research',
   marketing: 'Marketing',
+  product: 'Product',
+  legal: 'Legal',
+  hr: 'People',
+  data: 'Data',
+  healthcare: 'Healthcare',
 } as const
 
 // Copy of the connector catalog ids of the Run console (connector-catalog.ts).
@@ -44,6 +56,7 @@ const TemplateSchema = z.strictObject({
       }),
     )
     .default([]),
+  icon: z.string().regex(ICON, 'a Phosphor icon name in kebab case'),
   tags: z.array(z.string()).optional(),
 })
 
@@ -109,7 +122,7 @@ for (const category of dirs(TEMPLATES)) {
 
     const files = listFiles(dir)
       .map((f) => relative(dir, f).split(sep).join('/'))
-      .filter((f) => f !== 'template.yml' && !f.endsWith('.DS_Store'))
+      .filter((f) => f !== 'template.yml' && f !== 'icon.svg' && !f.endsWith('.DS_Store'))
       .sort()
     for (const f of files) {
       if (statSync(join(dir, f)).size > MAX_FILE_BYTES) fail(`${path}/${f}`, 'over 256 KB')
@@ -130,6 +143,22 @@ for (const category of dirs(TEMPLATES)) {
       continue
     }
     if (meta.data.category !== category) fail(`${path}/template.yml`, `category must be ${category}`)
+
+    // ponytail: build downloads a missing icon.svg once; check stays offline and only wants the file.
+    const iconFile = join(dir, 'icon.svg')
+    if (!existsSync(iconFile)) {
+      if (CHECK) {
+        fail(path, 'missing icon.svg. Run `bun run build` to download it.')
+      } else {
+        const res = await fetch(ICON_URL(meta.data.icon))
+        const svg = res.ok ? await res.text() : ''
+        if (res.status !== 200 || !svg.trimStart().startsWith('<svg')) {
+          fail(`${path}/template.yml`, `icon ${meta.data.icon}: download of ${ICON_URL(meta.data.icon)} failed (HTTP ${res.status})`)
+        } else {
+          writeFileSync(iconFile, svg)
+        }
+      }
+    }
 
     let raw: unknown
     try {
@@ -157,6 +186,7 @@ for (const category of dirs(TEMPLATES)) {
       name: meta.data.name,
       category,
       description: meta.data.description,
+      icon: meta.data.icon,
       what_it_does: meta.data.what_it_does,
       connectors: meta.data.connectors,
       triggers,
@@ -189,9 +219,37 @@ try {
 const strip = (o: object | null) => JSON.stringify(o && { ...o, generated_at: undefined })
 const fresh = previous !== null && strip(previous) === strip(body)
 
-if (process.argv.includes('--check')) {
+// The README template list between the markers is generated from the same data.
+const cell = (s: string) => s.replace(/\|/g, '\\|').replace(/\s+/g, ' ').trim()
+const section = body.categories
+  .map(({ id, name }) => {
+    const rows = templates
+      .filter((t) => t.category === id)
+      .map((t) => {
+        const connectors = t.connectors.map((c) => c.id).join(', ') || 'none'
+        return `| [${cell(t.name)}](${t.path}) | ${cell(t.description)} | ${connectors} | ${t.triggers.join(', ')} |`
+      })
+    return [`### ${name}`, '', '| Template | Description | Connectors | Triggers |', '| --- | --- | --- | --- |', ...rows].join('\n')
+  })
+  .join('\n\n')
+const readme = readFileSync(README, 'utf8')
+const from = readme.indexOf(README_START)
+const to = readme.indexOf(README_END)
+if (from < 0 || to < from) {
+  console.error(`README.md must contain ${README_START} and ${README_END}.`)
+  process.exit(1)
+}
+const nextReadme = `${readme.slice(0, from + README_START.length)}\n${section}\n${readme.slice(to)}`
+const trimEnds = (t: string) => t.replace(/[ \t]+$/gm, '')
+const readmeFresh = trimEnds(readme) === trimEnds(nextReadme)
+
+if (CHECK) {
   if (!fresh) {
     console.error('index.json is stale. Run `bun run build` and commit the result.')
+    process.exit(1)
+  }
+  if (!readmeFresh) {
+    console.error('The template list in README.md is stale. Run `bun run build` and commit the result.')
     process.exit(1)
   }
   console.log(`ok: ${templates.length} templates, ${body.categories.length} categories`)
@@ -200,5 +258,6 @@ if (process.argv.includes('--check')) {
   const generated_at = fresh && previous?.generated_at ? previous.generated_at : new Date().toISOString()
   const index = { version: 1, generated_at, ...body }
   writeFileSync(INDEX, `${JSON.stringify(index, null, 2)}\n`)
-  console.log(`wrote index.json: ${templates.length} templates`)
+  if (!readmeFresh) writeFileSync(README, nextReadme)
+  console.log(`wrote index.json and README.md: ${templates.length} templates`)
 }

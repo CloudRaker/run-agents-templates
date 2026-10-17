@@ -1,0 +1,11 @@
+name: Appointment booking line
+category: operations
+icon: calendar-plus
+description: Books appointments by phone on one shared calendar, inside your business hours.
+what_it_does: |
+  Answers a phone number and books appointments without a receptionist.
+  Checks free slots on one calendar and offers two or three times.
+  Confirms the name and the callback number, then creates the event.
+  Never books outside your business hours.
+connectors: []
+tags: [phone, booking, calendar, voice]

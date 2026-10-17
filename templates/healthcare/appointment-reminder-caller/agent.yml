@@ -1,0 +1,57 @@
+name: Appointment reminder caller
+mode: turns
+triggers:
+  http: true
+  phone: true
+phone:
+  greeting: "Hello, this is the automated assistant of your clinic, calling about an upcoming visit. This call is recorded. May I speak with the patient, please?"
+  record: true
+  voice: marin
+  style: "Friendly, brief and clear. Say the day, the date and the time slowly. Never rush the patient. Use the first name once you confirm you speak with the patient."
+  turn_timeout: 10s
+  max_duration: 10m
+  outbound: true
+  transfers:
+    front_desk:
+      number: "+15555550110"
+      label: the front desk
+data:
+  write:
+    - appointment_change
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  required: [patient_name, phone, appointment_time]
+  properties:
+    patient_name:
+      type: string
+      description: Full name of the patient.
+    phone:
+      type: string
+      description: E.164 number of the patient, for example +15555550123. US and CA only.
+    appointment_time:
+      type: string
+      description: ISO 8601 date and time with the time zone offset.
+    date_of_birth:
+      type: string
+      description: Optional. ISO 8601 date. The agent uses it to check identity.
+    location:
+      type: string
+      description: Optional. The clinic address or the room.
+    appointment_id:
+      type: string
+      description: Optional. Your own appointment id, copied to the record.
+output_schema:
+  type: object
+  required: [outcome]
+  properties:
+    outcome:
+      type: string
+      enum: [confirmed, reschedule_requested, cancel_requested, no_answer, wrong_person, callback_requested, failed]
+    appointment_id: { type: string }
+    preferred_times:
+      type: array
+      items: { type: string }
+    call_id: { type: string }
+    notes: { type: string }

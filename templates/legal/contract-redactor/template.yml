@@ -1,0 +1,11 @@
+name: Contract redactor
+category: legal
+icon: file-lock
+description: Redacts names, addresses and optional amounts from a contract and returns the redacted file.
+what_it_does: |
+  Writes a redacted copy of a contract that you can share outside the deal team.
+  Removes names, addresses and contact details. Removes amounts when you ask.
+  Emits the redacted file as the run artifact.
+  Returns only the entity categories and the counts, never the redacted values.
+connectors: []
+tags: [redaction, contracts, privacy]

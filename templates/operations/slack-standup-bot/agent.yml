@@ -1,0 +1,14 @@
+name: Slack standup bot
+mode: turns
+idle_ttl: 12h
+triggers:
+  slack: true
+connectors:
+  - asana
+data:
+  read:
+    - standup
+  write:
+    - standup
+limits:
+  max_steps: 30

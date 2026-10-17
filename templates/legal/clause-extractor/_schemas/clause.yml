@@ -1,0 +1,24 @@
+name: clause
+label: Clause
+label_field: clause_type
+fields:
+  contract_name:
+    type: text
+    required: true
+  clause_type:
+    type: text
+    required: true
+  text:
+    type: long_text
+  section:
+    type: text
+  risk:
+    type: select
+    options: [low, medium, high]
+  risk_reason:
+    type: text
+  found:
+    type: boolean
+  clause_key:
+    type: text
+    unique: true

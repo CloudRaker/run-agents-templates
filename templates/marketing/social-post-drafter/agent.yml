@@ -1,0 +1,34 @@
+name: Social post drafter
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - notion
+limits:
+  max_steps: 25
+input_schema:
+  type: object
+  properties:
+    source_text:
+      type: string
+      description: Optional when a file is attached. The text to turn into posts.
+    goal:
+      type: string
+      description: Optional. For example "drive sign-ups for the webinar".
+    link:
+      type: string
+      description: Optional. The URL to promote.
+output_schema:
+  type: object
+  required: [linkedin, x]
+  properties:
+    key_message: { type: string }
+    linkedin:
+      type: array
+      items: { type: string }
+    x:
+      type: array
+      items: { type: string }
+    notes:
+      type: array
+      items: { type: string }

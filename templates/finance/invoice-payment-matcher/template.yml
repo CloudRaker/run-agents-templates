@@ -1,0 +1,14 @@
+name: Invoice payment matcher
+category: finance
+icon: arrows-left-right
+description: Matches invoices to Stripe payments and lists the invoices that are unpaid or partially paid.
+what_it_does: |
+  Takes a date range or an invoice file.
+  Matches each invoice to Stripe charges and payments by number, customer and amount.
+  Lists the unpaid and the partially paid invoices with the open balance.
+  Never creates, changes or refunds a payment.
+connectors:
+  - id: stripe
+    required: true
+    purpose: Read invoices, charges, payment intents and customers.
+tags: [reconciliation, invoices, payments]

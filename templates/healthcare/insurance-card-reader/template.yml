@@ -1,0 +1,11 @@
+name: Insurance card reader
+category: healthcare
+icon: identification-card
+description: Reads photos of the front and back of an insurance card and returns the payer, member and plan data.
+what_it_does: |
+  Reads photos or scans of the front and back of a health insurance card.
+  Returns the payer, member id, group number, plan, and the phone numbers on the card.
+  Flags values that are unreadable or that differ between the two sides.
+  Writes the data nowhere: the run output is the only copy.
+connectors: []
+tags: [insurance, extraction, cards, front-desk]

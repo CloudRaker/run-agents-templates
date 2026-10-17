@@ -1,0 +1,12 @@
+name: Expense receipt processor
+category: finance
+icon: money
+description: Reads expense receipts from email or HTTP, records each expense and flags receipts over a limit.
+what_it_does: |
+  Reads each receipt image or PDF from an email or a request.
+  Extracts the merchant, the date, the total, the tax, the currency and a category.
+  Saves one expense record for each receipt.
+  Flags each receipt over the approval limit.
+  Answers the sender one time with the list of expenses.
+connectors: []
+tags: [expenses, receipts, extraction]

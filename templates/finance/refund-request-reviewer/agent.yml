@@ -1,0 +1,36 @@
+name: Refund request reviewer
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - stripe
+  - intercom
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  properties:
+    conversation_id:
+      type: string
+      description: The Intercom conversation id or URL of the request.
+    customer_email:
+      type: string
+      description: The customer email, when there is no conversation.
+    amount:
+      type: number
+      description: Optional. The amount that the customer asks for.
+output_schema:
+  type: object
+  required: [recommendation, reasons]
+  properties:
+    recommendation: { type: string, enum: [approve, partial, decline, needs_human] }
+    refund_amount: { type: number }
+    currency: { type: string }
+    charge_id: { type: string, description: The Stripe charge to refund. }
+    rules_applied:
+      type: array
+      items: { type: string }
+    reasons:
+      type: array
+      items: { type: string }
+    customer_summary: { type: string }

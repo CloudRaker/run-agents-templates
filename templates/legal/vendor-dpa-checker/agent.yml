@@ -1,0 +1,31 @@
+name: Vendor DPA checker
+mode: zeroshot
+triggers:
+  http: true
+limits:
+  max_steps: 25
+input_schema:
+  type: object
+  properties:
+    vendor:
+      type: string
+      description: Optional. The vendor name.
+output_schema:
+  type: object
+  required: [result, items]
+  properties:
+    vendor: { type: string }
+    result: { type: string, enum: [pass, fail, not_a_dpa] }
+    items:
+      type: array
+      items:
+        type: object
+        required: [id, status]
+        properties:
+          id: { type: string }
+          status: { type: string, enum: [pass, fail, missing] }
+          finding: { type: string }
+          section: { type: string }
+    to_negotiate:
+      type: array
+      items: { type: string }

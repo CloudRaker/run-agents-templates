@@ -1,0 +1,27 @@
+name: DSAR responder
+mode: zeroshot
+triggers:
+  email: true
+email:
+  reply: true
+data:
+  read:
+    - dsar
+  write:
+    - dsar
+limits:
+  max_steps: 15
+output_schema:
+  type: object
+  required: [is_dsar]
+  properties:
+    is_dsar: { type: boolean }
+    request_type:
+      type: string
+      enum: [access, deletion, correction, portability, objection, other]
+    requester: { type: string }
+    email: { type: string }
+    received_date: { type: string }
+    due_date: { type: string }
+    acknowledged: { type: boolean }
+    duplicate: { type: boolean }

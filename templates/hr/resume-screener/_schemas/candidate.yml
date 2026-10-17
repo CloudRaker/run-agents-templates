@@ -1,0 +1,29 @@
+name: candidate
+label: Candidate
+label_field: name
+fields:
+  name:
+    type: text
+    required: true
+  email:
+    type: email
+    unique: true
+  phone:
+    type: phone
+  role:
+    type: text
+    required: true
+  years_experience:
+    type: number
+  skills:
+    type: long_text
+  last_roles:
+    type: long_text
+  score:
+    type: number
+    required: true
+  recommendation:
+    type: select
+    options: [interview, maybe, no_match]
+  reasons:
+    type: long_text

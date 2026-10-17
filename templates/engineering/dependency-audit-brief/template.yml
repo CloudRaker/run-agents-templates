@@ -1,0 +1,14 @@
+name: Dependency audit brief
+category: engineering
+description: Writes a weekly brief of vulnerable and outdated dependencies across a list of repositories.
+icon: package
+what_it_does: |
+  Runs each Monday at 09:00 UTC on the repositories that you list.
+  Collects open security alerts and pending dependency update pull requests.
+  Ranks the problems by severity and by the number of repositories affected.
+  Returns a short brief with the five actions to take first.
+connectors:
+  - id: github
+    required: true
+    purpose: Read Dependabot alerts, manifest files and dependency update pull requests.
+tags: [dependencies, security, schedule]

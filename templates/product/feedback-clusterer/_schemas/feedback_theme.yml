@@ -1,0 +1,31 @@
+name: feedback_theme
+label: Feedback theme
+label_field: name
+fields:
+  name:
+    type: text
+    required: true
+    unique: true
+  summary:
+    type: long_text
+  area:
+    type: text
+  kind:
+    type: select
+    options: [bug, feature_request, usability, pricing, other]
+  week_count:
+    type: number
+  total_count:
+    type: number
+    required: true
+  quotes:
+    type: long_text
+  status:
+    type: select
+    options: [new, growing, stable]
+  linear_issue:
+    type: url
+  first_seen:
+    type: date
+  last_seen:
+    type: date

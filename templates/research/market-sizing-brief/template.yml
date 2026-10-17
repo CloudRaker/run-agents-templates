@@ -1,0 +1,17 @@
+name: Market sizing brief
+category: research
+description: Estimates TAM, SAM and SOM for a market and a geography, with sources and assumptions.
+what_it_does: |
+  Estimates TAM, SAM and SOM for a market in a geography.
+  Uses top-down and bottom-up methods and shows both.
+  Lists each source and each assumption next to the number it supports.
+  Searches with Exa, and with Tavily when it is connected.
+connectors:
+  - id: exa
+    required: true
+    purpose: Search for market reports, company data and statistics.
+  - id: tavily
+    required: false
+    purpose: Run more web searches to check numbers.
+tags: [market-sizing, tam, strategy]
+icon: chart-pie-slice

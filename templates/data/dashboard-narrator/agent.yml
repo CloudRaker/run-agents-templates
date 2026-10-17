@@ -1,0 +1,36 @@
+name: Dashboard narrator
+mode: zeroshot
+triggers:
+  schedule: "0 8 * * 1"
+connectors:
+  - posthog
+  - hex
+limits:
+  max_steps: 50
+output_schema:
+  type: object
+  required: [week, narrative, changes]
+  properties:
+    week: { type: string, description: The ISO week, for example 2026-W44. }
+    narrative: { type: string }
+    changes:
+      type: array
+      maxItems: 3
+      items:
+        type: object
+        required: [metric, change, why_it_matters]
+        properties:
+          metric: { type: string }
+          change: { type: string }
+          likely_cause: { type: string }
+          why_it_matters: { type: string }
+          url: { type: string }
+    metrics:
+      type: array
+      items:
+        type: object
+        properties:
+          name: { type: string }
+          this_week: { type: number }
+          last_week: { type: number }
+          change_pct: { type: number }

@@ -1,0 +1,47 @@
+name: Clause extractor
+mode: zeroshot
+triggers:
+  http: true
+data:
+  write:
+    - clause
+limits:
+  max_steps: 80
+timeout: 20m
+input_schema:
+  type: object
+  required: [clause_types]
+  properties:
+    clause_types:
+      type: array
+      minItems: 1
+      items: { type: string }
+      description: The clause types to find, for example "limitation of liability", "termination", "auto-renewal".
+    contract_names:
+      type: object
+      additionalProperties: { type: string }
+      description: Optional. A name for each file id. Default the file name.
+output_schema:
+  type: object
+  required: [contracts]
+  properties:
+    contracts:
+      type: array
+      items:
+        type: object
+        required: [contract_name, clauses]
+        properties:
+          contract_name: { type: string }
+          file_id: { type: string }
+          clauses:
+            type: array
+            items:
+              type: object
+              required: [clause_type, found]
+              properties:
+                clause_type: { type: string }
+                found: { type: boolean }
+                section: { type: string }
+                risk: { type: string, enum: [low, medium, high] }
+                summary: { type: string }
+    records_saved: { type: integer }

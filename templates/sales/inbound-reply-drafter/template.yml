@@ -1,0 +1,14 @@
+name: Inbound reply drafter
+category: sales
+icon: envelope-simple
+description: Qualifies an inbound sales email and answers it once in your reply style.
+what_it_does: |
+  Answers each inbound sales email with one short, helpful reply.
+  Qualifies the sender with Apollo company data when it is connected.
+  Follows the reply rules in the reply-style skill.
+  Never gives prices. Offers a call instead.
+connectors:
+  - id: apollo
+    required: false
+    purpose: Find the company size, industry and the title of the sender.
+tags: [inbound, email, qualification]

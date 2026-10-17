@@ -1,0 +1,14 @@
+name: Source fact checker
+category: research
+description: Checks each factual claim in a text or a file and gives a verdict with sources.
+what_it_does: |
+  Splits a draft, an article or a file into separate factual claims.
+  Searches the web with Tavily for each claim.
+  Gives a verdict for each claim with the sources and a correction.
+  Skips opinions and predictions.
+connectors:
+  - id: tavily
+    required: true
+    purpose: Search the web for sources that support or contradict each claim.
+tags: [fact-checking, sources, editorial]
+icon: seal-check

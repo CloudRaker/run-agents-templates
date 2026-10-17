@@ -1,0 +1,17 @@
+name: CI failure explainer
+category: engineering
+description: Explains a failed CircleCI job with the failing step, the likely cause and a suggested fix.
+icon: wrench
+what_it_does: |
+  Takes the URL of a failed CircleCI pipeline or job.
+  Finds the first failing step and reads its log.
+  Compares it with the commit diff on GitHub to find the likely cause.
+  Suggests a fix and says if the failure looks flaky.
+connectors:
+  - id: circleci
+    required: true
+    purpose: Read pipelines, workflows, jobs, step logs and test results.
+  - id: github
+    required: true
+    purpose: Read the commit, the pull request and the changed files.
+tags: [ci, debugging, builds]

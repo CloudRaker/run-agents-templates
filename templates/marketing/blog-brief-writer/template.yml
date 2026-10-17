@@ -1,0 +1,14 @@
+name: Blog brief writer
+category: marketing
+icon: article-ny-times
+description: Researches a topic on the web and writes a content brief with angle, outline and sources.
+what_it_does: |
+  Researches 5 to 8 current sources on your topic with Exa.
+  Finds an angle that the top sources do not cover.
+  Writes a content brief: angle, outline, keywords and sources.
+  Gives a writer everything to start a draft.
+connectors:
+  - id: exa
+    required: true
+    purpose: Search the web and read the content of the sources.
+tags: [content, seo, research, briefs]

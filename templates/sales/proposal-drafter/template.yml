@@ -1,0 +1,17 @@
+name: Proposal drafter
+category: sales
+icon: file-text
+description: Drafts a sales proposal PDF from a HubSpot deal and your scope notes.
+what_it_does: |
+  Reads the deal, the company and the contacts from HubSpot.
+  Reuses sections from your Notion proposal library when it is connected.
+  Writes the proposal in Markdown and renders it as a PDF.
+  Returns the PDF file and a list of open questions.
+connectors:
+  - id: hubspot
+    required: true
+    purpose: Read the deal, the company, the contacts and the line items.
+  - id: notion
+    required: false
+    purpose: Read approved proposal sections, case studies and terms.
+tags: [proposals, pdf, deals]

@@ -1,0 +1,29 @@
+name: Weekly status compiler
+mode: zeroshot
+triggers:
+  schedule: "0 16 * * 5"
+connectors:
+  - asana
+  - linear
+limits:
+  max_steps: 80
+output_schema:
+  type: object
+  required: [week_end, projects, report]
+  properties:
+    week_end: { type: string, description: The Friday of the report, YYYY-MM-DD. }
+    projects:
+      type: array
+      items:
+        type: object
+        required: [name, health]
+        properties:
+          name: { type: string }
+          health:
+            type: string
+            enum: [on_track, at_risk, off_track]
+          done: { type: integer }
+          blocked: { type: integer }
+    report:
+      type: string
+      description: The full report as markdown.

@@ -1,0 +1,12 @@
+name: Prescription refill line
+category: healthcare
+icon: pill
+description: Answers a phone line that takes prescription refill requests and hands clinical questions to a pharmacist.
+what_it_does: |
+  Answers calls to your refill line and takes each request in a short, natural conversation.
+  Reads the request back to the caller and records it in the refill_request data store.
+  Checks for an open request first, so the caller does not ask two times.
+  Transfers clinical questions to a pharmacist and other questions to the front desk.
+  Never gives medical advice. Tells the caller to call emergency services in an emergency.
+connectors: []
+tags: [phone, pharmacy, refills, voice]

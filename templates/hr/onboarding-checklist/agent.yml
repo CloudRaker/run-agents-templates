@@ -1,0 +1,50 @@
+name: Onboarding checklist
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - asana
+  - notion
+limits:
+  max_steps: 60
+input_schema:
+  type: object
+  required: [name, role, start_date]
+  properties:
+    name: { type: string }
+    role: { type: string }
+    start_date:
+      type: string
+      description: ISO 8601 date, for example 2026-11-02.
+    manager:
+      type: string
+      description: Optional. The name or email of the manager.
+    email:
+      type: string
+      description: Optional. The work email of the new hire.
+    location:
+      type: string
+      description: Optional. Office or remote.
+output_schema:
+  type: object
+  required: [new_hire, tasks]
+  properties:
+    new_hire: { type: string }
+    project: { type: string }
+    tasks:
+      type: array
+      items:
+        type: object
+        required: [title, owner_role, due_on]
+        properties:
+          title: { type: string }
+          owner_role:
+            type: string
+            enum: [hr, it, manager, new_hire]
+          assignee: { type: string }
+          due_on: { type: string }
+          url: { type: string }
+    welcome_page: { type: string }
+    skipped:
+      type: array
+      items: { type: string }

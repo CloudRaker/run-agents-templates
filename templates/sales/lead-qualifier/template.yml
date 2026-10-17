@@ -1,6 +1,7 @@
 name: Lead qualifier
 category: sales
 description: Scores a new lead against your ideal customer profile and records the result.
+icon: target
 what_it_does: |
   Reads the company and the contact of a new lead.
   Finds the lead in HubSpot. Adds company data from Apollo when it is connected.

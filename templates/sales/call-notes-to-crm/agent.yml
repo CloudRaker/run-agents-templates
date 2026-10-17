@@ -1,0 +1,50 @@
+name: Call notes to CRM
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+connectors:
+  - hubspot
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  properties:
+    deal_id:
+      type: string
+      description: Optional. The HubSpot deal id. Without it, the agent finds the deal from the participants.
+    notes:
+      type: string
+      description: Optional. Short context from the seller.
+output_schema:
+  type: object
+  required: [status]
+  properties:
+    status:
+      type: string
+      enum: [updated, deal_not_found, no_call_content]
+    deal_id: { type: string }
+    deal_name: { type: string }
+    summary: { type: string }
+    next_steps:
+      type: array
+      items:
+        type: object
+        required: [action]
+        properties:
+          action: { type: string }
+          owner: { type: string }
+          due_date: { type: string, description: ISO 8601 date. }
+    objections:
+      type: array
+      items: { type: string }
+    decision_makers:
+      type: array
+      items:
+        type: object
+        required: [name]
+        properties:
+          name: { type: string }
+          title: { type: string }
+          role: { type: string, enum: [decision_maker, champion, influencer, blocker, unknown] }
+    note_id: { type: string }

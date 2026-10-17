@@ -1,0 +1,11 @@
+name: Exit interview digest
+category: hr
+description: Finds themes, sentiment and retention risks across exit interview recordings.
+what_it_does: |
+  Transcribes one or more exit interview recordings.
+  Groups the reasons for leaving into themes with quotes.
+  Rates the sentiment and flags retention risks for the people who stay.
+  Saves one exit theme record for each theme.
+connectors: []
+tags: [retention, exit-interviews, people-analytics]
+icon: door-open

@@ -1,6 +1,7 @@
 name: Linear triage
 category: engineering
 description: Triages new Linear issues. Adds labels and a priority, and asks for missing details.
+icon: funnel
 what_it_does: |
   Reads each new issue from a request or an email.
   Adds labels and a priority from a labeling rubric.

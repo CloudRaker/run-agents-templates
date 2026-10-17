@@ -1,0 +1,17 @@
+name: Dashboard narrator
+category: data
+description: Each Monday, explains the week of your key product charts in plain language with 3 key changes.
+what_it_does: |
+  Runs each Monday at 08:00 UTC.
+  Reads the key charts of the last 7 days in PostHog and Hex.
+  Writes a plain-language narrative for people who do not read charts.
+  Picks the 3 changes that matter, with the likely cause.
+connectors:
+  - id: posthog
+    required: true
+    purpose: Read the insights and dashboards of the product analytics.
+  - id: hex
+    required: false
+    purpose: Read the results of the key Hex projects.
+tags: [analytics, reporting, schedule]
+icon: chart-bar

@@ -1,0 +1,17 @@
+name: Experiment readout
+category: product
+description: Writes the readout of an A/B test with the result, the confidence and a ship, iterate or stop call.
+icon: flask
+what_it_does: |
+  Takes a Statsig experiment identifier.
+  Reads the primary metric, the guardrail metrics and the sample size of each group.
+  Checks the sample ratio, the run time and the confidence before it makes a call.
+  Recommends ship, iterate or stop, and explains why in plain words.
+connectors:
+  - id: statsig
+    required: true
+    purpose: Read the experiment, its groups, the metric results and the exposure counts.
+  - id: posthog
+    required: false
+    purpose: Check secondary product events that are not in Statsig.
+tags: [experiments, ab-testing, analytics]

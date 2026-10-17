@@ -1,0 +1,11 @@
+name: Patient intake extractor
+category: healthcare
+icon: clipboard-text
+description: Turns intake forms (PDF or photos) into a structured patient intake record and asks once for missing fields.
+what_it_does: |
+  Reads intake forms sent by email or HTTP, as PDF files or phone photos.
+  Extracts demographics, insurance, allergies, medications and the reason for visit.
+  Records the result in the patient_intake data store.
+  Lists the missing fields and answers the email one time to ask for them.
+connectors: []
+tags: [intake, extraction, forms, email]

@@ -1,0 +1,55 @@
+name: User interview synthesizer
+mode: zeroshot
+triggers:
+  http: true
+data:
+  read:
+    - insight
+  write:
+    - insight
+limits:
+  max_steps: 60
+timeout: 30m
+input_schema:
+  type: object
+  properties:
+    study:
+      type: string
+      description: The name of the study, for example "Onboarding interviews Q4".
+    questions:
+      type: array
+      items: { type: string }
+      description: Optional. The research questions of the study.
+output_schema:
+  type: object
+  required: [interviews, themes]
+  properties:
+    interviews: { type: integer }
+    themes:
+      type: array
+      items:
+        type: object
+        required: [theme, type, count]
+        properties:
+          theme: { type: string }
+          type:
+            type: string
+            enum: [pain, need, behavior, request, praise]
+          count: { type: integer }
+          quotes:
+            type: array
+            items:
+              type: object
+              properties:
+                participant: { type: string }
+                quote: { type: string }
+    answers:
+      type: array
+      items:
+        type: object
+        properties:
+          question: { type: string }
+          answer: { type: string }
+    surprises:
+      type: array
+      items: { type: string }

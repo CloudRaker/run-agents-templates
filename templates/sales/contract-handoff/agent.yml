@@ -1,0 +1,40 @@
+name: Contract handoff
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - salesforce
+data:
+  read:
+    - contract
+  write:
+    - contract
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  properties:
+    account_name:
+      type: string
+      description: Optional. The Salesforce account name. Without it, the agent uses the customer party of the contract.
+output_schema:
+  type: object
+  required: [status]
+  properties:
+    status:
+      type: string
+      enum: [recorded, needs_review, not_a_contract]
+    customer: { type: string }
+    start_date: { type: string, description: ISO 8601 date. }
+    end_date: { type: string, description: ISO 8601 date. }
+    term_months: { type: number }
+    auto_renewal: { type: boolean }
+    notice_days: { type: number }
+    payment_terms: { type: string }
+    special_clauses:
+      type: array
+      items: { type: string }
+    handoff: { type: string }
+    problems:
+      type: array
+      items: { type: string }

@@ -1,0 +1,11 @@
+name: Clause extractor
+category: legal
+icon: quotes
+description: Extracts the clause types you list from one or more contracts and saves each clause as a record.
+what_it_does: |
+  Builds a searchable clause library from your contracts.
+  Takes a list of clause types, for example limitation of liability or termination.
+  Saves the clause text, the section and a risk rating for each clause.
+  Records each clause type that a contract does not have.
+connectors: []
+tags: [contracts, clauses, extraction]

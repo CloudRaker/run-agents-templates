@@ -1,0 +1,48 @@
+name: Resume screener
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+data:
+  read:
+    - candidate
+  write:
+    - candidate
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  properties:
+    role:
+      type: string
+      description: Optional. The role name. The default is the role in the role-profile skill.
+    notes:
+      type: string
+      description: Optional. Notes from the recruiter.
+output_schema:
+  type: object
+  required: [candidates]
+  properties:
+    candidates:
+      type: array
+      items:
+        type: object
+        required: [file_id, status]
+        properties:
+          file_id: { type: string }
+          status:
+            type: string
+            enum: [scored, needs_review, not_a_resume]
+          name: { type: string }
+          email: { type: string }
+          years_experience: { type: number }
+          score: { type: integer, minimum: 0, maximum: 100 }
+          recommendation:
+            type: string
+            enum: [interview, maybe, no_match]
+          must_have_missing:
+            type: array
+            items: { type: string }
+          reasons:
+            type: array
+            items: { type: string }

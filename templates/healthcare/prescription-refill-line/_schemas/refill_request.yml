@@ -1,0 +1,28 @@
+name: refill_request
+label: Refill request
+label_field: caller_name
+fields:
+  caller_name:
+    type: text
+    required: true
+  date_of_birth:
+    type: date
+    required: true
+  phone:
+    type: phone
+  medication:
+    type: text
+    required: true
+  dose:
+    type: text
+  pharmacy:
+    type: text
+  prescriber:
+    type: text
+  status:
+    type: select
+    options: [new, in_review, sent_to_prescriber, ready, cancelled]
+  call_id:
+    type: text
+  notes:
+    type: long_text

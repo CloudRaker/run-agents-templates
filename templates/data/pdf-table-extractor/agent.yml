@@ -1,0 +1,52 @@
+name: PDF table extractor
+mode: zeroshot
+triggers:
+  http: true
+data:
+  write:
+    - table_row
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  required: [table]
+  properties:
+    table:
+      type: string
+      description: The table to extract and its columns, for example "the price list with product, unit and price".
+    columns:
+      type: array
+      items:
+        type: object
+        required: [name, type]
+        properties:
+          name: { type: string }
+          type:
+            type: string
+            enum: [string, number, date, boolean]
+      description: Optional. The exact columns. The agent derives them from `table` when this is empty.
+    schema:
+      type: string
+      description: Optional. A data store schema. When set, the agent saves each row as a record. Grant it in agent.yml.
+output_schema:
+  type: object
+  required: [files]
+  properties:
+    columns:
+      type: array
+      items: { type: string }
+    files:
+      type: array
+      items:
+        type: object
+        required: [file_id, rows]
+        properties:
+          file_id: { type: string }
+          rows:
+            type: array
+            items: { type: object }
+          pages: { type: string }
+          problems:
+            type: array
+            items: { type: string }
+    records_written: { type: integer }

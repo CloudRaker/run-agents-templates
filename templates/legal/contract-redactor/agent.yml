@@ -1,0 +1,40 @@
+name: Contract redactor
+mode: zeroshot
+triggers:
+  http: true
+limits:
+  max_steps: 20
+input_schema:
+  type: object
+  properties:
+    redact_amounts:
+      type: boolean
+      description: Also remove prices, fees and other money amounts. Default false.
+    redact_company_names:
+      type: boolean
+      description: Also remove the names of the companies that are parties. Default false.
+    extra_categories:
+      type: array
+      items: { type: string }
+      description: Optional. More categories to remove, for example "Bank account number".
+output_schema:
+  type: object
+  required: [status, files]
+  properties:
+    status: { type: string, enum: [ok, partial, failed] }
+    categories:
+      type: array
+      items: { type: string }
+    files:
+      type: array
+      items:
+        type: object
+        required: [source_file_id]
+        properties:
+          source_file_id: { type: string }
+          redacted_file_id: { type: string }
+          entities:
+            type: object
+            additionalProperties: { type: integer }
+            description: The count of removed entities for each category.
+          problem: { type: string }

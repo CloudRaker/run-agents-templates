@@ -1,0 +1,60 @@
+name: Experiment readout
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - statsig
+  - posthog
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  required: [experiment_id]
+  properties:
+    experiment_id:
+      type: string
+      description: The Statsig experiment identifier or name.
+    primary_metric:
+      type: string
+      description: Optional. Overrides the primary metric of the experiment.
+output_schema:
+  type: object
+  required: [experiment, result, confidence, recommendation, reasons]
+  properties:
+    experiment: { type: string }
+    hypothesis: { type: string }
+    result:
+      type: string
+      enum: [win, loss, neutral, inconclusive]
+    primary_metric:
+      type: object
+      properties:
+        name: { type: string }
+        lift_pct: { type: number }
+        ci_low_pct: { type: number }
+        ci_high_pct: { type: number }
+        p_value: { type: number }
+    guardrails:
+      type: array
+      items:
+        type: object
+        required: [name, status]
+        properties:
+          name: { type: string }
+          lift_pct: { type: number }
+          status:
+            type: string
+            enum: [ok, regressed, unknown]
+    confidence:
+      type: string
+      enum: [high, medium, low]
+    recommendation:
+      type: string
+      enum: [ship, iterate, stop]
+    reasons:
+      type: array
+      items: { type: string }
+    checks:
+      type: array
+      items: { type: string }
+      description: Validity checks that failed, for example a sample ratio mismatch.

@@ -1,0 +1,31 @@
+name: Form intake router
+mode: zeroshot
+triggers:
+  email: true
+email:
+  reply: true
+connectors: []
+data:
+  read:
+    - intake
+  write:
+    - intake
+limits:
+  max_steps: 25
+output_schema:
+  type: object
+  required: [references, replied]
+  properties:
+    references:
+      type: array
+      items:
+        type: object
+        required: [reference, form_type, urgency, queue]
+        properties:
+          reference: { type: string }
+          form_type: { type: string }
+          urgency:
+            type: string
+            enum: [low, normal, high, urgent]
+          queue: { type: string }
+    replied: { type: boolean }

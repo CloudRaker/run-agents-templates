@@ -1,0 +1,47 @@
+name: Expense receipt processor
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+email:
+  reply: true
+data:
+  write:
+    - expense
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  properties:
+    submitter:
+      type: string
+      description: Optional. The email of the person who paid. An email run uses the sender.
+    limit:
+      type: number
+      description: Optional. The approval limit in the receipt currency. Default 250.
+output_schema:
+  type: object
+  required: [expenses]
+  properties:
+    expenses:
+      type: array
+      items:
+        type: object
+        required: [file_id, status]
+        properties:
+          file_id: { type: string }
+          status:
+            type: string
+            enum: [recorded, over_limit, needs_review, not_a_receipt]
+          merchant: { type: string }
+          date: { type: string, description: ISO 8601 date. }
+          total: { type: number }
+          tax: { type: number }
+          currency: { type: string, description: ISO 4217 code. }
+          category: { type: string }
+          problems:
+            type: array
+            items: { type: string }
+    total_by_currency:
+      type: object
+      additionalProperties: { type: number }

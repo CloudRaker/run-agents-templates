@@ -1,0 +1,14 @@
+name: Contract handoff
+category: sales
+icon: handshake
+description: Extracts the key terms of a signed contract and writes a handoff for customer success.
+what_it_does: |
+  Reads a signed contract PDF and extracts parties, term, dates and payment terms.
+  Flags special clauses that customer success must know.
+  Saves a contract record in the data store.
+  Links the result to the Salesforce account and writes a handoff summary.
+connectors:
+  - id: salesforce
+    required: true
+    purpose: Find the account and the closed opportunity, and add the handoff as a note.
+tags: [contracts, handoff, customer-success, extraction]

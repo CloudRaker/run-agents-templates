@@ -1,0 +1,18 @@
+name: Appointment booking line
+mode: turns
+triggers:
+  phone: true
+connectors: []
+delegation:
+  tools:
+    calendar: [read, free_busy, write]
+  as: bookings@example.com
+phone:
+  greeting: "Hello, you reached our booking line. This call is recorded to confirm your appointment. Would you like to book an appointment?"
+  record: true
+  voice: coral
+  style: "Friendly and efficient. Say dates as the day of the week and the date. Say times in the twelve-hour clock."
+  turn_timeout: 10s
+  max_duration: 10m
+limits:
+  max_steps: 30

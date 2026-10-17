@@ -1,0 +1,14 @@
+name: Data quality checker
+category: data
+description: Runs daily checks on your Supabase tables for null rates, duplicates and stale data.
+what_it_does: |
+  Runs each day at 06:00 UTC on your Supabase database.
+  Checks null rates, duplicate keys, stale tables and row count drops.
+  Uses a checklist that you edit with your tables and thresholds.
+  Returns each failure with the query and the measured value.
+connectors:
+  - id: supabase
+    required: true
+    purpose: Run read-only SQL queries on the project database.
+tags: [data-quality, monitoring, schedule]
+icon: database

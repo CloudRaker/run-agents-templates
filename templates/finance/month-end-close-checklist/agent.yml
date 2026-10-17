@@ -1,0 +1,31 @@
+name: Month-end close checklist
+mode: zeroshot
+triggers:
+  schedule: "0 9 1 * *"
+connectors:
+  - stripe
+  - chartmogul
+limits:
+  max_steps: 80
+timeout: 20m
+output_schema:
+  type: object
+  required: [month, items, gaps]
+  properties:
+    month: { type: string, description: The closed month, YYYY-MM. }
+    items:
+      type: array
+      items:
+        type: object
+        required: [id, status]
+        properties:
+          id: { type: string }
+          status: { type: string, enum: [done, gap, not_checked] }
+          amount: { type: number }
+          currency: { type: string }
+          records:
+            type: array
+            items: { type: string }
+          note: { type: string }
+    gaps: { type: integer, description: The number of items with status gap. }
+    summary: { type: string }

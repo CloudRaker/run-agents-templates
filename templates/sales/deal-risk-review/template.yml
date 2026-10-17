@@ -1,0 +1,17 @@
+name: Deal risk review
+category: sales
+icon: warning-diamond
+description: Reviews open late-stage deals each week and flags risks from call signals.
+what_it_does: |
+  Runs each Monday at 12:00 UTC.
+  Lists open Salesforce opportunities at or after the proposal stage.
+  Reads the recent Gong calls of each deal for risk signals.
+  Gives each deal a risk level, a reason and a next action.
+connectors:
+  - id: salesforce
+    required: true
+    purpose: List open opportunities with stage, amount, close date and owner.
+  - id: gong
+    required: true
+    purpose: Read recent calls, trackers and talk patterns for each deal.
+tags: [pipeline, forecast, risk, schedule]

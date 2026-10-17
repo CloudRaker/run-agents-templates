@@ -1,0 +1,28 @@
+name: appointment_change
+label: Appointment change
+label_field: patient_name
+fields:
+  patient_name:
+    type: text
+    required: true
+  phone:
+    type: phone
+    required: true
+  appointment_time:
+    type: datetime
+    required: true
+  appointment_id:
+    type: text
+  change:
+    type: select
+    options: [reschedule, cancel]
+    required: true
+  preferred_times:
+    type: long_text
+  reason:
+    type: long_text
+  call_id:
+    type: text
+  status:
+    type: select
+    options: [new, done]

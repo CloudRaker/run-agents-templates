@@ -1,0 +1,19 @@
+name: Voice support line
+mode: turns
+triggers:
+  phone: true
+connectors:
+  - intercom
+phone:
+  greeting: "Hello, you reached customer support. This call is recorded for quality and training. How can I help you today?"
+  record: true
+  voice: marin
+  style: "Warm, calm and brief. Use plain words. Use the caller first name once you know it."
+  turn_timeout: 8s
+  max_duration: 15m
+  transfers:
+    human:
+      number: "+15555550100"
+      label: "a member of the support team"
+limits:
+  max_steps: 40

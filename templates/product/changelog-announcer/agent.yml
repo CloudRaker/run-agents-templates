@@ -1,0 +1,30 @@
+name: Changelog announcer
+mode: zeroshot
+triggers:
+  schedule: "0 15 * * 5"
+connectors:
+  - linear
+limits:
+  max_steps: 40
+output_schema:
+  type: object
+  required: [markdown, included, excluded]
+  properties:
+    headline:
+      type: string
+      description: The most important change of the week, in one sentence.
+    markdown: { type: string }
+    included:
+      type: array
+      items:
+        type: object
+        required: [issue, entry]
+        properties:
+          issue: { type: string }
+          entry: { type: string }
+          section:
+            type: string
+            enum: [new, improved, fixed]
+    excluded:
+      type: integer
+      description: The number of completed issues that customers cannot see.

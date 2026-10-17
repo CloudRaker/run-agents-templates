@@ -1,0 +1,14 @@
+name: Knowledge gap finder
+category: support
+icon: book-open
+description: Finds the questions support answers each week without a help article, and records them.
+what_it_does: |
+  Finds repeated questions that support answered with no help article.
+  Groups the questions by topic each Tuesday.
+  Records each gap with its count and example conversations.
+  Updates a gap that already exists in place of a duplicate.
+connectors:
+  - id: intercom
+    required: true
+    purpose: Read last week's conversations and search help center articles.
+tags: [knowledge base, help center, schedule]

@@ -1,0 +1,40 @@
+name: Feedback clusterer
+mode: zeroshot
+triggers:
+  schedule: "0 7 * * 1"
+connectors:
+  - intercom
+  - linear
+data:
+  read:
+    - feedback_theme
+  write:
+    - feedback_theme
+limits:
+  max_steps: 80
+output_schema:
+  type: object
+  required: [conversations_read, themes, proposed_issues]
+  properties:
+    conversations_read: { type: integer }
+    themes:
+      type: array
+      items:
+        type: object
+        required: [name, count, status]
+        properties:
+          name: { type: string }
+          count: { type: integer }
+          status:
+            type: string
+            enum: [new, growing, stable]
+          linear_issue: { type: string }
+    proposed_issues:
+      type: array
+      items:
+        type: object
+        required: [title, description, theme]
+        properties:
+          title: { type: string }
+          description: { type: string }
+          theme: { type: string }

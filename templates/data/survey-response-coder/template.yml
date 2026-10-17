@@ -1,0 +1,11 @@
+name: Survey response coder
+category: data
+description: Codes the open answers of a survey export into your codebook and counts each code.
+what_it_does: |
+  Reads a survey export file with open-text answers.
+  Assigns one or more codes from your codebook to each answer.
+  Counts each code and gives example answers.
+  Saves one survey code record for each coded answer.
+connectors: []
+tags: [surveys, coding, qualitative]
+icon: list-magnifying-glass

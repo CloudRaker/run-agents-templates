@@ -1,0 +1,11 @@
+name: Vendor onboarding
+category: operations
+icon: truck
+description: Reads the W-9, insurance certificate and bank letter that a vendor emails, and records the vendor.
+what_it_does: |
+  Extracts tax, insurance and bank details from vendor documents in one email.
+  Records the vendor in the data store with the documents it received.
+  Lists missing or expired documents.
+  Answers the vendor once to ask for what is missing.
+connectors: []
+tags: [vendors, onboarding, extraction, email]

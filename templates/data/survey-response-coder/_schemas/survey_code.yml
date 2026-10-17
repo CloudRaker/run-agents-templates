@@ -1,0 +1,18 @@
+name: survey_code
+label: Survey code
+label_field: response_id
+fields:
+  response_id:
+    type: text
+    required: true
+  survey:
+    type: text
+    required: true
+  answer:
+    type: long_text
+  codes:
+    type: multi_select
+    options: [pricing, ease_of_use, performance, missing_feature, bug, support, onboarding, praise, other]
+  sentiment:
+    type: select
+    options: [negative, neutral, positive]

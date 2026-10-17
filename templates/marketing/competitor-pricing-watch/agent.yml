@@ -1,0 +1,38 @@
+name: Competitor pricing watch
+mode: zeroshot
+triggers:
+  schedule: "0 6 * * 1"
+connectors:
+  - firecrawl
+data:
+  read:
+    - price_point
+  write:
+    - price_point
+limits:
+  max_steps: 80
+output_schema:
+  type: object
+  required: [checked, changes]
+  properties:
+    checked:
+      type: integer
+      description: The number of pricing pages read.
+    changes:
+      type: array
+      items:
+        type: object
+        required: [competitor, plan, change]
+        properties:
+          competitor: { type: string }
+          plan: { type: string }
+          change: { type: string, enum: [new, removed, price_changed, period_changed] }
+          old_price: { type: number }
+          new_price: { type: number }
+          currency: { type: string }
+          period: { type: string }
+          url: { type: string }
+          note: { type: string }
+    failed:
+      type: array
+      items: { type: string }

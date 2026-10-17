@@ -1,0 +1,11 @@
+name: Vendor DPA checker
+category: legal
+icon: shield-checkered
+description: Checks a vendor data processing agreement against your checklist and marks each item pass, fail or missing.
+what_it_does: |
+  Gives a pass, fail or missing result for each item of your DPA checklist.
+  Checks sub-processors, the transfer mechanism, the breach notice window, audit rights and deletion.
+  Quotes the section for each result.
+  Lists the items to negotiate with the vendor.
+connectors: []
+tags: [dpa, privacy, vendors]

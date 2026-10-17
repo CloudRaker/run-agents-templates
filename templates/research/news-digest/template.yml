@@ -1,0 +1,14 @@
+name: News digest
+category: research
+description: Sends a weekday morning digest of 5 to 10 news items on your topics, each with why it matters.
+what_it_does: |
+  Runs at 07:00 UTC from Monday to Friday.
+  Finds the news of the last 24 hours on the topics in AGENTS.md.
+  Selects 5 to 10 items and writes one line on why each matters.
+  Skips duplicates and press releases with no news.
+connectors:
+  - id: exa
+    required: true
+    purpose: Search for recent news on each topic.
+tags: [news, digest, schedule]
+icon: newspaper

@@ -1,0 +1,34 @@
+name: intake
+label: Intake
+label_field: summary
+fields:
+  reference:
+    type: text
+    required: true
+    unique: true
+  channel:
+    type: select
+    options: [email, phone]
+  form_type:
+    type: text
+  requester_name:
+    type: text
+    required: true
+  requester_email:
+    type: email
+  callback_number:
+    type: phone
+  summary:
+    type: long_text
+    required: true
+  urgency:
+    type: select
+    options: [low, normal, high, urgent]
+  queue:
+    type: text
+  received_at:
+    type: datetime
+    required: true
+  status:
+    type: select
+    options: [new, in_progress, done]

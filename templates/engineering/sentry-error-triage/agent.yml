@@ -1,0 +1,46 @@
+name: Sentry error triage
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - sentry
+  - linear
+limits:
+  max_steps: 60
+input_schema:
+  type: object
+  properties:
+    issue_id:
+      type: string
+      description: One Sentry issue identifier. Use it or `since`.
+    since:
+      type: string
+      description: The start of the window, for example 24h or an ISO date. Default is 24h.
+    project:
+      type: string
+      description: Optional. The Sentry project slug.
+    team:
+      type: string
+      description: Optional. The Linear team key for new issues.
+output_schema:
+  type: object
+  required: [groups]
+  properties:
+    groups:
+      type: array
+      items:
+        type: object
+        required: [title, sentry_issues, action]
+        properties:
+          title: { type: string }
+          sentry_issues:
+            type: array
+            items: { type: string }
+          events: { type: integer }
+          users: { type: integer }
+          first_release: { type: string }
+          likely_cause: { type: string }
+          action:
+            type: string
+            enum: [created, commented, skipped]
+          linear_issue: { type: string }

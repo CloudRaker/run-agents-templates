@@ -1,0 +1,47 @@
+name: Release notes writer
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - github
+  - linear
+limits:
+  max_steps: 60
+input_schema:
+  type: object
+  required: [repository]
+  properties:
+    repository:
+      type: string
+      description: The repository in owner/name format.
+    tag:
+      type: string
+      description: The release tag, for example v2.4.0. The range starts at the previous tag.
+    from:
+      type: string
+      description: The start date (YYYY-MM-DD) when there is no tag.
+    to:
+      type: string
+      description: The end date (YYYY-MM-DD). Default is today.
+    title:
+      type: string
+      description: Optional. The title of the release notes.
+output_schema:
+  type: object
+  required: [markdown, areas]
+  properties:
+    markdown:
+      type: string
+    pdf_file_id:
+      type: string
+    areas:
+      type: array
+      items:
+        type: object
+        required: [name, changes]
+        properties:
+          name: { type: string }
+          changes: { type: integer }
+    excluded:
+      type: integer
+      description: The number of pull requests left out (internal or chore changes).

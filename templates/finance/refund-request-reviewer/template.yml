@@ -1,0 +1,17 @@
+name: Refund request reviewer
+category: finance
+icon: arrow-counter-clockwise
+description: Reviews a refund request against your policy and the payment history, then recommends a decision.
+what_it_does: |
+  Recommends approve, partial or decline for each refund request, with the reason.
+  Reads the customer request in Intercom and the payment history in Stripe.
+  Applies the rules of your refund policy skill.
+  Never issues a refund. A person decides.
+connectors:
+  - id: stripe
+    required: true
+    purpose: Read the customer, the charges, the subscriptions and the past refunds.
+  - id: intercom
+    required: true
+    purpose: Read the conversation and the contact that asks for the refund.
+tags: [refunds, policy, review]

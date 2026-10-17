@@ -1,0 +1,11 @@
+name: Payment terms extractor
+category: finance
+icon: hand-coins
+description: Extracts the payment terms of a contract PDF and saves them as a record.
+what_it_does: |
+  Reads a signed contract and finds the payment terms.
+  Extracts the amount, the schedule, the due days, late fees, currency and invoicing contact.
+  Saves one payment term record for each contract.
+  Quotes the source section for each value.
+connectors: []
+tags: [contracts, payment-terms, extraction]

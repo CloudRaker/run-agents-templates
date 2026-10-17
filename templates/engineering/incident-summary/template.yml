@@ -1,6 +1,7 @@
 name: Incident summary
 category: engineering
 description: Writes a plain-language incident summary with a timeline and next steps.
+icon: siren
 what_it_does: |
   Reads the incident and its alerts from PagerDuty.
   Reads the related errors from Sentry.

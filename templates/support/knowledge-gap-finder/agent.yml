@@ -1,0 +1,29 @@
+name: Knowledge gap finder
+mode: zeroshot
+triggers:
+  schedule: "0 7 * * 2"
+connectors:
+  - intercom
+data:
+  read:
+    - knowledge_gap
+  write:
+    - knowledge_gap
+limits:
+  max_steps: 80
+output_schema:
+  type: object
+  required: [conversations, gaps]
+  properties:
+    conversations: { type: integer, description: The number of conversations read. }
+    gaps:
+      type: array
+      items:
+        type: object
+        required: [topic, count, action]
+        properties:
+          topic: { type: string }
+          count: { type: integer }
+          action:
+            type: string
+            enum: [created, updated]

@@ -1,0 +1,41 @@
+name: On-call handoff
+mode: zeroshot
+triggers:
+  schedule: "0 8 * * *"
+connectors:
+  - pagerduty
+limits:
+  max_steps: 40
+output_schema:
+  type: object
+  required: [summary, incidents, open_items, on_call_next]
+  properties:
+    summary:
+      type: string
+    incidents:
+      type: array
+      items:
+        type: object
+        required: [id, title, status]
+        properties:
+          id: { type: string }
+          title: { type: string }
+          service: { type: string }
+          urgency: { type: string }
+          status:
+            type: string
+            enum: [triggered, acknowledged, resolved]
+          duration_minutes: { type: number }
+          note: { type: string }
+    open_items:
+      type: array
+      items: { type: string }
+    on_call_next:
+      type: array
+      items:
+        type: object
+        required: [schedule, person]
+        properties:
+          schedule: { type: string }
+          person: { type: string }
+          starts_at: { type: string }

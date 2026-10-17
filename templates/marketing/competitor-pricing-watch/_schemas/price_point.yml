@@ -1,0 +1,29 @@
+name: price_point
+label: Price point
+label_field: key
+fields:
+  key:
+    type: text
+    required: true
+    unique: true
+  competitor:
+    type: text
+    required: true
+  plan:
+    type: text
+    required: true
+  price:
+    type: number
+  currency:
+    type: text
+  period:
+    type: select
+    options: [month, year, one_time, custom]
+  unit:
+    type: text
+  url:
+    type: url
+  active:
+    type: boolean
+  last_seen:
+    type: date

@@ -1,0 +1,30 @@
+name: decision
+label: Decision
+label_field: title
+fields:
+  title:
+    type: text
+    required: true
+  decision:
+    type: long_text
+    required: true
+  reason:
+    type: long_text
+  owner:
+    type: text
+  meeting:
+    type: text
+    required: true
+  decided_on:
+    type: date
+    required: true
+  source:
+    type: select
+    options: [granola, fireflies]
+  key:
+    type: text
+    required: true
+    unique: true
+  status:
+    type: select
+    options: [active, reversed]

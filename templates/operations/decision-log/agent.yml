@@ -1,0 +1,25 @@
+name: Decision log
+mode: zeroshot
+triggers:
+  schedule: "0 17 * * 1-5"
+connectors:
+  - granola
+  - fireflies
+data:
+  read:
+    - decision
+  write:
+    - decision
+limits:
+  max_steps: 60
+output_schema:
+  type: object
+  required: [meetings, created, skipped]
+  properties:
+    meetings: { type: integer }
+    created:
+      type: array
+      items: { type: string }
+    skipped:
+      type: integer
+      description: Decisions that were already in the log.

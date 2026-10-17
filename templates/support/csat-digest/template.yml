@@ -1,0 +1,14 @@
+name: CSAT digest
+category: support
+icon: smiley
+description: Sends a weekly CSAT score with the main reasons behind low ratings from Intercom.
+what_it_does: |
+  Calculates last week's CSAT from Intercom ratings each Monday.
+  Groups low ratings by reason, with example remarks.
+  Compares the score with the week before.
+  Returns one short digest for the support lead.
+connectors:
+  - id: intercom
+    required: true
+    purpose: Read conversation ratings, remarks and tags.
+tags: [csat, reporting, schedule, intercom]

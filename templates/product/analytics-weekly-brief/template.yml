@@ -1,0 +1,17 @@
+name: Analytics weekly brief
+category: product
+description: Writes a Monday brief of your key product metrics, with week-over-week changes and anomalies.
+icon: presentation-chart
+what_it_does: |
+  Runs each Monday at 08:00 UTC on the metrics that you list.
+  Compares last week with the week before and with the 4-week average.
+  Flags anomalies and looks for the segment or the event that explains them.
+  Returns a brief that a product lead reads in three minutes.
+connectors:
+  - id: posthog
+    required: true
+    purpose: Query events, insights, funnels and retention.
+  - id: mixpanel
+    required: false
+    purpose: Query the metrics that live in Mixpanel and not in PostHog.
+tags: [analytics, metrics, schedule]

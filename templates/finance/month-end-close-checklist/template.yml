@@ -1,0 +1,17 @@
+name: Month-end close checklist
+category: finance
+icon: checks
+description: Runs the revenue close checklist on the first day of each month and reports each gap.
+what_it_does: |
+  Runs at 09:00 UTC on the first day of each month.
+  Checks the previous month in Stripe: revenue, refunds, disputes and failed payments.
+  Compares Stripe revenue with ChartMogul when it is connected.
+  Reports each checklist item as done or as a gap, with the amount and the records.
+connectors:
+  - id: stripe
+    required: true
+    purpose: Read invoices, charges, refunds, disputes and payouts of the previous month.
+  - id: chartmogul
+    required: false
+    purpose: Read MRR and revenue figures to compare with Stripe.
+tags: [close, accounting, schedule]

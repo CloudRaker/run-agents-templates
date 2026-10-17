@@ -1,0 +1,35 @@
+name: vendor
+label: Vendor
+label_field: legal_name
+fields:
+  legal_name:
+    type: text
+    required: true
+  tax_id_last4:
+    type: text
+  tax_classification:
+    type: text
+  address:
+    type: address
+  contact_email:
+    type: email
+    required: true
+    unique: true
+  insurer:
+    type: text
+  policy_number:
+    type: text
+  coverage_amount:
+    type: currency
+  insurance_expires:
+    type: date
+  bank_name:
+    type: text
+  account_last4:
+    type: text
+  documents_received:
+    type: multi_select
+    options: [w9, insurance_certificate, bank_letter]
+  status:
+    type: select
+    options: [complete, missing_documents, review]

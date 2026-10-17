@@ -1,0 +1,11 @@
+name: Clinical note summarizer
+category: healthcare
+icon: stethoscope
+description: Turns a visit recording into a SOAP note draft and a PDF for the clinician to review and sign.
+what_it_does: |
+  Transcribes a visit recording and writes a SOAP note draft: Subjective, Objective, Assessment, Plan.
+  Marks the draft "For review, not signed" on every copy.
+  Renders the draft as a PDF and returns it with the structured note.
+  Flags statements that the clinician must check, for example a dose or an unclear word.
+connectors: []
+tags: [clinical-notes, soap, transcription, pdf]

@@ -1,0 +1,17 @@
+name: Revenue report
+category: finance
+icon: trend-up
+description: Writes a monthly MRR report with a short narrative and renders it as a PDF file.
+what_it_does: |
+  Renders a PDF revenue report on the first day of each month.
+  Reads MRR, new, expansion, contraction and churn for the previous month from ChartMogul.
+  Adds refunds and failed payments from Stripe when it is connected.
+  Writes a short narrative that explains the main changes.
+connectors:
+  - id: chartmogul
+    required: true
+    purpose: Read MRR, the MRR movements, customer counts and churn rates.
+  - id: stripe
+    required: false
+    purpose: Read refunds and failed payments of the month.
+tags: [revenue, mrr, reporting]

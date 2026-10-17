@@ -1,0 +1,65 @@
+name: Invoice payment matcher
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - stripe
+limits:
+  max_steps: 60
+input_schema:
+  type: object
+  properties:
+    from:
+      type: string
+      description: Start date of the invoice range, YYYY-MM-DD.
+    to:
+      type: string
+      description: End date of the invoice range, YYYY-MM-DD.
+    customer:
+      type: string
+      description: Optional. A customer email or Stripe customer id to limit the search.
+output_schema:
+  type: object
+  required: [matched, unpaid, partially_paid]
+  properties:
+    range:
+      type: object
+      properties:
+        from: { type: string }
+        to: { type: string }
+    matched:
+      type: array
+      items: &invoice
+        type: object
+        required: [invoice_number, amount_due, amount_paid]
+        properties:
+          invoice_number: { type: string }
+          customer: { type: string }
+          issue_date: { type: string }
+          due_date: { type: string }
+          currency: { type: string }
+          amount_due: { type: number }
+          amount_paid: { type: number }
+          payment_ids:
+            type: array
+            items: { type: string }
+          match: { type: string, enum: [exact, by_amount, none] }
+    unpaid:
+      type: array
+      items: *invoice
+    partially_paid:
+      type: array
+      items: *invoice
+    unmatched_payments:
+      type: array
+      items:
+        type: object
+        properties:
+          payment_id: { type: string }
+          customer: { type: string }
+          amount: { type: number }
+          currency: { type: string }
+          date: { type: string }
+    open_balance_by_currency:
+      type: object
+      additionalProperties: { type: number }

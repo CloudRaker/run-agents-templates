@@ -1,0 +1,14 @@
+name: Call notes to CRM
+category: sales
+icon: phone-call
+description: Turns a sales call recording or notes file into a HubSpot deal update and a logged note.
+what_it_does: |
+  Transcribes a call recording, or reads a notes file, sent by HTTP or by email.
+  Extracts next steps, objections and decision makers.
+  Updates the matching HubSpot deal and logs a call note on it.
+  Returns the extracted data for your own systems.
+connectors:
+  - id: hubspot
+    required: true
+    purpose: Find the deal and the contacts, update deal fields and log a note.
+tags: [calls, crm, transcription]

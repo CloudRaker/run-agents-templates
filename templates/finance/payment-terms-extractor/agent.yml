@@ -1,0 +1,40 @@
+name: Payment terms extractor
+mode: zeroshot
+triggers:
+  http: true
+data:
+  write:
+    - payment_term
+limits:
+  max_steps: 25
+input_schema:
+  type: object
+  properties:
+    contract_name:
+      type: string
+      description: Optional. A name for the contract. Default is the file name.
+    counterparty:
+      type: string
+      description: Optional. The other party of the contract.
+output_schema:
+  type: object
+  required: [contract_name, status]
+  properties:
+    contract_name: { type: string }
+    status: { type: string, enum: [ok, needs_review, no_payment_terms] }
+    counterparty: { type: string }
+    amount: { type: number }
+    currency: { type: string, description: ISO 4217 code. }
+    schedule:
+      type: string
+      enum: [one_time, monthly, quarterly, annual, milestone, other]
+    due_days: { type: integer, description: Days from the invoice date to the due date. }
+    late_fee: { type: string }
+    invoicing_contact: { type: string }
+    sources:
+      type: object
+      additionalProperties: { type: string }
+      description: For each field, the section or the page where the value is.
+    problems:
+      type: array
+      items: { type: string }

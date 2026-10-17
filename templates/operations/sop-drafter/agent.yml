@@ -1,0 +1,33 @@
+name: SOP drafter
+mode: zeroshot
+triggers:
+  http: true
+connectors: []
+limits:
+  max_steps: 20
+input_schema:
+  type: object
+  properties:
+    process:
+      type: string
+      description: Optional. The name of the process, for example "Monthly payroll close".
+    owner_role:
+      type: string
+      description: Optional. The role that owns the process.
+    notes:
+      type: string
+      description: Optional. Notes as text, when no file is attached.
+output_schema:
+  type: object
+  required: [title, steps, markdown, pdf]
+  properties:
+    title: { type: string }
+    steps: { type: integer }
+    roles:
+      type: array
+      items: { type: string }
+    open_points:
+      type: array
+      items: { type: string }
+    markdown: { type: string }
+    pdf: { type: string, description: The name of the emitted PDF file. }

@@ -1,0 +1,40 @@
+name: Ticket redactor
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - intercom
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  properties:
+    conversation_id:
+      type: string
+      description: Optional. An Intercom conversation id or URL. Or attach a file.
+output_schema:
+  type: object
+  required: [files, categories_removed]
+  properties:
+    conversation_id: { type: string }
+    files:
+      type: array
+      items:
+        type: object
+        required: [name, source]
+        properties:
+          name: { type: string }
+          source:
+            type: string
+            enum: [conversation, attachment, upload]
+    categories_removed:
+      type: array
+      items:
+        type: object
+        required: [category, count]
+        properties:
+          category: { type: string }
+          count: { type: integer }
+    skipped:
+      type: array
+      items: { type: string }

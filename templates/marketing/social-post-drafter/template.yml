@@ -1,0 +1,14 @@
+name: Social post drafter
+category: marketing
+icon: share-network
+description: Turns an article, a report or notes into LinkedIn and X posts in your brand voice.
+what_it_does: |
+  Reads source text or an attached file, such as a report, a deck or a blog post.
+  Drafts LinkedIn posts and X posts in the voice set in the brand-voice skill.
+  Gives three options for each network with a hook and a call to action.
+  Reads your Notion content calendar for context when it is connected.
+connectors:
+  - id: notion
+    required: false
+    purpose: Read the content calendar and past posts for themes and context.
+tags: [social, content, linkedin, copywriting]

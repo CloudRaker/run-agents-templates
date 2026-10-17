@@ -1,0 +1,11 @@
+name: Meeting transcriber
+category: operations
+icon: microphone
+description: Turns a meeting recording into minutes with decisions and actions, and returns them as a PDF.
+what_it_does: |
+  Transcribes an audio or video recording sent by email or HTTP.
+  Writes minutes: attendees, decisions, actions with owners, open questions.
+  Renders the minutes as a PDF file.
+  Needs no connector.
+connectors: []
+tags: [meetings, transcription, minutes, pdf]

@@ -1,0 +1,12 @@
+name: PTO request handler
+mode: turns
+triggers:
+  slack: true
+delegation:
+  tools:
+    calendar: [read, write]
+  as:
+    from: sender
+limits:
+  max_steps: 30
+idle_ttl: 2h

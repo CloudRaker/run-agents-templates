@@ -1,0 +1,25 @@
+name: exit_theme
+label: Exit theme
+label_field: theme
+fields:
+  theme:
+    type: text
+    required: true
+  category:
+    type: select
+    options: [compensation, manager, growth, workload, culture, role_fit, relocation, personal, other]
+  period:
+    type: text
+    required: true
+  department:
+    type: text
+  count:
+    type: number
+    required: true
+  sentiment:
+    type: select
+    options: [negative, mixed, positive]
+  quotes:
+    type: long_text
+  retention_risk:
+    type: long_text

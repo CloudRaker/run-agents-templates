@@ -1,0 +1,47 @@
+name: Campaign report
+mode: zeroshot
+triggers:
+  schedule: "0 9 * * 1"
+connectors:
+  - klaviyo
+  - customer-io
+limits:
+  max_steps: 50
+output_schema:
+  type: object
+  required: [period, totals, best, worst, recommendation]
+  properties:
+    period:
+      type: object
+      properties:
+        from: { type: string }
+        to: { type: string }
+    totals:
+      type: object
+      properties:
+        sends: { type: integer }
+        recipients: { type: integer }
+        open_rate: { type: number }
+        click_rate: { type: number }
+        unsubscribe_rate: { type: number }
+        conversions: { type: integer }
+        click_rate_change: { type: number, description: Percentage points versus the 4-week average. }
+    best:
+      type: array
+      items: &campaign
+        type: object
+        required: [name, click_rate]
+        properties:
+          name: { type: string }
+          source: { type: string, enum: [klaviyo, customer-io] }
+          sent_at: { type: string }
+          recipients: { type: integer }
+          open_rate: { type: number }
+          click_rate: { type: number }
+          unsubscribe_rate: { type: number }
+          conversions: { type: integer }
+          note: { type: string }
+    worst:
+      type: array
+      items: *campaign
+    recommendation: { type: string }

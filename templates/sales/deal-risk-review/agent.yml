@@ -1,0 +1,33 @@
+name: Deal risk review
+mode: zeroshot
+triggers:
+  schedule: "0 12 * * 1"
+connectors:
+  - salesforce
+  - gong
+limits:
+  max_steps: 80
+output_schema:
+  type: object
+  required: [reviewed, deals]
+  properties:
+    reviewed:
+      type: integer
+      description: The number of open deals read.
+    deals:
+      type: array
+      items:
+        type: object
+        required: [name, risk_level, reason, next_action]
+        properties:
+          id: { type: string }
+          name: { type: string }
+          owner: { type: string }
+          stage: { type: string }
+          amount: { type: number }
+          close_date: { type: string, description: ISO 8601 date. }
+          risk_level:
+            type: string
+            enum: [high, medium, low]
+          reason: { type: string }
+          next_action: { type: string }

@@ -1,0 +1,29 @@
+name: Patient intake extractor
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+email:
+  reply: true
+data:
+  read:
+    - patient_intake
+  write:
+    - patient_intake
+limits:
+  max_steps: 30
+output_schema:
+  type: object
+  required: [status, missing_fields]
+  properties:
+    status:
+      type: string
+      enum: [complete, incomplete, not_an_intake_form]
+    patient_name: { type: string }
+    record_id: { type: string }
+    missing_fields:
+      type: array
+      items: { type: string }
+    problems:
+      type: array
+      items: { type: string }

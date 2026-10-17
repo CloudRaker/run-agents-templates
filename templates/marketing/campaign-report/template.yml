@@ -1,0 +1,17 @@
+name: Campaign report
+category: marketing
+icon: chart-line-up
+description: Reports the email campaign results of the last week with the best and worst sends.
+what_it_does: |
+  Runs each Monday at 09:00 UTC and reads the last 7 days of email sends.
+  Lists the 3 best and the 3 worst campaigns by click rate.
+  Compares the week with the 4 weeks before.
+  Gives one recommendation for the next week.
+connectors:
+  - id: klaviyo
+    required: true
+    purpose: Read campaigns and their opens, clicks, conversions and unsubscribes.
+  - id: customer-io
+    required: false
+    purpose: Read newsletter and campaign metrics from Customer.io.
+tags: [email, reporting, campaigns, schedule]

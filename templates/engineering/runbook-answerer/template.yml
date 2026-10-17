@@ -1,0 +1,11 @@
+name: Runbook answerer
+category: engineering
+description: Answers operations questions in Slack or Teams from your runbooks, and says when it does not know.
+icon: book-open-text
+what_it_does: |
+  Answers questions such as "How do I rotate the API key?" in a chat thread.
+  Searches only your runbooks and cites the runbook it used.
+  Says "I do not know" when no runbook covers the question.
+  Keeps the conversation open for follow-up questions.
+connectors: []
+tags: [runbooks, operations, chat, knowledge]

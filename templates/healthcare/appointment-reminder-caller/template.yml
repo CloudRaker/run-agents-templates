@@ -1,0 +1,12 @@
+name: Appointment reminder caller
+category: healthcare
+icon: phone-outgoing
+description: Calls a patient to confirm an appointment, and records a reschedule or a cancellation request.
+what_it_does: |
+  Starts from an HTTP request with the patient name, phone number and appointment time.
+  Calls the patient, checks that it speaks to the right person, then confirms the appointment.
+  Records a reschedule or a cancellation in the appointment_change data store.
+  Leaves no health details with another person or a voicemail.
+  Returns the outcome of the call: confirmed, reschedule, cancel, no answer or wrong person.
+connectors: []
+tags: [phone, outbound, appointments, reminders]

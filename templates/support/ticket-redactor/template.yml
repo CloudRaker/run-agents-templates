@@ -1,0 +1,14 @@
+name: Ticket redactor
+category: support
+icon: eraser
+description: Removes personal data from an Intercom conversation and its attachments before engineering sees them.
+what_it_does: |
+  Removes names, emails, phone numbers and card numbers from support tickets.
+  Redacts each attachment with file.redact and writes a clean conversation file.
+  Returns the redacted files for engineering.
+  Lists the data categories it removed, never the values.
+connectors:
+  - id: intercom
+    required: true
+    purpose: Read the conversation, its messages and its attachments.
+tags: [privacy, redaction, pii, escalation]

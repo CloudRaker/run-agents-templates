@@ -1,0 +1,48 @@
+name: Dependency audit brief
+mode: zeroshot
+triggers:
+  schedule: "0 9 * * 1"
+connectors:
+  - github
+limits:
+  max_steps: 60
+output_schema:
+  type: object
+  required: [summary, vulnerable, outdated, top_actions]
+  properties:
+    summary: { type: string }
+    vulnerable:
+      type: array
+      items:
+        type: object
+        required: [package, severity, repositories]
+        properties:
+          package: { type: string }
+          ecosystem: { type: string }
+          severity:
+            type: string
+            enum: [critical, high, medium, low]
+          advisory: { type: string }
+          fixed_in: { type: string }
+          repositories:
+            type: array
+            items: { type: string }
+    outdated:
+      type: array
+      items:
+        type: object
+        required: [package, repository, current, latest]
+        properties:
+          package: { type: string }
+          repository: { type: string }
+          current: { type: string }
+          latest: { type: string }
+          major_behind: { type: integer }
+          update_pr: { type: string }
+    top_actions:
+      type: array
+      maxItems: 5
+      items: { type: string }
+    skipped:
+      type: array
+      items: { type: string }

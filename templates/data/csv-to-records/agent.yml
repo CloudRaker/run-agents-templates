@@ -1,0 +1,45 @@
+name: CSV to records
+mode: zeroshot
+triggers:
+  http: true
+data:
+  read:
+    - import_row
+  write:
+    - import_row
+  create_schemas: true
+limits:
+  max_steps: 80
+timeout: 20m
+input_schema:
+  type: object
+  properties:
+    schema:
+      type: string
+      description: Optional. The record schema name, singular snake_case. Default import_row.
+    key:
+      type: string
+      description: Optional. The column that identifies a row. With a key, the agent updates existing records.
+    max_rows:
+      type: integer
+      description: Optional. Default 500.
+output_schema:
+  type: object
+  required: [schema, rows_read, rows_written, rows_rejected]
+  properties:
+    schema: { type: string }
+    created_schema: { type: boolean }
+    mapping:
+      type: object
+      additionalProperties: { type: string }
+      description: Column name to field name.
+    rows_read: { type: integer }
+    rows_written: { type: integer }
+    rows_rejected: { type: integer }
+    rejected:
+      type: array
+      items:
+        type: object
+        properties:
+          row: { type: integer }
+          reason: { type: string }

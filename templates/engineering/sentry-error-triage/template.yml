@@ -1,0 +1,17 @@
+name: Sentry error triage
+category: engineering
+description: Groups new Sentry errors, links each group to a Linear issue, and creates or comments as needed.
+icon: bug
+what_it_does: |
+  Takes one Sentry issue or a time window of new errors.
+  Groups errors that share a cause, a release or a code path.
+  Finds an existing Linear issue for each group before it creates one.
+  Adds the error count, the first release and a stack summary to Linear.
+connectors:
+  - id: sentry
+    required: true
+    purpose: Read issues, events, stack traces, releases and user counts.
+  - id: linear
+    required: true
+    purpose: Search issues, create issues and add comments.
+tags: [errors, triage, monitoring]

@@ -1,0 +1,52 @@
+name: Bank statement parser
+mode: zeroshot
+triggers:
+  http: true
+data:
+  write:
+    - transaction
+limits:
+  max_steps: 60
+input_schema:
+  type: object
+  properties:
+    account_label:
+      type: string
+      description: Optional. A short name for the account, for example "operating". Do not send the account number.
+    large_amount:
+      type: number
+      description: Optional. An amount at or above this value is unusual. Default 10000.
+output_schema:
+  type: object
+  required: [status, transactions, totals]
+  properties:
+    status: { type: string, enum: [ok, balance_mismatch, needs_review] }
+    account_label: { type: string }
+    period:
+      type: object
+      properties:
+        from: { type: string }
+        to: { type: string }
+    currency: { type: string }
+    opening_balance: { type: number }
+    closing_balance: { type: number }
+    transactions: { type: integer, description: The number of transactions saved. }
+    totals:
+      type: object
+      properties:
+        money_in: { type: number }
+        money_out: { type: number }
+        net: { type: number }
+    unusual:
+      type: array
+      items:
+        type: object
+        required: [date, description, amount, reason]
+        properties:
+          date: { type: string }
+          description: { type: string }
+          amount: { type: number }
+          reason: { type: string }
+    problems:
+      type: array
+      items: { type: string }

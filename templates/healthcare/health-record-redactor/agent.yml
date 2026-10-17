@@ -1,0 +1,34 @@
+name: Health record redactor
+mode: zeroshot
+triggers:
+  http: true
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  properties:
+    keep_dates:
+      type: boolean
+      description: Optional. True keeps visit and test dates. Dates of birth are always removed. Default false.
+output_schema:
+  type: object
+  required: [files, categories_removed]
+  properties:
+    files:
+      type: array
+      items:
+        type: object
+        required: [name]
+        properties:
+          name: { type: string }
+    categories_removed:
+      type: array
+      items:
+        type: object
+        required: [category, count]
+        properties:
+          category: { type: string }
+          count: { type: integer }
+    skipped:
+      type: array
+      items: { type: string }

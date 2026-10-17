@@ -1,0 +1,14 @@
+name: Spec reviewer
+category: product
+description: Reviews a product spec or PRD for gaps in problem, users, success metric, scope and risks.
+icon: file-magnifying-glass
+what_it_does: |
+  Takes a PRD as a file (PDF, Word or Markdown) or a Notion page.
+  Checks five areas with a fixed checklist and rates each finding by severity.
+  Quotes the part of the spec that each finding is about.
+  Asks the questions that the author must answer before the review meeting.
+connectors:
+  - id: notion
+    required: false
+    purpose: Read the spec when it is a Notion page and not a file.
+tags: [prd, review, specs]

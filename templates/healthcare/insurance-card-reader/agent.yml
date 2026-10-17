@@ -1,0 +1,40 @@
+name: Insurance card reader
+mode: zeroshot
+triggers:
+  http: true
+limits:
+  max_steps: 15
+output_schema:
+  type: object
+  required: [status]
+  properties:
+    status:
+      type: string
+      enum: [ok, needs_review, not_a_card]
+    payer: { type: string }
+    plan_name: { type: string }
+    plan_type: { type: string, description: For example HMO, PPO or EPO. }
+    member_name: { type: string }
+    member_id: { type: string }
+    group_number: { type: string }
+    rx_bin: { type: string }
+    rx_pcn: { type: string }
+    rx_group: { type: string }
+    effective_date: { type: string, description: ISO 8601 date. }
+    copays:
+      type: array
+      items:
+        type: object
+        properties:
+          service: { type: string }
+          amount: { type: string }
+    phone_numbers:
+      type: array
+      items:
+        type: object
+        properties:
+          label: { type: string, description: For example member services or provider services. }
+          number: { type: string }
+    problems:
+      type: array
+      items: { type: string }

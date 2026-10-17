@@ -1,0 +1,46 @@
+name: Meeting transcriber
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+connectors: []
+limits:
+  max_steps: 25
+input_schema:
+  type: object
+  properties:
+    title:
+      type: string
+      description: Optional. The meeting title.
+    date:
+      type: string
+      description: Optional. The meeting date, YYYY-MM-DD.
+    attendees:
+      type: array
+      items: { type: string }
+      description: Optional. Names of the attendees.
+output_schema:
+  type: object
+  required: [title, attendees, decisions, actions, open_questions, pdf]
+  properties:
+    title: { type: string }
+    date: { type: string }
+    attendees:
+      type: array
+      items: { type: string }
+    decisions:
+      type: array
+      items: { type: string }
+    actions:
+      type: array
+      items:
+        type: object
+        required: [task]
+        properties:
+          task: { type: string }
+          owner: { type: string }
+          due: { type: string }
+    open_questions:
+      type: array
+      items: { type: string }
+    pdf: { type: string, description: The name of the emitted PDF file. }

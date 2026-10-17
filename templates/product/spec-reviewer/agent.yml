@@ -1,0 +1,43 @@
+name: Spec reviewer
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - notion
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  properties:
+    notion_url:
+      type: string
+      description: Optional. A Notion page URL. Use it when no file is attached.
+    focus:
+      type: string
+      description: Optional. An area to check in more detail, for example "risks".
+output_schema:
+  type: object
+  required: [verdict, findings, questions]
+  properties:
+    title: { type: string }
+    verdict:
+      type: string
+      enum: [ready, needs_work, not_ready]
+    findings:
+      type: array
+      items:
+        type: object
+        required: [area, severity, finding]
+        properties:
+          area:
+            type: string
+            enum: [problem, users, success_metric, scope, risks]
+          severity:
+            type: string
+            enum: [blocker, major, minor]
+          finding: { type: string }
+          quote: { type: string }
+          suggestion: { type: string }
+    questions:
+      type: array
+      items: { type: string }

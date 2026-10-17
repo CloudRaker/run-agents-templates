@@ -1,0 +1,11 @@
+name: SOP drafter
+category: operations
+icon: list-numbers
+description: Turns a screen recording transcript or rough notes into a step-by-step SOP in Markdown and PDF.
+what_it_does: |
+  Turns rough process notes into a standard operating procedure.
+  Writes numbered steps with a role and a check for each step.
+  Adds the purpose, the scope, the inputs and the failure cases.
+  Returns the SOP as Markdown and as a PDF file.
+connectors: []
+tags: [sop, process, documentation, pdf]

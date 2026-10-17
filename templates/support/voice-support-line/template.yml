@@ -1,0 +1,14 @@
+name: Voice support line
+category: support
+icon: phone-incoming
+description: Answers your support phone number, solves common questions and transfers callers to a person.
+what_it_does: |
+  Answers support calls on a Run phone number, day and night.
+  Answers common questions from your support knowledge.
+  Finds the caller in Intercom when they give an email.
+  Transfers the call to your support team when the caller asks.
+connectors:
+  - id: intercom
+    required: false
+    purpose: Find the caller contact and the open conversations by email.
+tags: [phone, voice, support, transfer]

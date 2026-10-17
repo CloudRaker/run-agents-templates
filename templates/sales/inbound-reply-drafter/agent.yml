@@ -1,0 +1,23 @@
+name: Inbound reply drafter
+mode: zeroshot
+triggers:
+  email: true
+email:
+  reply: true
+connectors:
+  - apollo
+limits:
+  max_steps: 20
+output_schema:
+  type: object
+  required: [status]
+  properties:
+    status:
+      type: string
+      enum: [answered, not_sales, spam]
+    fit:
+      type: string
+      enum: [strong, possible, weak, unknown]
+    company: { type: string }
+    sender_title: { type: string }
+    reason: { type: string }

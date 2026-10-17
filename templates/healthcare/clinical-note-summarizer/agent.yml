@@ -1,0 +1,37 @@
+name: Clinical note summarizer
+mode: zeroshot
+triggers:
+  http: true
+limits:
+  max_steps: 25
+timeout: 15m
+input_schema:
+  type: object
+  properties:
+    visit_type:
+      type: string
+      description: Optional. For example "follow-up" or "new patient".
+    clinician:
+      type: string
+      description: Optional. The name of the clinician for the PDF header.
+    visit_date:
+      type: string
+      description: Optional. ISO 8601 date.
+output_schema:
+  type: object
+  required: [status, soap]
+  properties:
+    status:
+      type: string
+      enum: [draft_for_review, no_recording, not_a_visit]
+    soap:
+      type: object
+      properties:
+        subjective: { type: string }
+        objective: { type: string }
+        assessment: { type: string }
+        plan: { type: string }
+    check_items:
+      type: array
+      items: { type: string }
+    pdf_name: { type: string }

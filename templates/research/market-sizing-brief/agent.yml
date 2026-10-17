@@ -1,0 +1,62 @@
+name: Market sizing brief
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - exa
+  - tavily
+limits:
+  max_steps: 60
+timeout: 20m
+input_schema:
+  type: object
+  required: [market, geography]
+  properties:
+    market:
+      type: string
+      description: The product or service category, for example "payroll software for small businesses".
+    geography:
+      type: string
+      description: For example "United States" or "European Union".
+    target_segment:
+      type: string
+      description: Optional. The segment you can serve, used for SAM.
+    share_assumption:
+      type: number
+      description: Optional. The share of SAM you expect to win in 3 to 5 years, as a fraction. Default 0.02.
+output_schema:
+  type: object
+  required: [currency, tam, sam, som, sources]
+  properties:
+    currency: { type: string }
+    year: { type: integer }
+    tam: &estimate
+      type: object
+      required: [value, method]
+      properties:
+        value: { type: number }
+        low: { type: number }
+        high: { type: number }
+        method: { type: string }
+        assumptions:
+          type: array
+          items: { type: string }
+        source_ids:
+          type: array
+          items: { type: string }
+    sam: *estimate
+    som: *estimate
+    sources:
+      type: array
+      items:
+        type: object
+        required: [id, title, url]
+        properties:
+          id: { type: string }
+          title: { type: string }
+          url: { type: string }
+          published: { type: string }
+    confidence:
+      type: string
+      enum: [high, medium, low]
+    notes: { type: string }

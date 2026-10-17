@@ -1,0 +1,30 @@
+name: expense
+label: Expense
+label_field: merchant
+fields:
+  merchant:
+    type: text
+    required: true
+  date:
+    type: date
+    required: true
+  total:
+    type: number
+    required: true
+  tax:
+    type: number
+  currency:
+    type: text
+    required: true
+  category:
+    type: select
+    options: [travel, meals, lodging, software, office, other]
+  submitter:
+    type: email
+  over_limit:
+    type: boolean
+  source_file:
+    type: text
+    unique: true
+  notes:
+    type: long_text

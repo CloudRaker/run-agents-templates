@@ -1,0 +1,11 @@
+name: Webinar recap
+category: marketing
+icon: video-camera
+description: Transcribes a webinar recording and writes a recap PDF with key points, questions and follow-ups.
+what_it_does: |
+  Transcribes a webinar recording sent by HTTP or by email.
+  Writes a recap: key points, questions asked, short quotes and follow-ups.
+  Renders the recap as a PDF that you can send to attendees.
+  Needs no connector.
+connectors: []
+tags: [webinars, transcription, content, pdf]

@@ -1,0 +1,37 @@
+name: SEO page audit
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - firecrawl
+limits:
+  max_steps: 20
+input_schema:
+  type: object
+  required: [url]
+  properties:
+    url: { type: string }
+    target_keyword:
+      type: string
+      description: Optional. The keyword the page must rank for.
+output_schema:
+  type: object
+  required: [url, score, issues]
+  properties:
+    url: { type: string }
+    score: { type: integer, minimum: 0, maximum: 100 }
+    title: { type: string }
+    meta_description: { type: string }
+    word_count: { type: integer }
+    issues:
+      type: array
+      items:
+        type: object
+        required: [priority, area, issue, fix]
+        properties:
+          priority: { type: string, enum: [high, medium, low] }
+          area:
+            type: string
+            enum: [title, meta, headings, links, readability, content, images]
+          issue: { type: string }
+          fix: { type: string }

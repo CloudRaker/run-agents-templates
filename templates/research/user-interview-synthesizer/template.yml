@@ -1,0 +1,11 @@
+name: User interview synthesizer
+category: research
+description: Synthesizes several user interview recordings into themes with counts and quotes.
+what_it_does: |
+  Transcribes several user interview recordings in one run.
+  Groups pains, needs and requests into themes with counts and quotes.
+  Separates what users do from what users say they want.
+  Saves one insight record for each theme.
+connectors: []
+tags: [user-research, interviews, insights]
+icon: users-three

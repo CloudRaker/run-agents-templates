@@ -1,0 +1,11 @@
+name: Policy Q&A
+category: legal
+icon: scales
+description: Answers employee questions about company policies in Slack or Teams, with the policy name for each answer.
+what_it_does: |
+  Answers employee questions about company policies from your own policy documents.
+  Cites the policy name and the section in each answer.
+  Says when a question needs a person, and who to ask.
+  Works in Slack and in Microsoft Teams.
+connectors: []
+tags: [policies, compliance, chat]

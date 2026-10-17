@@ -1,0 +1,9 @@
+name: Feature request router
+mode: turns
+idle_ttl: 1d
+triggers:
+  slack: true
+connectors:
+  - linear
+limits:
+  max_steps: 30

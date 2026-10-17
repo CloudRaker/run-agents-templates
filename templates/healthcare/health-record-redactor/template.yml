@@ -1,0 +1,11 @@
+name: Health record redactor
+category: healthcare
+icon: eye-slash
+description: Removes patient identifiers from health records and returns the redacted files with counts only.
+what_it_does: |
+  Removes names, dates of birth, record numbers, identifiers and addresses from health records.
+  Writes a redacted copy of each file and returns only the redacted copies.
+  Reports how many values of each category it removed, never the values.
+  Keeps the clinical content, so the records stay useful for review, research or training.
+connectors: []
+tags: [redaction, privacy, records, de-identification]

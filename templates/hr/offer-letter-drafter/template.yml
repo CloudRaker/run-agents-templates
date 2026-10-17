@@ -1,0 +1,11 @@
+name: Offer letter drafter
+category: hr
+description: Drafts an offer letter from your template and returns it as a PDF for review.
+what_it_does: |
+  Fills your offer letter template with the candidate, role, salary and start date.
+  Renders the letter as a PDF file.
+  Lists the values that a person must check before sending.
+  Never sends the letter.
+connectors: []
+tags: [offers, recruiting, documents]
+icon: signature

@@ -1,0 +1,17 @@
+name: Release notes writer
+category: engineering
+description: Drafts release notes from merged pull requests and Linear issues, and renders them as a PDF.
+icon: rocket-launch
+what_it_does: |
+  Takes a release tag or a date range.
+  Collects the merged pull requests and the completed Linear issues of that range.
+  Groups the changes by area and writes notes for readers outside engineering.
+  Returns the notes in Markdown and as a PDF file.
+connectors:
+  - id: github
+    required: true
+    purpose: Read tags, compare commits and list merged pull requests.
+  - id: linear
+    required: true
+    purpose: Read the issues that the pull requests close, with their labels and projects.
+tags: [releases, changelog, pdf]

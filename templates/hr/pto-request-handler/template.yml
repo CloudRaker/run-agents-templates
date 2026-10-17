@@ -1,0 +1,11 @@
+name: PTO request handler
+category: hr
+description: Handles time-off requests in Slack and adds an out-of-office event to the employee calendar.
+what_it_does: |
+  An employee asks for time off in Slack. The agent confirms the dates.
+  Checks the request against your time-off policy.
+  Creates an out-of-office event on the calendar of the employee.
+  Answers with a short summary to forward to the manager.
+connectors: []
+tags: [time-off, slack, calendar]
+icon: airplane-takeoff

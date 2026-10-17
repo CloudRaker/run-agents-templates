@@ -1,0 +1,11 @@
+name: DSAR responder
+category: legal
+icon: user-check
+description: Logs each data subject access request from email and sends the requester an acknowledgment.
+what_it_does: |
+  Recognizes a data subject access request in an incoming email.
+  Saves a DSAR record with the requester, the received date and a due date 30 days later.
+  Sends the requester one acknowledgment with the due date.
+  Never sends personal data in the answer.
+connectors: []
+tags: [privacy, dsar, gdpr]

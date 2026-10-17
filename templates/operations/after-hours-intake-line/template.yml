@@ -1,0 +1,11 @@
+name: After-hours intake line
+category: operations
+icon: moon
+description: Answers your phone after hours, records each request and transfers urgent cases.
+what_it_does: |
+  Takes calls when the office is closed, so no request is lost.
+  Records the name, callback number, reason and urgency.
+  Reads the summary back and says when the team calls back.
+  Transfers urgent cases to the emergency contact.
+connectors: []
+tags: [phone, intake, after hours, voice]

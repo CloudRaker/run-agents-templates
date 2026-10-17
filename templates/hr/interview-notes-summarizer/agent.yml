@@ -1,0 +1,54 @@
+name: Interview notes summarizer
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - fellow
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  required: [candidate, role]
+  properties:
+    candidate: { type: string }
+    role: { type: string }
+    competencies:
+      type: array
+      items: { type: string }
+      description: Optional. The competencies to rate. The default list is in AGENTS.md.
+    meeting:
+      type: string
+      description: Optional. The Fellow meeting title or link.
+    notes:
+      type: string
+      description: Optional. Notes as plain text, when there is no file.
+output_schema:
+  type: object
+  required: [candidate, competencies, summary]
+  properties:
+    candidate: { type: string }
+    role: { type: string }
+    summary: { type: string }
+    competencies:
+      type: array
+      items:
+        type: object
+        required: [name, rating, evidence]
+        properties:
+          name: { type: string }
+          rating:
+            type: string
+            enum: [strong, meets, weak, no_evidence]
+          evidence:
+            type: array
+            items: { type: string }
+            description: Quotes from the interview.
+    strengths:
+      type: array
+      items: { type: string }
+    concerns:
+      type: array
+      items: { type: string }
+    open_questions:
+      type: array
+      items: { type: string }

@@ -1,0 +1,42 @@
+name: Referral letter drafter
+mode: zeroshot
+triggers:
+  http: true
+limits:
+  max_steps: 20
+input_schema:
+  type: object
+  required: [patient_summary, reason, specialist]
+  properties:
+    patient_summary:
+      type: string
+      description: Name, date of birth, relevant history, medications, allergies and recent results.
+    reason:
+      type: string
+      description: The clinical question or the reason for the referral.
+    specialist:
+      type: object
+      required: [specialty]
+      properties:
+        name: { type: string }
+        specialty: { type: string }
+        practice: { type: string }
+        address: { type: string }
+    urgency:
+      type: string
+      enum: [routine, soon, urgent]
+    referring_clinician:
+      type: string
+      description: Optional. Name and title for the signature block.
+output_schema:
+  type: object
+  required: [status, letter_markdown]
+  properties:
+    status:
+      type: string
+      enum: [draft_for_review, missing_input]
+    letter_markdown: { type: string }
+    pdf_name: { type: string }
+    check_items:
+      type: array
+      items: { type: string }

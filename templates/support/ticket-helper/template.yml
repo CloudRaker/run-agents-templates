@@ -1,6 +1,7 @@
 name: Ticket helper
 category: support
 description: Drafts answers to customer conversations in Intercom for a support agent to review.
+icon: lifebuoy
 what_it_does: |
   Reads an Intercom conversation and the customer history.
   Drafts an answer in the tone of your team.

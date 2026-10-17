@@ -1,0 +1,11 @@
+name: NDA triage
+category: legal
+icon: lock-key
+description: Compares an incoming NDA with your playbook and lists the findings by risk.
+what_it_does: |
+  Sorts each incoming NDA into low, medium or high risk against your playbook.
+  Extracts the parties, the term, the direction, the governing law, non-solicit and carve-outs.
+  Lists each deviation from your positions with the clause text.
+  Answers the sender one time with the summary.
+connectors: []
+tags: [nda, contracts, triage]

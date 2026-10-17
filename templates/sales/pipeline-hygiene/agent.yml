@@ -1,0 +1,39 @@
+name: Pipeline hygiene
+mode: zeroshot
+triggers:
+  schedule: "0 7 * * 1"
+connectors:
+  - pipedrive
+  - close
+limits:
+  max_steps: 60
+output_schema:
+  type: object
+  required: [checked, owners]
+  properties:
+    checked:
+      type: integer
+      description: The number of open deals checked.
+    owners:
+      type: array
+      items:
+        type: object
+        required: [owner, deals]
+        properties:
+          owner: { type: string }
+          deals:
+            type: array
+            items:
+              type: object
+              required: [name, problems, fix]
+              properties:
+                id: { type: string }
+                name: { type: string }
+                source: { type: string, enum: [pipedrive, close] }
+                stage: { type: string }
+                problems:
+                  type: array
+                  items:
+                    type: string
+                    enum: [stale, no_next_step, close_date_past, no_amount]
+                fix: { type: string }

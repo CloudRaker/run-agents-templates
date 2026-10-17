@@ -1,0 +1,38 @@
+name: PR review digest
+mode: zeroshot
+triggers:
+  schedule: "0 13 * * 1-5"
+connectors:
+  - github
+limits:
+  max_steps: 50
+output_schema:
+  type: object
+  required: [summary, needs_reviewer, stale_reviews, ready_to_merge]
+  properties:
+    summary:
+      type: string
+      description: Two or three sentences for the team.
+    needs_reviewer:
+      type: array
+      items: { $ref: "#/$defs/pr" }
+    stale_reviews:
+      type: array
+      items: { $ref: "#/$defs/pr" }
+    ready_to_merge:
+      type: array
+      items: { $ref: "#/$defs/pr" }
+    open_count:
+      type: integer
+  $defs:
+    pr:
+      type: object
+      required: [repository, number, title, url]
+      properties:
+        repository: { type: string }
+        number: { type: integer }
+        title: { type: string }
+        url: { type: string }
+        author: { type: string }
+        age_days: { type: number }
+        waiting_on: { type: string, description: The reviewer or the author that must act next. }

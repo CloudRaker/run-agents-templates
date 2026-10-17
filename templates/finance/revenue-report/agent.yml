@@ -1,0 +1,34 @@
+name: Revenue report
+mode: zeroshot
+triggers:
+  schedule: "0 8 1 * *"
+connectors:
+  - chartmogul
+  - stripe
+limits:
+  max_steps: 40
+output_schema:
+  type: object
+  required: [month, narrative]
+  properties:
+    month: { type: string, description: The reported month, YYYY-MM. }
+    currency: { type: string }
+    mrr:
+      type: object
+      properties:
+        start: { type: number }
+        end: { type: number }
+        new: { type: number }
+        expansion: { type: number }
+        contraction: { type: number }
+        churn: { type: number }
+        reactivation: { type: number }
+    customers:
+      type: object
+      properties:
+        start: { type: integer }
+        end: { type: integer }
+        new: { type: integer }
+        churned: { type: integer }
+    narrative: { type: string }
+    report_file: { type: string, description: The file id of the PDF report. }

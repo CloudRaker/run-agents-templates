@@ -1,0 +1,17 @@
+name: Onboarding checklist
+category: hr
+description: Creates the Asana onboarding tasks for a new hire from your onboarding plan.
+what_it_does: |
+  Takes the name, role and start date of a new hire.
+  Creates dated Asana tasks for HR, IT, the manager and the new hire.
+  Adds a welcome page in Notion when the connector is available.
+  Returns the links to each task.
+connectors:
+  - id: asana
+    required: true
+    purpose: Find the project and the people, and create the onboarding tasks.
+  - id: notion
+    required: false
+    purpose: Create a welcome page for the new hire.
+tags: [onboarding, tasks, new-hire]
+icon: user-plus

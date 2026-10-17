@@ -1,0 +1,28 @@
+name: Vendor onboarding
+mode: zeroshot
+triggers:
+  email: true
+email:
+  reply: true
+connectors: []
+data:
+  read:
+    - vendor
+  write:
+    - vendor
+limits:
+  max_steps: 30
+output_schema:
+  type: object
+  required: [vendor, received, missing, replied]
+  properties:
+    vendor: { type: string }
+    received:
+      type: array
+      items:
+        type: string
+        enum: [w9, insurance_certificate, bank_letter]
+    missing:
+      type: array
+      items: { type: string }
+    replied: { type: boolean }

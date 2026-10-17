@@ -1,0 +1,32 @@
+name: NDA triage
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+email:
+  reply: true
+limits:
+  max_steps: 30
+output_schema:
+  type: object
+  required: [risk, findings]
+  properties:
+    risk: { type: string, enum: [low, medium, high, not_an_nda] }
+    parties:
+      type: array
+      items: { type: string }
+    direction: { type: string, enum: [mutual, one_way_we_disclose, one_way_we_receive, unclear] }
+    term: { type: string }
+    governing_law: { type: string }
+    findings:
+      type: array
+      items:
+        type: object
+        required: [topic, risk, finding]
+        properties:
+          topic: { type: string }
+          risk: { type: string, enum: [low, medium, high] }
+          finding: { type: string }
+          clause: { type: string, description: The clause text or its section number. }
+          playbook_position: { type: string }
+    recommendation: { type: string, enum: [sign, negotiate, escalate] }

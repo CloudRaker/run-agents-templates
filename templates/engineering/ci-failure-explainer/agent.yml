@@ -1,0 +1,36 @@
+name: CI failure explainer
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - circleci
+  - github
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  required: [url]
+  properties:
+    url:
+      type: string
+      description: The URL of a CircleCI pipeline, workflow or job.
+output_schema:
+  type: object
+  required: [failing_step, likely_cause, suggested_fix, category]
+  properties:
+    job: { type: string }
+    failing_step: { type: string }
+    error_excerpt:
+      type: string
+      description: A maximum of 20 lines of the log around the error.
+    category:
+      type: string
+      enum: [test, build, lint, dependency, infrastructure, flaky, config, unknown]
+    likely_cause: { type: string }
+    suggested_fix: { type: string }
+    related_files:
+      type: array
+      items: { type: string }
+    confidence:
+      type: string
+      enum: [high, medium, low]

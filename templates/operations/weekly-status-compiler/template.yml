@@ -1,0 +1,17 @@
+name: Weekly status compiler
+category: operations
+icon: chart-bar-horizontal
+description: Compiles a Friday status report for each Asana project, with Linear issues when connected.
+what_it_does: |
+  Writes the Friday status report so project leads do not have to.
+  Lists done, in progress, blocked and next week for each project.
+  Adds Linear engineering issues when Linear is connected.
+  Returns one Markdown report.
+connectors:
+  - id: asana
+    required: true
+    purpose: Read projects, tasks, sections and due dates.
+  - id: linear
+    required: false
+    purpose: Read the issues and the cycle progress of linked teams.
+tags: [status, reporting, schedule, projects]

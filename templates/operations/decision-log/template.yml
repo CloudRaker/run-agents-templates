@@ -1,0 +1,17 @@
+name: Decision log
+category: operations
+icon: gavel
+description: Collects each workday's decisions from your meeting notes into one searchable log.
+what_it_does: |
+  Keeps one searchable log of every decision your team makes in meetings.
+  Reads the day's notes from Granola or Fireflies at 17:00 UTC.
+  Records the decision, the reason, the owner and the meeting.
+  Skips a decision that is already in the log.
+connectors:
+  - id: granola
+    required: false
+    purpose: Read the notes of the meetings of the day.
+  - id: fireflies
+    required: false
+    purpose: Read the transcripts and summaries of the meetings of the day.
+tags: [decisions, meetings, schedule, log]

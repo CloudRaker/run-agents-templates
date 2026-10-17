@@ -1,6 +1,7 @@
 name: Meeting actions
 category: operations
 description: Turns the meeting notes of each workday into Asana tasks with owners and due dates.
+icon: list-checks
 what_it_does: |
   Runs at 18:00 UTC on each workday.
   Reads the meeting notes of the day from Granola.

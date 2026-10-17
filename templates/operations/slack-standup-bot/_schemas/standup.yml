@@ -1,0 +1,22 @@
+name: standup
+label: Standup
+label_field: person
+fields:
+  key:
+    type: text
+    required: true
+    unique: true
+  person:
+    type: text
+    required: true
+  date:
+    type: date
+    required: true
+  yesterday:
+    type: long_text
+  today:
+    type: long_text
+  blockers:
+    type: long_text
+  blocked:
+    type: boolean

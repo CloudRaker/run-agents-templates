@@ -1,0 +1,45 @@
+name: Call recording QA
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+connectors: []
+limits:
+  max_steps: 25
+input_schema:
+  type: object
+  properties:
+    agent_name:
+      type: string
+      description: Optional. The name of the support agent on the call.
+    notes:
+      type: string
+      description: Optional. Context from the reviewer.
+output_schema:
+  type: object
+  required: [scores, total, coaching]
+  properties:
+    agent_name: { type: string }
+    duration_minutes: { type: number }
+    scores:
+      type: array
+      items:
+        type: object
+        required: [criterion, score, quote]
+        properties:
+          criterion:
+            type: string
+            enum: [greeting, empathy, resolution, compliance]
+          score: { type: integer, minimum: 0, maximum: 5 }
+          quote: { type: string }
+          reason: { type: string }
+    total:
+      type: integer
+      minimum: 0
+      maximum: 20
+    missing_phrases:
+      type: array
+      items: { type: string }
+    coaching:
+      type: array
+      items: { type: string }
