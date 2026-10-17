@@ -1,0 +1,12 @@
+name: Submission triage
+category: insurance
+icon: tray-arrow-down
+description: Reads a broker submission, extracts the ACORD and loss run facts, and classifies appetite as in, out or refer.
+what_it_does: |
+  Turns a broker email with ACORD forms, loss runs and a note into one underwriter-ready submission record.
+  Classifies appetite as in, out or refer against your own rule table.
+  Extracts the named insured, operations, revenue, locations, prior carrier and requested coverage.
+  Totals the loss runs and lists each missing document.
+  Acknowledges the broker once with the reference and the missing items.
+connectors: []
+tags: [submissions, underwriting, acord, loss-runs, email]

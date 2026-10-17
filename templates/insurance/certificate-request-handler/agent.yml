@@ -1,0 +1,35 @@
+name: Certificate request handler
+mode: zeroshot
+triggers:
+  email: true
+email:
+  reply: true
+connectors: []
+data:
+  read:
+    - policy
+limits:
+  max_steps: 40
+output_schema:
+  type: object
+  required: [decision, named_insured, checks, answered]
+  properties:
+    decision: { type: string, enum: [can_issue, needs_approval, cannot_issue] }
+    named_insured: { type: string }
+    policy_numbers:
+      type: array
+      items: { type: string }
+    certificate_holder: { type: string }
+    project: { type: string }
+    checks:
+      type: array
+      items:
+        type: object
+        required: [item, result]
+        properties:
+          item: { type: string }
+          requested: { type: string }
+          on_policy: { type: string }
+          result: { type: string, enum: [ok, needs_approval, fails] }
+          reason: { type: string }
+    answered: { type: boolean }

@@ -32,6 +32,7 @@ const CATEGORIES = {
   hr: 'People',
   data: 'Data',
   healthcare: 'Healthcare',
+  insurance: 'Insurance',
 } as const
 
 // Copy of the connector catalog ids of the Run console (connector-catalog.ts).

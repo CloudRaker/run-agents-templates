@@ -1,0 +1,73 @@
+name: Loss run summarizer
+mode: zeroshot
+triggers:
+  http: true
+connectors: []
+data:
+  write:
+    - loss_run_claim
+limits:
+  max_steps: 80
+timeout: 20m
+input_schema:
+  type: object
+  required: [account_name]
+  properties:
+    account_name:
+      type: string
+      description: The named insured. It labels the records and the PDF.
+    large_loss_threshold:
+      type: number
+      description: Optional. A claim with an incurred amount at or above this value is a large loss. Default 100000.
+output_schema:
+  type: object
+  required: [account_name, claim_count, totals_by_year, totals_by_type, open_reserves, large_losses, trend, records_saved]
+  properties:
+    account_name: { type: string }
+    carriers:
+      type: array
+      items: { type: string }
+    claim_count: { type: integer }
+    totals_by_year:
+      type: array
+      items:
+        type: object
+        required: [policy_year, claims, paid, reserved, incurred]
+        properties:
+          policy_year: { type: string }
+          claims: { type: integer }
+          paid: { type: number }
+          reserved: { type: number }
+          incurred: { type: number }
+    totals_by_type:
+      type: array
+      items:
+        type: object
+        required: [type, claims, incurred]
+        properties:
+          type: { type: string }
+          claims: { type: integer }
+          incurred: { type: number }
+    open_reserves: { type: number }
+    large_losses:
+      type: array
+      items:
+        type: object
+        properties:
+          claim_number: { type: string }
+          claim_date: { type: string }
+          type: { type: string }
+          incurred: { type: number }
+          status: { type: string }
+    trend:
+      type: object
+      required: [frequency, severity]
+      properties:
+        frequency: { type: string, enum: [rising, stable, falling, not_enough_data] }
+        severity: { type: string, enum: [rising, stable, falling, not_enough_data] }
+        note: { type: string }
+    gaps:
+      type: array
+      items: { type: string }
+    records_saved: { type: integer }
+    summary_pdf_file_id: { type: string }

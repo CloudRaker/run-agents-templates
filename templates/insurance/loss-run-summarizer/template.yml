@@ -1,0 +1,11 @@
+name: Loss run summarizer
+category: insurance
+icon: chart-line-down
+description: Turns one or more carrier loss runs into claim records, loss trends and a one-page PDF summary.
+what_it_does: |
+  Reads loss runs from any carrier and saves each claim as a loss_run_claim record.
+  Totals paid, reserved and incurred by policy year and by claim type.
+  Shows open reserves, large losses, and the frequency and severity trend.
+  Renders a one-page summary PDF for the underwriter or the broker file.
+connectors: []
+tags: [loss-runs, underwriting, claims, pdf]

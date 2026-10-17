@@ -1,0 +1,39 @@
+name: Endorsement request triage
+mode: zeroshot
+triggers:
+  email: true
+  http: true
+connectors: []
+data:
+  read:
+    - policy
+  write:
+    - endorsement_request
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  properties:
+    request:
+      type: string
+      description: Optional on an HTTP run. The change request as text, when no file holds it.
+    requester_email:
+      type: string
+      description: Optional on an HTTP run. The email of the requester.
+output_schema:
+  type: object
+  required: [policy_number, change_type, route, record_id]
+  properties:
+    policy_number: { type: string }
+    named_insured: { type: string }
+    change_type:
+      type: string
+      enum: [add_vehicle, remove_vehicle, add_location, remove_location, change_limits, add_additional_insured, other]
+    effective_date: { type: string }
+    route: { type: string, enum: [auto_approve, underwriter_review, decline_proposed] }
+    proposed_endorsement: { type: string }
+    premium_impact: { type: string, enum: [none, increase, decrease, to_be_rated] }
+    open_questions:
+      type: array
+      items: { type: string }
+    record_id: { type: string }

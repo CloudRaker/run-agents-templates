@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-17T19:37:42.796Z",
+  "generated_at": "2026-10-17T19:56:19.089Z",
   "source": "https://github.com/CloudRaker/run-agents-templates",
   "categories": [
     {
@@ -50,6 +50,10 @@
     {
       "id": "healthcare",
       "name": "Healthcare"
+    },
+    {
+      "id": "insurance",
+      "name": "Insurance"
     }
   ],
   "templates": [
@@ -869,6 +873,204 @@
         "_schemas/candidate.yml",
         "agent.yml",
         "skills/role-profile/SKILL.md"
+      ]
+    },
+    {
+      "id": "broker-inbox-router",
+      "name": "Broker inbox router",
+      "category": "insurance",
+      "description": "Classifies each broker email, extracts the account and policy, and routes it to the right team queue.",
+      "icon": "mailbox",
+      "what_it_does": "Sorts a shared broker inbox into submission, renewal, endorsement, certificate, claim and billing queues.\nExtracts the account name, the policy number, the request and the deadline.\nSaves a broker_request record with the target queue and the priority.\nAcknowledges the broker once with the reference.",
+      "connectors": [],
+      "triggers": [
+        "email"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/broker-inbox-router",
+      "files": [
+        "AGENTS.md",
+        "_schemas/broker_request.yml",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "certificate-request-handler",
+      "name": "Certificate request handler",
+      "category": "insurance",
+      "description": "Checks a certificate of insurance request against the policy and your rules, and answers the requester once.",
+      "icon": "certificate",
+      "what_it_does": "Answers COI requests in minutes: can issue as requested, needs approval, or cannot issue.\nReads the holder, project, coverages, additional insured, waiver and limits from the email or the attachment.\nChecks each item against the policy record and your certificate rules.\nGives the reasons for each item that needs approval or fails. Never issues the certificate.",
+      "connectors": [],
+      "triggers": [
+        "email"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/certificate-request-handler",
+      "files": [
+        "AGENTS.md",
+        "_schemas/policy.yml",
+        "agent.yml",
+        "skills/certificate-rules/SKILL.md"
+      ]
+    },
+    {
+      "id": "claims-status-line",
+      "name": "Claims status line",
+      "category": "insurance",
+      "description": "Answers claim status calls, verifies the caller with two facts and reads the status and next step.",
+      "icon": "phone-list",
+      "what_it_does": "Takes claim status calls off your adjusters' phones.\nAsks for the claim reference, then verifies the caller with the date of loss and the postal code.\nReads the status and the next step from the claim record, in plain speech.\nTransfers to an adjuster on request. Never discusses coverage decisions or amounts beyond the record.",
+      "connectors": [],
+      "triggers": [
+        "phone"
+      ],
+      "mode": "turns",
+      "path": "templates/insurance/claims-status-line",
+      "files": [
+        "AGENTS.md",
+        "_schemas/claim.yml",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "endorsement-request-triage",
+      "name": "Endorsement request triage",
+      "category": "insurance",
+      "description": "Reads a midterm change request, checks it against the policy and proposes the endorsement for approval.",
+      "icon": "pencil-line",
+      "what_it_does": "Turns a midterm change request into a proposed endorsement that an underwriter can approve in one pass.\nHandles a new vehicle, a new location, a limit change or an additional insured.\nChecks the change against the policy record and your endorsement rules.\nSaves an endorsement_request record with a premium-impact placeholder and the open questions.",
+      "connectors": [],
+      "triggers": [
+        "http",
+        "email"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/endorsement-request-triage",
+      "files": [
+        "AGENTS.md",
+        "_schemas/endorsement_request.yml",
+        "_schemas/policy.yml",
+        "agent.yml",
+        "skills/endorsement-rules/SKILL.md"
+      ]
+    },
+    {
+      "id": "fnol-intake",
+      "name": "FNOL intake",
+      "category": "insurance",
+      "description": "Reads a first notice of loss with photos and a police report, opens the claim and acknowledges the reporter.",
+      "icon": "first-aid",
+      "what_it_does": "Turns a loss notice email with photos and a police report into an open claim record in minutes.\nCategorizes the claim by line and severity, and lists fraud indicators for the adjuster.\nExtracts the policy, the date and place of loss, injuries, third parties and the estimate.\nAcknowledges the reporter once with the claim reference and the next steps.",
+      "connectors": [],
+      "triggers": [
+        "http",
+        "email"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/fnol-intake",
+      "files": [
+        "AGENTS.md",
+        "_schemas/claim.yml",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "fnol-phone-line",
+      "name": "FNOL phone line",
+      "category": "insurance",
+      "description": "Answers a claims line, takes a first notice of loss by voice and reads back the claim reference.",
+      "icon": "phone-plus",
+      "what_it_does": "Answers your claims line day and night and takes the first notice of loss in a calm conversation.\nAsks one question at a time: policy, date and place, what happened, injuries, other parties.\nOpens the claim record and reads the claim reference back to the caller.\nTransfers emergencies and requests for a person to an adjuster. Never states coverage.",
+      "connectors": [],
+      "triggers": [
+        "phone"
+      ],
+      "mode": "turns",
+      "path": "templates/insurance/fnol-phone-line",
+      "files": [
+        "AGENTS.md",
+        "_schemas/claim.yml",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "loss-run-summarizer",
+      "name": "Loss run summarizer",
+      "category": "insurance",
+      "description": "Turns one or more carrier loss runs into claim records, loss trends and a one-page PDF summary.",
+      "icon": "chart-line-down",
+      "what_it_does": "Reads loss runs from any carrier and saves each claim as a loss_run_claim record.\nTotals paid, reserved and incurred by policy year and by claim type.\nShows open reserves, large losses, and the frequency and severity trend.\nRenders a one-page summary PDF for the underwriter or the broker file.",
+      "connectors": [],
+      "triggers": [
+        "http"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/loss-run-summarizer",
+      "files": [
+        "AGENTS.md",
+        "_schemas/loss_run_claim.yml",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "policy-document-redactor",
+      "name": "Policy document redactor",
+      "category": "insurance",
+      "description": "Redacts personal data from policy documents, claim files and loss runs before you share them.",
+      "icon": "detective",
+      "what_it_does": "Makes policy documents, claim files and loss runs safe to share with a reinsurer or an auditor.\nRemoves names, addresses, dates of birth and bank details. Policy numbers are optional.\nWrites a new redacted file for each input and leaves the original as it is.\nReturns counts by category only, never the redacted values.",
+      "connectors": [],
+      "triggers": [
+        "http"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/policy-document-redactor",
+      "files": [
+        "AGENTS.md",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "renewal-prep",
+      "name": "Renewal prep",
+      "category": "insurance",
+      "description": "Each weekday, finds policies that expire in 90 days, flags at-risk accounts and prepares the renewal checklist.",
+      "icon": "calendar-dots",
+      "what_it_does": "Works your renewal calendar every weekday morning from the policy book in the data store.\nFlags at-risk accounts: claims, a rate change, missing documents or a late start.\nPrepares a renewal packet checklist for each account and saves it as a renewal record.\nUpdates the same record each day, so the team sees the progress.",
+      "connectors": [],
+      "triggers": [
+        "schedule"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/renewal-prep",
+      "files": [
+        "AGENTS.md",
+        "_schemas/policy.yml",
+        "_schemas/renewal.yml",
+        "agent.yml",
+        "skills/renewal-rules/SKILL.md"
+      ]
+    },
+    {
+      "id": "submission-triage",
+      "name": "Submission triage",
+      "category": "insurance",
+      "description": "Reads a broker submission, extracts the ACORD and loss run facts, and classifies appetite as in, out or refer.",
+      "icon": "tray-arrow-down",
+      "what_it_does": "Turns a broker email with ACORD forms, loss runs and a note into one underwriter-ready submission record.\nClassifies appetite as in, out or refer against your own rule table.\nExtracts the named insured, operations, revenue, locations, prior carrier and requested coverage.\nTotals the loss runs and lists each missing document.\nAcknowledges the broker once with the reference and the missing items.",
+      "connectors": [],
+      "triggers": [
+        "http",
+        "email"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/insurance/submission-triage",
+      "files": [
+        "AGENTS.md",
+        "_schemas/submission.yml",
+        "agent.yml",
+        "skills/appetite-guide/SKILL.md"
       ]
     },
     {

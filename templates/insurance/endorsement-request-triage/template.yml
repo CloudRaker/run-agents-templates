@@ -1,0 +1,11 @@
+name: Endorsement request triage
+category: insurance
+icon: pencil-line
+description: Reads a midterm change request, checks it against the policy and proposes the endorsement for approval.
+what_it_does: |
+  Turns a midterm change request into a proposed endorsement that an underwriter can approve in one pass.
+  Handles a new vehicle, a new location, a limit change or an additional insured.
+  Checks the change against the policy record and your endorsement rules.
+  Saves an endorsement_request record with a premium-impact placeholder and the open questions.
+connectors: []
+tags: [endorsements, midterm-changes, policy-service, email]

@@ -1,0 +1,21 @@
+name: Claims status line
+mode: turns
+triggers:
+  phone: true
+phone:
+  greeting: "Thank you for calling the claims status line. This call is recorded for quality. I can give you the status of a claim. Please have your claim reference ready. What is your claim reference?"
+  record: true
+  voice: marin
+  style: "Clear, patient and friendly. Speak slowly. Say references, dates and postal codes character by character."
+  turn_timeout: 10s
+  max_duration: 10m
+  transfers:
+    adjuster:
+      number: "+15555550121"
+      label: the claims team
+connectors: []
+data:
+  read:
+    - claim
+limits:
+  max_steps: 30

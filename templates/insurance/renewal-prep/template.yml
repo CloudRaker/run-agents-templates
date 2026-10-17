@@ -1,0 +1,11 @@
+name: Renewal prep
+category: insurance
+icon: calendar-dots
+description: Each weekday, finds policies that expire in 90 days, flags at-risk accounts and prepares the renewal checklist.
+what_it_does: |
+  Works your renewal calendar every weekday morning from the policy book in the data store.
+  Flags at-risk accounts: claims, a rate change, missing documents or a late start.
+  Prepares a renewal packet checklist for each account and saves it as a renewal record.
+  Updates the same record each day, so the team sees the progress.
+connectors: []
+tags: [renewals, book-of-business, schedule, account-management]

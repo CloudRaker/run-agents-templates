@@ -1,0 +1,28 @@
+name: Broker inbox router
+mode: zeroshot
+triggers:
+  email: true
+email:
+  reply: true
+connectors: []
+data:
+  write:
+    - broker_request
+limits:
+  max_steps: 25
+output_schema:
+  type: object
+  required: [request_type, queue, priority, reference, acknowledged]
+  properties:
+    request_type:
+      type: string
+      enum: [new_submission, renewal, endorsement, certificate, claim, billing, other]
+    queue: { type: string }
+    priority: { type: string, enum: [normal, urgent] }
+    account_name: { type: string }
+    policy_number: { type: string }
+    summary: { type: string }
+    deadline: { type: string }
+    reference: { type: string }
+    record_id: { type: string }
+    acknowledged: { type: boolean }

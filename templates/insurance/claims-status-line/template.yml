@@ -1,0 +1,11 @@
+name: Claims status line
+category: insurance
+icon: phone-list
+description: Answers claim status calls, verifies the caller with two facts and reads the status and next step.
+what_it_does: |
+  Takes claim status calls off your adjusters' phones.
+  Asks for the claim reference, then verifies the caller with the date of loss and the postal code.
+  Reads the status and the next step from the claim record, in plain speech.
+  Transfers to an adjuster on request. Never discusses coverage decisions or amounts beyond the record.
+connectors: []
+tags: [phone, claims, status, voice]

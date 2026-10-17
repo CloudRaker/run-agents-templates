@@ -1,0 +1,43 @@
+name: FNOL intake
+mode: zeroshot
+triggers:
+  email: true
+  http: true
+email:
+  reply: true
+connectors: []
+data:
+  write:
+    - claim
+limits:
+  max_steps: 50
+timeout: 15m
+input_schema:
+  type: object
+  properties:
+    reporter_email:
+      type: string
+      description: Optional on an HTTP run. The email of the person who reports the loss.
+    notice:
+      type: string
+      description: Optional on an HTTP run. The loss notice as text, when no file holds it.
+output_schema:
+  type: object
+  required: [claim_reference, insured_name, date_of_loss, line, severity, fraud_indicators, missing_information, acknowledged]
+  properties:
+    claim_reference: { type: string }
+    record_id: { type: string }
+    policy_number: { type: string }
+    insured_name: { type: string }
+    date_of_loss: { type: string }
+    line: { type: string, enum: [auto, property, general_liability, workers_comp, other] }
+    severity: { type: string, enum: [low, medium, high, catastrophic] }
+    injuries: { type: boolean }
+    estimated_amount: { type: number }
+    fraud_indicators:
+      type: array
+      items: { type: string }
+    missing_information:
+      type: array
+      items: { type: string }
+    acknowledged: { type: boolean }

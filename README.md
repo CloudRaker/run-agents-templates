@@ -160,6 +160,21 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 | [Patient intake extractor](templates/healthcare/patient-intake-extractor) | Turns intake forms (PDF or photos) into a structured patient intake record and asks once for missing fields. | none | http, email |
 | [Prescription refill line](templates/healthcare/prescription-refill-line) | Answers a phone line that takes prescription refill requests and hands clinical questions to a pharmacist. | none | phone |
 | [Referral letter drafter](templates/healthcare/referral-letter-drafter) | Drafts a referral letter to a specialist from a patient summary and renders it as a PDF for review. | none | http |
+
+### Insurance
+
+| Template | Description | Connectors | Triggers |
+| --- | --- | --- | --- |
+| [Broker inbox router](templates/insurance/broker-inbox-router) | Classifies each broker email, extracts the account and policy, and routes it to the right team queue. | none | email |
+| [Certificate request handler](templates/insurance/certificate-request-handler) | Checks a certificate of insurance request against the policy and your rules, and answers the requester once. | none | email |
+| [Claims status line](templates/insurance/claims-status-line) | Answers claim status calls, verifies the caller with two facts and reads the status and next step. | none | phone |
+| [Endorsement request triage](templates/insurance/endorsement-request-triage) | Reads a midterm change request, checks it against the policy and proposes the endorsement for approval. | none | http, email |
+| [FNOL intake](templates/insurance/fnol-intake) | Reads a first notice of loss with photos and a police report, opens the claim and acknowledges the reporter. | none | http, email |
+| [FNOL phone line](templates/insurance/fnol-phone-line) | Answers a claims line, takes a first notice of loss by voice and reads back the claim reference. | none | phone |
+| [Loss run summarizer](templates/insurance/loss-run-summarizer) | Turns one or more carrier loss runs into claim records, loss trends and a one-page PDF summary. | none | http |
+| [Policy document redactor](templates/insurance/policy-document-redactor) | Redacts personal data from policy documents, claim files and loss runs before you share them. | none | http |
+| [Renewal prep](templates/insurance/renewal-prep) | Each weekday, finds policies that expire in 90 days, flags at-risk accounts and prepares the renewal checklist. | none | schedule |
+| [Submission triage](templates/insurance/submission-triage) | Reads a broker submission, extracts the ACORD and loss run facts, and classifies appetite as in, out or refer. | none | http, email |
 <!-- templates:end -->
 
 ## Layout
@@ -212,6 +227,7 @@ Categories:
 | `hr`          | People           |
 | `data`        | Data             |
 | `healthcare`  | Healthcare       |
+| `insurance`   | Insurance        |
 
 The `connectors` list of `template.yml` and the `connectors` list of `agent.yml` must contain the same ids.
 

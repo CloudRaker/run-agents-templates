@@ -1,0 +1,11 @@
+name: FNOL phone line
+category: insurance
+icon: phone-plus
+description: Answers a claims line, takes a first notice of loss by voice and reads back the claim reference.
+what_it_does: |
+  Answers your claims line day and night and takes the first notice of loss in a calm conversation.
+  Asks one question at a time: policy, date and place, what happened, injuries, other parties.
+  Opens the claim record and reads the claim reference back to the caller.
+  Transfers emergencies and requests for a person to an adjuster. Never states coverage.
+connectors: []
+tags: [phone, claims, fnol, voice]

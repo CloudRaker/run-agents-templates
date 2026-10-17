@@ -1,0 +1,52 @@
+name: submission
+label: Submission
+label_field: named_insured
+fields:
+  named_insured:
+    type: text
+    required: true
+  mailing_address:
+    type: address
+  operations:
+    type: long_text
+  annual_revenue:
+    type: currency
+  location_count:
+    type: number
+  states:
+    type: multi_select
+    options: [AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, DC]
+  prior_carrier:
+    type: text
+  requested_effective_date:
+    type: date
+  coverage_lines:
+    type: multi_select
+    options: [general_liability, property, auto, workers_comp, umbrella, professional, cyber, other]
+  requested_limits:
+    type: long_text
+  loss_years:
+    type: number
+  claim_count:
+    type: number
+  total_incurred:
+    type: currency
+  open_claims:
+    type: number
+  appetite:
+    type: select
+    options: [in, out, refer]
+  appetite_reasons:
+    type: long_text
+  missing_documents:
+    type: multi_select
+    options: [acord_125, acord_126, acord_140, loss_runs, broker_note, schedule_of_locations]
+  broker_email:
+    type: email
+    required: true
+  source_message:
+    type: text
+    unique: true
+  status:
+    type: select
+    options: [new, missing_documents, ready_for_underwriter, declined]

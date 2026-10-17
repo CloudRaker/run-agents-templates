@@ -1,0 +1,41 @@
+name: policy
+label: Policy
+label_field: policy_number
+fields:
+  policy_number:
+    type: text
+    required: true
+    unique: true
+  named_insured:
+    type: text
+    required: true
+  line:
+    type: select
+    options: [general_liability, property, auto, workers_comp, umbrella, professional, cyber, package, other]
+  effective_date:
+    type: date
+  expiration_date:
+    type: date
+    required: true
+  premium:
+    type: currency
+  carrier:
+    type: text
+  account_manager:
+    type: email
+  producer:
+    type: text
+  open_claims:
+    type: number
+  incurred_losses_current_term:
+    type: currency
+  expected_rate_change_percent:
+    type: number
+  allowed_endorsements:
+    type: multi_select
+    options: [additional_insured, waiver_of_subrogation, primary_noncontributory, per_project_aggregate, loss_payee]
+  limits:
+    type: long_text
+  status:
+    type: select
+    options: [active, cancelled, expired, non_renewed]

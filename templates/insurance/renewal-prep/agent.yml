@@ -1,0 +1,38 @@
+name: Renewal prep
+mode: zeroshot
+triggers:
+  schedule: "0 6 * * 1-5"
+connectors: []
+data:
+  read:
+    - policy
+  write:
+    - renewal
+limits:
+  max_steps: 120
+timeout: 30m
+output_schema:
+  type: object
+  required: [run_date, policies_in_window, created, updated, at_risk]
+  properties:
+    run_date: { type: string }
+    policies_in_window: { type: integer }
+    created: { type: integer }
+    updated: { type: integer }
+    at_risk:
+      type: array
+      items:
+        type: object
+        required: [policy_number, named_insured, expiration_date, reasons]
+        properties:
+          policy_number: { type: string }
+          named_insured: { type: string }
+          expiration_date: { type: string }
+          days_to_expiration: { type: integer }
+          reasons:
+            type: array
+            items: { type: string }
+    due_this_week:
+      type: array
+      items: { type: string }
+      description: Policy numbers with a checklist item due in the next 7 days.

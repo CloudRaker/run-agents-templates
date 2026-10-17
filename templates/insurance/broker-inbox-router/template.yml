@@ -1,0 +1,11 @@
+name: Broker inbox router
+category: insurance
+icon: mailbox
+description: Classifies each broker email, extracts the account and policy, and routes it to the right team queue.
+what_it_does: |
+  Sorts a shared broker inbox into submission, renewal, endorsement, certificate, claim and billing queues.
+  Extracts the account name, the policy number, the request and the deadline.
+  Saves a broker_request record with the target queue and the priority.
+  Acknowledges the broker once with the reference.
+connectors: []
+tags: [brokers, inbox, routing, email]

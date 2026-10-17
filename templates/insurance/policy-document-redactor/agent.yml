@@ -1,0 +1,39 @@
+name: Policy document redactor
+mode: zeroshot
+triggers:
+  http: true
+connectors: []
+limits:
+  max_steps: 60
+timeout: 20m
+input_schema:
+  type: object
+  properties:
+    redact_policy_numbers:
+      type: boolean
+      description: Optional. Also redact policy and claim numbers. Default false, so the recipient can reconcile records.
+    keep_insured_business_names:
+      type: boolean
+      description: Optional. Keep the names of businesses that are the named insured. Default false.
+    recipient:
+      type: string
+      enum: [reinsurer, auditor, regulator, other]
+      description: Optional. Who receives the files. It goes in the redaction instructions.
+output_schema:
+  type: object
+  required: [files]
+  properties:
+    files:
+      type: array
+      items:
+        type: object
+        required: [source_file_id, status]
+        properties:
+          source_file_id: { type: string }
+          redacted_file_id: { type: string }
+          status: { type: string, enum: [redacted, failed, no_entities] }
+          counts:
+            type: object
+            additionalProperties: { type: integer }
+          note: { type: string }
+    total_entities: { type: integer }

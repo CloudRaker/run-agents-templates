@@ -1,0 +1,40 @@
+name: loss_run_claim
+label: Loss run claim
+label_field: claim_key
+fields:
+  claim_key:
+    type: text
+    required: true
+    unique: true
+  account_name:
+    type: text
+    required: true
+  carrier:
+    type: text
+  policy_number:
+    type: text
+  policy_period_start:
+    type: date
+  policy_period_end:
+    type: date
+  claim_number:
+    type: text
+  claim_date:
+    type: date
+  type:
+    type: text
+  description:
+    type: long_text
+  paid:
+    type: currency
+  reserved:
+    type: currency
+  incurred:
+    type: currency
+  status:
+    type: select
+    options: [open, closed, reopened]
+  valuation_date:
+    type: date
+  large_loss:
+    type: boolean

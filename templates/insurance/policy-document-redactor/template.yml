@@ -1,0 +1,11 @@
+name: Policy document redactor
+category: insurance
+icon: detective
+description: Redacts personal data from policy documents, claim files and loss runs before you share them.
+what_it_does: |
+  Makes policy documents, claim files and loss runs safe to share with a reinsurer or an auditor.
+  Removes names, addresses, dates of birth and bank details. Policy numbers are optional.
+  Writes a new redacted file for each input and leaves the original as it is.
+  Returns counts by category only, never the redacted values.
+connectors: []
+tags: [redaction, privacy, reinsurance, audit]

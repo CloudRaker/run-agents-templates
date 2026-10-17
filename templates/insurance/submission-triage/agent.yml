@@ -1,0 +1,49 @@
+name: Submission triage
+mode: zeroshot
+triggers:
+  email: true
+  http: true
+email:
+  reply: true
+connectors: []
+data:
+  write:
+    - submission
+limits:
+  max_steps: 60
+timeout: 20m
+input_schema:
+  type: object
+  properties:
+    broker_email:
+      type: string
+      description: Optional on an HTTP run. The broker email address. An email run uses the sender.
+    note:
+      type: string
+      description: Optional on an HTTP run. The broker note as text.
+output_schema:
+  type: object
+  required: [named_insured, appetite, reasons, missing_documents, record_id, acknowledged]
+  properties:
+    named_insured: { type: string }
+    appetite: { type: string, enum: [in, out, refer] }
+    reasons:
+      type: array
+      items: { type: string }
+    coverage_lines:
+      type: array
+      items: { type: string }
+    requested_effective_date: { type: string }
+    annual_revenue: { type: number }
+    loss_summary:
+      type: object
+      properties:
+        years_covered: { type: integer }
+        claim_count: { type: integer }
+        total_incurred: { type: number }
+        open_claims: { type: integer }
+    missing_documents:
+      type: array
+      items: { type: string }
+    record_id: { type: string }
+    acknowledged: { type: boolean }

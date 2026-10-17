@@ -1,0 +1,29 @@
+name: renewal
+label: Renewal
+label_field: policy_number
+fields:
+  policy_number:
+    type: text
+    required: true
+    unique: true
+  named_insured:
+    type: text
+    required: true
+  expiration_date:
+    type: date
+    required: true
+  days_to_expiration:
+    type: number
+  at_risk:
+    type: boolean
+  risk_reasons:
+    type: long_text
+  checklist:
+    type: long_text
+  next_due_date:
+    type: date
+  account_manager:
+    type: email
+  stage:
+    type: select
+    options: [not_started, collecting, marketing, quoted, bound, lost]

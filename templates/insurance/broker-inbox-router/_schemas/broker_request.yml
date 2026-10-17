@@ -1,0 +1,38 @@
+name: broker_request
+label: Broker request
+label_field: reference
+fields:
+  reference:
+    type: text
+    required: true
+    unique: true
+  source_message:
+    type: text
+    unique: true
+  broker_email:
+    type: email
+    required: true
+  broker_agency:
+    type: text
+  account_name:
+    type: text
+  policy_number:
+    type: text
+  request_type:
+    type: select
+    options: [new_submission, renewal, endorsement, certificate, claim, billing, other]
+  queue:
+    type: select
+    options: [new_business, renewals, policy_service, certificates, claims, accounting, triage]
+  priority:
+    type: select
+    options: [normal, urgent]
+  summary:
+    type: long_text
+  deadline:
+    type: date
+  attachment_count:
+    type: number
+  status:
+    type: select
+    options: [new, in_progress, done]

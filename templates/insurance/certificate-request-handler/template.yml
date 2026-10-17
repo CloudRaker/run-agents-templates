@@ -1,0 +1,11 @@
+name: Certificate request handler
+category: insurance
+icon: certificate
+description: Checks a certificate of insurance request against the policy and your rules, and answers the requester once.
+what_it_does: |
+  Answers COI requests in minutes: can issue as requested, needs approval, or cannot issue.
+  Reads the holder, project, coverages, additional insured, waiver and limits from the email or the attachment.
+  Checks each item against the policy record and your certificate rules.
+  Gives the reasons for each item that needs approval or fails. Never issues the certificate.
+connectors: []
+tags: [certificates, coi, service, email]

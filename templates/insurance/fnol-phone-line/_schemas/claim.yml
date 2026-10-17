@@ -1,0 +1,60 @@
+name: claim
+label: Claim
+label_field: claim_reference
+fields:
+  claim_reference:
+    type: text
+    required: true
+    unique: true
+  policy_number:
+    type: text
+  insured_name:
+    type: text
+    required: true
+  reporter_name:
+    type: text
+  reporter_email:
+    type: email
+  reporter_phone:
+    type: phone
+  date_of_loss:
+    type: date
+    required: true
+  loss_location:
+    type: address
+  loss_postal_code:
+    type: text
+  description:
+    type: long_text
+  line:
+    type: select
+    options: [auto, property, general_liability, workers_comp, other]
+  severity:
+    type: select
+    options: [low, medium, high, catastrophic]
+  injuries:
+    type: boolean
+  injury_details:
+    type: long_text
+  third_parties:
+    type: long_text
+  estimated_amount:
+    type: currency
+  fraud_indicators:
+    type: long_text
+  photos_available:
+    type: boolean
+  police_report_number:
+    type: text
+  channel:
+    type: select
+    options: [email, web, phone]
+  status:
+    type: select
+    options: [reported, assigned, investigating, awaiting_documents, closed]
+  next_step:
+    type: long_text
+  adjuster:
+    type: text
+  source_reference:
+    type: text

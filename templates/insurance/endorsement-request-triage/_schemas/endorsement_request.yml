@@ -1,0 +1,39 @@
+name: endorsement_request
+label: Endorsement request
+label_field: request_reference
+fields:
+  request_reference:
+    type: text
+    required: true
+    unique: true
+  policy_number:
+    type: text
+    required: true
+  named_insured:
+    type: text
+  requester_email:
+    type: email
+  change_type:
+    type: select
+    options: [add_vehicle, remove_vehicle, add_location, remove_location, change_limits, add_additional_insured, other]
+  change_details:
+    type: long_text
+  effective_date:
+    type: date
+  proposed_endorsement:
+    type: long_text
+  premium_impact:
+    type: select
+    options: [none, increase, decrease, to_be_rated]
+  premium_impact_amount:
+    type: currency
+  route:
+    type: select
+    options: [auto_approve, underwriter_review, decline_proposed]
+  rule_notes:
+    type: long_text
+  open_questions:
+    type: long_text
+  status:
+    type: select
+    options: [proposed, approved, rejected, issued]

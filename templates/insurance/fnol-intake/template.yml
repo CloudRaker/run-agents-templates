@@ -1,0 +1,11 @@
+name: FNOL intake
+category: insurance
+icon: first-aid
+description: Reads a first notice of loss with photos and a police report, opens the claim and acknowledges the reporter.
+what_it_does: |
+  Turns a loss notice email with photos and a police report into an open claim record in minutes.
+  Categorizes the claim by line and severity, and lists fraud indicators for the adjuster.
+  Extracts the policy, the date and place of loss, injuries, third parties and the estimate.
+  Acknowledges the reporter once with the claim reference and the next steps.
+connectors: []
+tags: [claims, fnol, extraction, email]

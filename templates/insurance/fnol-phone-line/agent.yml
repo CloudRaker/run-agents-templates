@@ -1,0 +1,24 @@
+name: FNOL phone line
+mode: turns
+triggers:
+  phone: true
+phone:
+  greeting: "Thank you for calling the claims line. This call is recorded to keep an accurate record of your claim. If anyone is hurt or in danger, hang up and call emergency services now. I can take the first report of your loss. Is everyone safe?"
+  record: true
+  voice: marin
+  style: "Calm, steady and kind. The caller may be upset. Speak slowly, use short sentences and acknowledge what they say. Say numbers, dates and codes digit by digit."
+  turn_timeout: 10s
+  max_duration: 20m
+  transfers:
+    adjuster:
+      number: "+15555550111"
+      label: an adjuster on duty
+    emergency:
+      number: "+15555550112"
+      label: the emergency claims desk
+connectors: []
+data:
+  write:
+    - claim
+limits:
+  max_steps: 50
