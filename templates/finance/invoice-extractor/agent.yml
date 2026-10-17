@@ -1,0 +1,43 @@
+name: Invoice extractor
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+email:
+  reply: true
+limits:
+  max_steps: 30
+output_schema:
+  type: object
+  required: [invoices]
+  properties:
+    invoices:
+      type: array
+      items:
+        type: object
+        required: [file_id, status]
+        properties:
+          file_id: { type: string }
+          status:
+            type: string
+            enum: [ok, needs_review, not_an_invoice]
+          supplier: { type: string }
+          invoice_number: { type: string }
+          issue_date: { type: string, description: ISO 8601 date. }
+          due_date: { type: string, description: ISO 8601 date. }
+          currency: { type: string, description: ISO 4217 code. }
+          subtotal: { type: number }
+          tax: { type: number }
+          total: { type: number }
+          line_items:
+            type: array
+            items:
+              type: object
+              properties:
+                description: { type: string }
+                quantity: { type: number }
+                unit_price: { type: number }
+                amount: { type: number }
+          problems:
+            type: array
+            items: { type: string }

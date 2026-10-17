@@ -1,0 +1,38 @@
+name: Incident summary
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - pagerduty
+  - sentry
+limits:
+  max_steps: 40
+input_schema:
+  type: object
+  required: [incident]
+  properties:
+    incident:
+      type: string
+      description: The PagerDuty incident id or URL.
+    sentry_project:
+      type: string
+      description: Optional. The Sentry project slug to search.
+output_schema:
+  type: object
+  required: [summary, severity, actions]
+  properties:
+    summary:
+      type: string
+      description: Markdown. What happened, the impact, the cause if known, and a timeline.
+    severity:
+      type: string
+      enum: [sev1, sev2, sev3, sev4]
+    actions:
+      type: array
+      items:
+        type: object
+        required: [title]
+        properties:
+          title: { type: string }
+          owner: { type: string }
+          reason: { type: string }

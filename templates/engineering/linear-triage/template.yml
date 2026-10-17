@@ -1,0 +1,13 @@
+name: Linear triage
+category: engineering
+description: Triages new Linear issues. Adds labels and a priority, and asks for missing details.
+what_it_does: |
+  Reads each new issue from a request or an email.
+  Adds labels and a priority from a labeling rubric.
+  Finds possible duplicates.
+  Asks the reporter for missing details in a comment.
+connectors:
+  - id: linear
+    required: true
+    purpose: Read issues, add labels and priorities, and write comments.
+tags: [triage, issues, labels]

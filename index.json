@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "generated_at": "2026-10-17T19:12:32.261Z",
+  "source": "https://github.com/CloudRaker/run-agents-templates",
+  "categories": [
+    {
+      "id": "engineering",
+      "name": "Engineering"
+    },
+    {
+      "id": "sales",
+      "name": "Sales"
+    },
+    {
+      "id": "support",
+      "name": "Customer support"
+    },
+    {
+      "id": "operations",
+      "name": "Operations"
+    },
+    {
+      "id": "finance",
+      "name": "Finance"
+    },
+    {
+      "id": "research",
+      "name": "Research"
+    }
+  ],
+  "templates": [
+    {
+      "id": "incident-summary",
+      "name": "Incident summary",
+      "category": "engineering",
+      "description": "Writes a plain-language incident summary with a timeline and next steps.",
+      "what_it_does": "Reads the incident and its alerts from PagerDuty.\nReads the related errors from Sentry.\nWrites a short summary, a timeline and a severity.\nProposes next steps for the team.",
+      "connectors": [
+        {
+          "id": "pagerduty",
+          "required": true,
+          "purpose": "Read incidents, alerts and the incident log."
+        },
+        {
+          "id": "sentry",
+          "required": true,
+          "purpose": "Read the errors and the releases related to the incident."
+        }
+      ],
+      "triggers": [
+        "http"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/engineering/incident-summary",
+      "files": [
+        "AGENTS.md",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "linear-triage",
+      "name": "Linear triage",
+      "category": "engineering",
+      "description": "Triages new Linear issues. Adds labels and a priority, and asks for missing details.",
+      "what_it_does": "Reads each new issue from a request or an email.\nAdds labels and a priority from a labeling rubric.\nFinds possible duplicates.\nAsks the reporter for missing details in a comment.",
+      "connectors": [
+        {
+          "id": "linear",
+          "required": true,
+          "purpose": "Read issues, add labels and priorities, and write comments."
+        }
+      ],
+      "triggers": [
+        "http",
+        "email"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/engineering/linear-triage",
+      "files": [
+        "AGENTS.md",
+        "agent.yml",
+        "skills/issue-labels/SKILL.md"
+      ]
+    },
+    {
+      "id": "invoice-extractor",
+      "name": "Invoice extractor",
+      "category": "finance",
+      "description": "Extracts structured data from invoice files sent by HTTP or by email.",
+      "what_it_does": "Reads each invoice file attached to a request or an email.\nExtracts the supplier, the dates, the totals and the line items.\nChecks that the line items add up to the total.\nAnswers the email with a short summary.",
+      "connectors": [],
+      "triggers": [
+        "http",
+        "email"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/finance/invoice-extractor",
+      "files": [
+        "AGENTS.md",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "meeting-actions",
+      "name": "Meeting actions",
+      "category": "operations",
+      "description": "Turns the meeting notes of each workday into Asana tasks with owners and due dates.",
+      "what_it_does": "Runs at 18:00 UTC on each workday.\nReads the meeting notes of the day from Granola.\nFinds the action items, the owners and the due dates.\nCreates one Asana task for each action item.",
+      "connectors": [
+        {
+          "id": "granola",
+          "required": true,
+          "purpose": "Read the notes and the transcripts of the meetings of the day."
+        },
+        {
+          "id": "asana",
+          "required": true,
+          "purpose": "Find projects and people, and create tasks."
+        }
+      ],
+      "triggers": [
+        "schedule"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/operations/meeting-actions",
+      "files": [
+        "AGENTS.md",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "competitor-watch",
+      "name": "Competitor watch",
+      "category": "research",
+      "description": "Searches the web each week for competitor news and records each finding.",
+      "what_it_does": "Runs each Monday at 08:00 UTC.\nSearches the web for news about each competitor in its instructions.\nRecords each new finding with a source and an impact level.\nSends a weekly summary of the most important findings.",
+      "connectors": [
+        {
+          "id": "exa",
+          "required": true,
+          "purpose": "Search the web and read pages."
+        }
+      ],
+      "triggers": [
+        "schedule"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/research/competitor-watch",
+      "files": [
+        "AGENTS.md",
+        "_schemas/finding.yml",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "lead-qualifier",
+      "name": "Lead qualifier",
+      "category": "sales",
+      "description": "Scores a new lead against your ideal customer profile and records the result.",
+      "what_it_does": "Reads the company and the contact of a new lead.\nFinds the lead in HubSpot. Adds company data from Apollo when it is connected.\nGives a score from 0 to 100 with the reasons.\nSaves the result in the lead data store.",
+      "connectors": [
+        {
+          "id": "hubspot",
+          "required": true,
+          "purpose": "Find the company and the contact, and read the deal history."
+        },
+        {
+          "id": "apollo",
+          "required": false,
+          "purpose": "Add company size, industry and funding data."
+        }
+      ],
+      "triggers": [
+        "http"
+      ],
+      "mode": "zeroshot",
+      "path": "templates/sales/lead-qualifier",
+      "files": [
+        "AGENTS.md",
+        "_schemas/lead.yml",
+        "agent.yml"
+      ]
+    },
+    {
+      "id": "ticket-helper",
+      "name": "Ticket helper",
+      "category": "support",
+      "description": "Drafts answers to customer conversations in Intercom for a support agent to review.",
+      "what_it_does": "Reads an Intercom conversation and the customer history.\nDrafts an answer in the tone of your team.\nAsks the support agent a question when facts are missing.\nNever sends a message to the customer.",
+      "connectors": [
+        {
+          "id": "intercom",
+          "required": true,
+          "purpose": "Read conversations, contacts and help center articles. Add internal notes."
+        }
+      ],
+      "triggers": [
+        "http",
+        "slack"
+      ],
+      "mode": "turns",
+      "path": "templates/support/ticket-helper",
+      "files": [
+        "AGENTS.md",
+        "agent.yml"
+      ]
+    }
+  ]
+}

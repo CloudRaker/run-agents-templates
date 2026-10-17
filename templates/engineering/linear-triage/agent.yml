@@ -1,0 +1,28 @@
+name: Linear triage
+mode: zeroshot
+triggers:
+  http: true
+  email: true
+connectors:
+  - linear
+limits:
+  max_steps: 30
+output_schema:
+  type: object
+  required: [issue, labels, priority]
+  properties:
+    issue:
+      type: string
+      description: The Linear issue identifier, for example ENG-123.
+    labels:
+      type: array
+      items: { type: string }
+    priority:
+      type: string
+      enum: [urgent, high, medium, low, none]
+    duplicate_of:
+      type: string
+      description: The identifier of a possible duplicate issue, when one exists.
+    missing_details:
+      type: array
+      items: { type: string }

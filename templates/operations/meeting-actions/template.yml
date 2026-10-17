@@ -1,0 +1,16 @@
+name: Meeting actions
+category: operations
+description: Turns the meeting notes of each workday into Asana tasks with owners and due dates.
+what_it_does: |
+  Runs at 18:00 UTC on each workday.
+  Reads the meeting notes of the day from Granola.
+  Finds the action items, the owners and the due dates.
+  Creates one Asana task for each action item.
+connectors:
+  - id: granola
+    required: true
+    purpose: Read the notes and the transcripts of the meetings of the day.
+  - id: asana
+    required: true
+    purpose: Find projects and people, and create tasks.
+tags: [meetings, tasks, schedule]

@@ -1,0 +1,24 @@
+name: finding
+label: Finding
+label_field: title
+fields:
+  title:
+    type: text
+    required: true
+  competitor:
+    type: text
+    required: true
+  category:
+    type: select
+    options: [product, pricing, funding, hiring, partnership, other]
+  impact:
+    type: select
+    options: [high, medium, low]
+  summary:
+    type: long_text
+  source_url:
+    type: url
+    required: true
+    unique: true
+  published_on:
+    type: date

@@ -1,0 +1,16 @@
+name: Lead qualifier
+category: sales
+description: Scores a new lead against your ideal customer profile and records the result.
+what_it_does: |
+  Reads the company and the contact of a new lead.
+  Finds the lead in HubSpot. Adds company data from Apollo when it is connected.
+  Gives a score from 0 to 100 with the reasons.
+  Saves the result in the lead data store.
+connectors:
+  - id: hubspot
+    required: true
+    purpose: Find the company and the contact, and read the deal history.
+  - id: apollo
+    required: false
+    purpose: Add company size, industry and funding data.
+tags: [leads, scoring, crm]

@@ -1,0 +1,10 @@
+name: Invoice extractor
+category: finance
+description: Extracts structured data from invoice files sent by HTTP or by email.
+what_it_does: |
+  Reads each invoice file attached to a request or an email.
+  Extracts the supplier, the dates, the totals and the line items.
+  Checks that the line items add up to the total.
+  Answers the email with a short summary.
+connectors: []
+tags: [invoices, extraction, accounts-payable]

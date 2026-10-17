@@ -1,0 +1,16 @@
+name: Incident summary
+category: engineering
+description: Writes a plain-language incident summary with a timeline and next steps.
+what_it_does: |
+  Reads the incident and its alerts from PagerDuty.
+  Reads the related errors from Sentry.
+  Writes a short summary, a timeline and a severity.
+  Proposes next steps for the team.
+connectors:
+  - id: pagerduty
+    required: true
+    purpose: Read incidents, alerts and the incident log.
+  - id: sentry
+    required: true
+    purpose: Read the errors and the releases related to the incident.
+tags: [incidents, on-call, postmortem]

@@ -1,0 +1,23 @@
+name: lead
+label: Lead
+label_field: company
+fields:
+  company:
+    type: text
+    required: true
+  domain:
+    type: url
+  contact_email:
+    type: email
+    required: true
+    unique: true
+  contact_title:
+    type: text
+  score:
+    type: number
+    required: true
+  tier:
+    type: select
+    options: [hot, warm, cold]
+  reasons:
+    type: long_text

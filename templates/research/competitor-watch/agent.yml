@@ -1,0 +1,23 @@
+name: Competitor watch
+mode: zeroshot
+triggers:
+  schedule: "0 8 * * 1"
+connectors:
+  - exa
+data:
+  read:
+    - finding
+  write:
+    - finding
+  create_schemas: false
+limits:
+  max_steps: 60
+output_schema:
+  type: object
+  required: [summary, new_findings]
+  properties:
+    summary:
+      type: string
+      description: Markdown. The most important findings of the week.
+    new_findings:
+      type: integer

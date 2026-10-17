@@ -1,0 +1,46 @@
+name: Lead qualifier
+mode: zeroshot
+triggers:
+  http: true
+connectors:
+  - hubspot
+  - apollo
+data:
+  write:
+    - lead
+limits:
+  max_steps: 30
+input_schema:
+  type: object
+  required: [company, contact]
+  properties:
+    company:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        domain: { type: string }
+    contact:
+      type: object
+      required: [email]
+      properties:
+        name: { type: string }
+        email: { type: string }
+        title: { type: string }
+    notes:
+      type: string
+      description: Optional. Free text from the form or the sales rep.
+output_schema:
+  type: object
+  required: [score, reasons]
+  properties:
+    score:
+      type: integer
+      minimum: 0
+      maximum: 100
+    tier:
+      type: string
+      enum: [hot, warm, cold]
+    reasons:
+      type: array
+      items: { type: string }

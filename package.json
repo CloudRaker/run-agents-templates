@@ -1,0 +1,13 @@
+{
+  "name": "run-agents-templates",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun scripts/build-index.ts",
+    "check": "bun scripts/build-index.ts --check"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  }
+}

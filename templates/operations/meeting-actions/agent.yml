@@ -1,0 +1,27 @@
+name: Meeting actions
+mode: zeroshot
+triggers:
+  schedule: "0 18 * * 1-5"
+connectors:
+  - granola
+  - asana
+limits:
+  max_steps: 60
+output_schema:
+  type: object
+  required: [meetings, tasks]
+  properties:
+    meetings:
+      type: integer
+      description: The number of meetings read.
+    tasks:
+      type: array
+      items:
+        type: object
+        required: [title, meeting]
+        properties:
+          title: { type: string }
+          meeting: { type: string }
+          assignee: { type: string }
+          due_on: { type: string }
+          url: { type: string }

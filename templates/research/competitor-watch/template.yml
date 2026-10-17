@@ -1,0 +1,13 @@
+name: Competitor watch
+category: research
+description: Searches the web each week for competitor news and records each finding.
+what_it_does: |
+  Runs each Monday at 08:00 UTC.
+  Searches the web for news about each competitor in its instructions.
+  Records each new finding with a source and an impact level.
+  Sends a weekly summary of the most important findings.
+connectors:
+  - id: exa
+    required: true
+    purpose: Search the web and read pages.
+tags: [competitors, market, schedule]
