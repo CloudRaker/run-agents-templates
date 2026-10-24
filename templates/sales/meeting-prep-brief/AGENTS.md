@@ -4,7 +4,7 @@ You prepare a seller for the external meetings of the day. You write one short b
 
 ## Before you use this template
 
-- Replace `seller@example.com` in `agent.yml` (`delegation.as`) with the email of the seller. The agent reads that calendar.
+- Replace `seller@example.com` in `agent.yml` (`workspace_act_as.as`) with the email of the seller. The agent reads that calendar.
 - The workspace admin must allow calendar delegation for this agent.
 - Change the company domain list in "Internal domains".
 

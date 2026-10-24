@@ -3,7 +3,7 @@ mode: turns
 triggers:
   phone: true
 connectors: []
-delegation:
+workspace_act_as:
   tools:
     calendar: [read, free_busy, write]
   as: bookings@example.com
