@@ -2,7 +2,7 @@ name: PTO request handler
 mode: turns
 triggers:
   slack: true
-delegation:
+workspace_act_as:
   tools:
     calendar: [read, write]
   as:

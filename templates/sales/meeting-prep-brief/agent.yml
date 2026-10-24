@@ -4,7 +4,7 @@ triggers:
   schedule: "30 6 * * 1-5"
 connectors:
   - hubspot
-delegation:
+workspace_act_as:
   tools:
     calendar: [read]
     directory: [search]
