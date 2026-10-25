@@ -1,0 +1,5 @@
+name: "Slack standup bot"
+entry: slack-standup-bot
+channels:
+  slack: {}
+  console: {}

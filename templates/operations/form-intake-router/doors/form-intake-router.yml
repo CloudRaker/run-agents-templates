@@ -1,0 +1,5 @@
+name: "Form intake router"
+entry: form-intake-router
+channels:
+  email: {}
+  console: {}

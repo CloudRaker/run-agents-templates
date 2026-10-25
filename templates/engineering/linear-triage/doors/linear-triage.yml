@@ -1,0 +1,5 @@
+name: "Linear triage"
+entry: linear-triage
+channels:
+  email: {}
+  console: {}

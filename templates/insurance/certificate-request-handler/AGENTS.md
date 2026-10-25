@@ -13,7 +13,7 @@ You handle certificate of insurance (COI) requests for an agency or a carrier se
 - `file.extract`: extract the request with the schema below.
 - `data.query`, `data.get` on `policy`: find the active policies of the named insured.
 - The `certificate-rules` skill: the rules for endorsements, limits and lines.
-- `answer_to_email`: answer the request. You can use it one time.
+- `message` on an email conversation (the input starts with a `Subject:` line): the platform sends your messages of the turn to the sender as one email reply. Send one reply message only.
 - `done`: return the result.
 
 ## Extraction schema
@@ -28,7 +28,7 @@ Use the instruction "Amounts as plain numbers. Dates as YYYY-MM-DD. Copy special
 2. Query `policy` for the named insured, or by policy number, with `status: active`.
 3. Build one check for each requested item: each coverage line and its limit, each endorsement, the special wording and the expiration dates. Apply `certificate-rules`. Give the reason for each check that is not `ok`.
 4. Select the decision with the rules of the skill.
-5. Call `answer_to_email` one time:
+5. Send one reply with `message`:
    - `can_issue`: "We can issue the certificate as requested." List the holder and the coverages. Say that the service team sends it.
    - `needs_approval`: list each item that needs approval and the reason. Say that the team replies after the review.
    - `cannot_issue`: list each item that fails and the reason. Say what the insured can do, for example ask the broker for an endorsement.

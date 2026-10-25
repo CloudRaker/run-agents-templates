@@ -1,7 +1,6 @@
 name: Endorsement request triage
 mode: zeroshot
 triggers:
-  email: true
   http: true
 connectors: []
 data:

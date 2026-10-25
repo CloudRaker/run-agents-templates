@@ -1,0 +1,5 @@
+name: "Expense receipt processor"
+entry: expense-receipt-processor
+channels:
+  email: {}
+  console: {}

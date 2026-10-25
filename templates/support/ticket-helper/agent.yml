@@ -2,7 +2,6 @@ name: Ticket helper
 mode: turns
 triggers:
   http: true
-  slack: true
 connectors:
   - intercom
 limits:

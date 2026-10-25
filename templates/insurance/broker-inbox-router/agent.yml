@@ -1,9 +1,7 @@
 name: Broker inbox router
 mode: zeroshot
 triggers:
-  email: true
-email:
-  reply: true
+  http: false
 connectors: []
 data:
   write:

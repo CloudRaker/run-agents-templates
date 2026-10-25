@@ -2,7 +2,6 @@ name: Linear triage
 mode: zeroshot
 triggers:
   http: true
-  email: true
 connectors:
   - linear
 limits:

@@ -1,0 +1,6 @@
+name: "Runbook answerer"
+entry: runbook-answerer
+channels:
+  slack: {}
+  teams: {}
+  console: {}

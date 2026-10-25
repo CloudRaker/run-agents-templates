@@ -1,0 +1,5 @@
+name: "Inbound reply drafter"
+entry: inbound-reply-drafter
+channels:
+  email: {}
+  console: {}

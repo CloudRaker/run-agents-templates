@@ -1,0 +1,5 @@
+name: "Endorsement request triage"
+entry: endorsement-request-triage
+channels:
+  email: {}
+  console: {}

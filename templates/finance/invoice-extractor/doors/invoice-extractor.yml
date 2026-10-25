@@ -1,0 +1,5 @@
+name: "Invoice extractor"
+entry: invoice-extractor
+channels:
+  email: {}
+  console: {}

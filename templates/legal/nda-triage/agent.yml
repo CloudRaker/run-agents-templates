@@ -2,9 +2,6 @@ name: NDA triage
 mode: zeroshot
 triggers:
   http: true
-  email: true
-email:
-  reply: true
 limits:
   max_steps: 30
 output_schema:

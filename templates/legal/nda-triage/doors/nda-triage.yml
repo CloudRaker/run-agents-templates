@@ -1,0 +1,5 @@
+name: "NDA triage"
+entry: nda-triage
+channels:
+  email: {}
+  console: {}

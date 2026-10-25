@@ -10,15 +10,16 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 2. Go to **Agents** > **Create agent** > **Start from a template**.
 3. Select a template. Read the description and the list of connectors.
 4. Connect each required connector. An optional connector adds data, but the agent works without it.
-5. Import the template. The console adds the template files to your project in a new agent folder.
-6. Read `AGENTS.md`. Some templates have a section that you must edit, for example a list of competitors.
+5. Import the template. The console adds the template files to your project in a new agent folder. A template with a phone, email, Slack or Teams channel also adds a front door, `doors/<id>.yml`, at the root of the project.
+6. For a template with a front door, bind the channel to the door on the **Channels** page: a phone number, an email alias, a Slack workspace or a Teams tenant.
+7. Read `AGENTS.md`. Some templates have a section that you must edit, for example a list of competitors.
 
 ## Templates
 
 <!-- templates:start -->
 ### Engineering
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [CI failure explainer](templates/engineering/ci-failure-explainer) | Explains a failed CircleCI job with the failing step, the likely cause and a suggested fix. | circleci, github | http |
 | [Dependency audit brief](templates/engineering/dependency-audit-brief) | Writes a weekly brief of vulnerable and outdated dependencies across a list of repositories. | github | schedule |
@@ -32,7 +33,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Sales
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Call notes to CRM](templates/sales/call-notes-to-crm) | Turns a sales call recording or notes file into a HubSpot deal update and a logged note. | hubspot | http, email |
 | [Contract handoff](templates/sales/contract-handoff) | Extracts the key terms of a signed contract and writes a handoff for customer success. | salesforce | http |
@@ -45,7 +46,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Customer support
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Call recording QA](templates/support/call-recording-qa) | Transcribes a support call recording and scores it against your quality rubric with quotes. | none | http, email |
 | [CSAT digest](templates/support/csat-digest) | Sends a weekly CSAT score with the main reasons behind low ratings from Intercom. | intercom | schedule |
@@ -57,7 +58,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Operations
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [After-hours intake line](templates/operations/after-hours-intake-line) | Answers your phone after hours, records each request and transfers urgent cases. | none | phone |
 | [Appointment booking line](templates/operations/appointment-booking-line) | Books appointments by phone on one shared calendar, inside your business hours. | none | phone |
@@ -72,7 +73,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Finance
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Bank statement parser](templates/finance/bank-statement-parser) | Turns a bank statement PDF into transaction records and reports the totals and unusual items. | none | http |
 | [Expense receipt processor](templates/finance/expense-receipt-processor) | Reads expense receipts from email or HTTP, records each expense and flags receipts over a limit. | none | http, email |
@@ -85,7 +86,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Research
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Competitor watch](templates/research/competitor-watch) | Searches the web each week for competitor news and records each finding. | exa | schedule |
 | [Market sizing brief](templates/research/market-sizing-brief) | Estimates TAM, SAM and SOM for a market and a geography, with sources and assumptions. | exa, tavily | http |
@@ -96,7 +97,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Marketing
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Blog brief writer](templates/marketing/blog-brief-writer) | Researches a topic on the web and writes a content brief with angle, outline and sources. | exa | http |
 | [Campaign report](templates/marketing/campaign-report) | Reports the email campaign results of the last week with the best and worst sends. | klaviyo, customer-io | schedule |
@@ -107,7 +108,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Product
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Analytics weekly brief](templates/product/analytics-weekly-brief) | Writes a Monday brief of your key product metrics, with week-over-week changes and anomalies. | posthog, mixpanel | schedule |
 | [Changelog announcer](templates/product/changelog-announcer) | Turns the Linear issues completed this week into a customer-facing changelog in Markdown. | linear | schedule |
@@ -118,7 +119,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Legal
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Clause extractor](templates/legal/clause-extractor) | Extracts the clause types you list from one or more contracts and saves each clause as a record. | none | http |
 | [Contract redactor](templates/legal/contract-redactor) | Redacts names, addresses and optional amounts from a contract and returns the redacted file. | none | http |
@@ -129,7 +130,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### People
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Employee document redactor](templates/hr/employee-doc-redactor) | Redacts names, addresses, identifiers and, on request, salaries from HR documents. | none | http |
 | [Exit interview digest](templates/hr/exit-interview-digest) | Finds themes, sentiment and retention risks across exit interview recordings. | none | http |
@@ -141,7 +142,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Data
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [CSV to records](templates/data/csv-to-records) | Imports a CSV or spreadsheet into data store records, and reports the rows written and rejected. | none | http |
 | [Dashboard narrator](templates/data/dashboard-narrator) | Each Monday, explains the week of your key product charts in plain language with 3 key changes. | posthog, hex | schedule |
@@ -151,7 +152,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Healthcare
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Appointment reminder caller](templates/healthcare/appointment-reminder-caller) | Calls a patient to confirm an appointment, and records a reschedule or a cancellation request. | none | http, phone |
 | [Clinical note summarizer](templates/healthcare/clinical-note-summarizer) | Turns a visit recording into a SOAP note draft and a PDF for the clinician to review and sign. | none | http |
@@ -163,7 +164,7 @@ Each folder under `templates/` is one agent that you can import into your own Ru
 
 ### Insurance
 
-| Template | Description | Connectors | Triggers |
+| Template | Description | Connectors | Triggers and channels |
 | --- | --- | --- | --- |
 | [Broker inbox router](templates/insurance/broker-inbox-router) | Classifies each broker email, extracts the account and policy, and routes it to the right team queue. | none | email |
 | [Certificate request handler](templates/insurance/certificate-request-handler) | Checks a certificate of insurance request against the policy and your rules, and answers the requester once. | none | email |
@@ -188,7 +189,10 @@ templates/<category>/<id>/
   agent.yml                        The configuration of the agent.
   skills/<name>/SKILL.md           Optional. Skills that the agent can load.
   _schemas/<name>.yml              Optional. Data store schemas.
+  doors/<id>.yml                   Optional. The front door of the agent. Import writes it at the project root.
 ```
+
+People reach an agent by phone, email, Slack or Teams through a front door, never through `agent.yml`. The door file is named after the template id, and its `entry` is the template id. Put the phone settings under `channels.phone` of the door. Read https://docs.cloudraker.com/run/guides/front-doors.
 
 The folder name is the template id. It must be unique in the repository and match `^[a-z0-9][a-z0-9-]{0,62}$`.
 
@@ -254,6 +258,8 @@ Writing rules for `AGENTS.md`:
 
 - `template.yml` has a missing or incorrect field.
 - `agent.yml` is not valid YAML, or a known key has an incorrect shape.
+- `agent.yml` has a channel key that moved to a front door: `phone`, `email`, `slack` or `teams` under `triggers`, or a `phone:` or `email:` block.
+- A file in `doors/` is not `doors/<id>.yml`, is not valid YAML, has no `channels`, or its `entry` is not the template id.
 - A connector id is not in the console catalog.
 - The connectors of `template.yml` and `agent.yml` are different.
 - A template id is not unique or has an incorrect format.

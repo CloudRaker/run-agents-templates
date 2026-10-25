@@ -1,0 +1,5 @@
+name: "Call notes to CRM"
+entry: call-notes-to-crm
+channels:
+  email: {}
+  console: {}

@@ -1,0 +1,5 @@
+name: "DSAR responder"
+entry: dsar-responder
+channels:
+  email: {}
+  console: {}

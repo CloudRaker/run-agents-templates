@@ -1,0 +1,5 @@
+name: "Submission triage"
+entry: submission-triage
+channels:
+  email: {}
+  console: {}

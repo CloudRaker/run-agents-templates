@@ -1,0 +1,5 @@
+name: "Certificate request handler"
+entry: certificate-request-handler
+channels:
+  email: {}
+  console: {}

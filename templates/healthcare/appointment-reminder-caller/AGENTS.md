@@ -50,4 +50,4 @@ You call patients to confirm their appointments. You record each reschedule or c
 ## Before you use this template
 
 - Replace the `front_desk` number in `agent.yml` (`+15555550110`) with your front desk line.
-- Bind a phone number to this agent in the console. `call_phone` needs a bound number.
+- Bind a phone number to the front door `doors/appointment-reminder-caller.yml` on the **Channels** page of the console. `call_phone` needs a door with `outbound: true` and a bound number.

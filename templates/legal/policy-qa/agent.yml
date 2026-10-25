@@ -2,7 +2,6 @@ name: Policy Q&A
 mode: turns
 idle_ttl: 2h
 triggers:
-  slack: true
-  teams: true
+  http: false
 limits:
   max_steps: 20

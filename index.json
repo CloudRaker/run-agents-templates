@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-17T19:56:19.089Z",
+  "generated_at": "2026-10-25T20:37:28.099Z",
   "source": "https://github.com/CloudRaker/run-agents-templates",
   "categories": [
     {
@@ -68,6 +68,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/data/csv-to-records",
       "files": [
@@ -98,6 +99,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/data/dashboard-narrator",
       "files": [
@@ -122,6 +124,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/data/data-quality-checker",
       "files": [
@@ -141,6 +144,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/data/pdf-table-extractor",
       "files": [
@@ -160,6 +164,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/data/survey-response-coder",
       "files": [
@@ -191,6 +196,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/engineering/ci-failure-explainer",
       "files": [
@@ -215,6 +221,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/engineering/dependency-audit-brief",
       "files": [
@@ -244,6 +251,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/engineering/incident-summary",
       "files": [
@@ -266,7 +274,10 @@
         }
       ],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -274,6 +285,7 @@
       "files": [
         "AGENTS.md",
         "agent.yml",
+        "doors/linear-triage.yml",
         "skills/issue-labels/SKILL.md"
       ]
     },
@@ -294,6 +306,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/engineering/on-call-handoff",
       "files": [
@@ -318,6 +331,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/engineering/pr-review-digest",
       "files": [
@@ -347,6 +361,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/engineering/release-notes-writer",
       "files": [
@@ -363,7 +378,9 @@
       "icon": "book-open-text",
       "what_it_does": "Answers questions such as \"How do I rotate the API key?\" in a chat thread.\nSearches only your runbooks and cites the runbook it used.\nSays \"I do not know\" when no runbook covers the question.\nKeeps the conversation open for follow-up questions.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "slack",
         "teams"
       ],
@@ -371,7 +388,8 @@
       "path": "templates/engineering/runbook-answerer",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/runbook-answerer.yml"
       ]
     },
     {
@@ -396,6 +414,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/engineering/sentry-error-triage",
       "files": [
@@ -414,6 +433,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/finance/bank-statement-parser",
       "files": [
@@ -431,7 +451,10 @@
       "what_it_does": "Reads each receipt image or PDF from an email or a request.\nExtracts the merchant, the date, the total, the tax, the currency and a category.\nSaves one expense record for each receipt.\nFlags each receipt over the approval limit.\nAnswers the sender one time with the list of expenses.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -439,7 +462,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/expense.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/expense-receipt-processor.yml"
       ]
     },
     {
@@ -451,14 +475,18 @@
       "what_it_does": "Reads each invoice file attached to a request or an email.\nExtracts the supplier, the dates, the totals and the line items.\nChecks that the line items add up to the total.\nAnswers the email with a short summary.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
       "path": "templates/finance/invoice-extractor",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/invoice-extractor.yml"
       ]
     },
     {
@@ -478,6 +506,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/finance/invoice-payment-matcher",
       "files": [
@@ -507,6 +536,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/finance/month-end-close-checklist",
       "files": [
@@ -526,6 +556,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/finance/payment-terms-extractor",
       "files": [
@@ -556,6 +587,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/finance/refund-request-reviewer",
       "files": [
@@ -586,6 +618,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/finance/revenue-report",
       "files": [
@@ -602,7 +635,10 @@
       "what_it_does": "Starts from an HTTP request with the patient name, phone number and appointment time.\nCalls the patient, checks that it speaks to the right person, then confirms the appointment.\nRecords a reschedule or a cancellation in the appointment_change data store.\nLeaves no health details with another person or a voicemail.\nReturns the outcome of the call: confirmed, reschedule, cancel, no answer or wrong person.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "phone"
       ],
       "mode": "turns",
@@ -610,7 +646,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/appointment_change.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/appointment-reminder-caller.yml"
       ]
     },
     {
@@ -624,6 +661,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/healthcare/clinical-note-summarizer",
       "files": [
@@ -642,6 +680,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/healthcare/health-record-redactor",
       "files": [
@@ -660,6 +699,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/healthcare/insurance-card-reader",
       "files": [
@@ -676,7 +716,10 @@
       "what_it_does": "Reads intake forms sent by email or HTTP, as PDF files or phone photos.\nExtracts demographics, insurance, allergies, medications and the reason for visit.\nRecords the result in the patient_intake data store.\nLists the missing fields and answers the email one time to ask for them.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -684,7 +727,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/patient_intake.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/patient-intake-extractor.yml"
       ]
     },
     {
@@ -695,7 +739,9 @@
       "icon": "pill",
       "what_it_does": "Answers calls to your refill line and takes each request in a short, natural conversation.\nReads the request back to the caller and records it in the refill_request data store.\nChecks for an open request first, so the caller does not ask two times.\nTransfers clinical questions to a pharmacist and other questions to the front desk.\nNever gives medical advice. Tells the caller to call emergency services in an emergency.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "phone"
       ],
       "mode": "turns",
@@ -703,7 +749,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/refill_request.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/prescription-refill-line.yml"
       ]
     },
     {
@@ -717,6 +764,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/healthcare/referral-letter-drafter",
       "files": [
@@ -736,6 +784,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/hr/employee-doc-redactor",
       "files": [
@@ -754,6 +803,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/hr/exit-interview-digest",
       "files": [
@@ -779,6 +829,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/hr/interview-notes-summarizer",
       "files": [
@@ -797,6 +848,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/hr/offer-letter-drafter",
       "files": [
@@ -827,6 +879,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/hr/onboarding-checklist",
       "files": [
@@ -843,7 +896,9 @@
       "icon": "airplane-takeoff",
       "what_it_does": "An employee asks for time off in Slack. The agent confirms the dates.\nChecks the request against your time-off policy.\nCreates an out-of-office event on the calendar of the employee.\nAnswers with a short summary to forward to the manager.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "slack"
       ],
       "mode": "turns",
@@ -851,6 +906,7 @@
       "files": [
         "AGENTS.md",
         "agent.yml",
+        "doors/pto-request-handler.yml",
         "skills/pto-policy/SKILL.md"
       ]
     },
@@ -863,7 +919,10 @@
       "what_it_does": "Reads resumes from an HTTP request or an email.\nExtracts the name, contact, years of experience, skills and last roles.\nScores each candidate against a role profile that you edit.\nSaves one candidate record and never decides on protected characteristics.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -872,6 +931,7 @@
         "AGENTS.md",
         "_schemas/candidate.yml",
         "agent.yml",
+        "doors/resume-screener.yml",
         "skills/role-profile/SKILL.md"
       ]
     },
@@ -883,7 +943,9 @@
       "icon": "mailbox",
       "what_it_does": "Sorts a shared broker inbox into submission, renewal, endorsement, certificate, claim and billing queues.\nExtracts the account name, the policy number, the request and the deadline.\nSaves a broker_request record with the target queue and the priority.\nAcknowledges the broker once with the reference.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -891,7 +953,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/broker_request.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/broker-inbox-router.yml"
       ]
     },
     {
@@ -902,7 +965,9 @@
       "icon": "certificate",
       "what_it_does": "Answers COI requests in minutes: can issue as requested, needs approval, or cannot issue.\nReads the holder, project, coverages, additional insured, waiver and limits from the email or the attachment.\nChecks each item against the policy record and your certificate rules.\nGives the reasons for each item that needs approval or fails. Never issues the certificate.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -911,6 +976,7 @@
         "AGENTS.md",
         "_schemas/policy.yml",
         "agent.yml",
+        "doors/certificate-request-handler.yml",
         "skills/certificate-rules/SKILL.md"
       ]
     },
@@ -922,7 +988,9 @@
       "icon": "phone-list",
       "what_it_does": "Takes claim status calls off your adjusters' phones.\nAsks for the claim reference, then verifies the caller with the date of loss and the postal code.\nReads the status and the next step from the claim record, in plain speech.\nTransfers to an adjuster on request. Never discusses coverage decisions or amounts beyond the record.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "phone"
       ],
       "mode": "turns",
@@ -930,7 +998,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/claim.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/claims-status-line.yml"
       ]
     },
     {
@@ -942,7 +1011,10 @@
       "what_it_does": "Turns a midterm change request into a proposed endorsement that an underwriter can approve in one pass.\nHandles a new vehicle, a new location, a limit change or an additional insured.\nChecks the change against the policy record and your endorsement rules.\nSaves an endorsement_request record with a premium-impact placeholder and the open questions.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -952,6 +1024,7 @@
         "_schemas/endorsement_request.yml",
         "_schemas/policy.yml",
         "agent.yml",
+        "doors/endorsement-request-triage.yml",
         "skills/endorsement-rules/SKILL.md"
       ]
     },
@@ -964,7 +1037,10 @@
       "what_it_does": "Turns a loss notice email with photos and a police report into an open claim record in minutes.\nCategorizes the claim by line and severity, and lists fraud indicators for the adjuster.\nExtracts the policy, the date and place of loss, injuries, third parties and the estimate.\nAcknowledges the reporter once with the claim reference and the next steps.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -972,7 +1048,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/claim.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/fnol-intake.yml"
       ]
     },
     {
@@ -983,7 +1060,9 @@
       "icon": "phone-plus",
       "what_it_does": "Answers your claims line day and night and takes the first notice of loss in a calm conversation.\nAsks one question at a time: policy, date and place, what happened, injuries, other parties.\nOpens the claim record and reads the claim reference back to the caller.\nTransfers emergencies and requests for a person to an adjuster. Never states coverage.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "phone"
       ],
       "mode": "turns",
@@ -991,7 +1070,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/claim.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/fnol-phone-line.yml"
       ]
     },
     {
@@ -1005,6 +1085,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/insurance/loss-run-summarizer",
       "files": [
@@ -1024,6 +1105,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/insurance/policy-document-redactor",
       "files": [
@@ -1042,6 +1124,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/insurance/renewal-prep",
       "files": [
@@ -1061,7 +1144,10 @@
       "what_it_does": "Turns a broker email with ACORD forms, loss runs and a note into one underwriter-ready submission record.\nClassifies appetite as in, out or refer against your own rule table.\nExtracts the named insured, operations, revenue, locations, prior carrier and requested coverage.\nTotals the loss runs and lists each missing document.\nAcknowledges the broker once with the reference and the missing items.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -1070,6 +1156,7 @@
         "AGENTS.md",
         "_schemas/submission.yml",
         "agent.yml",
+        "doors/submission-triage.yml",
         "skills/appetite-guide/SKILL.md"
       ]
     },
@@ -1084,6 +1171,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/legal/clause-extractor",
       "files": [
@@ -1103,6 +1191,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/legal/contract-redactor",
       "files": [
@@ -1118,7 +1207,9 @@
       "icon": "user-check",
       "what_it_does": "Recognizes a data subject access request in an incoming email.\nSaves a DSAR record with the requester, the received date and a due date 30 days later.\nSends the requester one acknowledgment with the due date.\nNever sends personal data in the answer.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -1126,7 +1217,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/dsar.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/dsar-responder.yml"
       ]
     },
     {
@@ -1138,7 +1230,10 @@
       "what_it_does": "Sorts each incoming NDA into low, medium or high risk against your playbook.\nExtracts the parties, the term, the direction, the governing law, non-solicit and carve-outs.\nLists each deviation from your positions with the clause text.\nAnswers the sender one time with the summary.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -1146,6 +1241,7 @@
       "files": [
         "AGENTS.md",
         "agent.yml",
+        "doors/nda-triage.yml",
         "skills/nda-playbook/SKILL.md"
       ]
     },
@@ -1157,7 +1253,9 @@
       "icon": "scales",
       "what_it_does": "Answers employee questions about company policies from your own policy documents.\nCites the policy name and the section in each answer.\nSays when a question needs a person, and who to ask.\nWorks in Slack and in Microsoft Teams.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "slack",
         "teams"
       ],
@@ -1165,7 +1263,8 @@
       "path": "templates/legal/policy-qa",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/policy-qa.yml"
       ]
     },
     {
@@ -1179,6 +1278,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/legal/vendor-dpa-checker",
       "files": [
@@ -1204,6 +1304,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/marketing/blog-brief-writer",
       "files": [
@@ -1233,6 +1334,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/marketing/campaign-report",
       "files": [
@@ -1257,6 +1359,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/marketing/competitor-pricing-watch",
       "files": [
@@ -1282,6 +1385,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/marketing/seo-page-audit",
       "files": [
@@ -1306,6 +1410,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/marketing/social-post-drafter",
       "files": [
@@ -1323,14 +1428,18 @@
       "what_it_does": "Transcribes a webinar recording sent by HTTP or by email.\nWrites a recap: key points, questions asked, short quotes and follow-ups.\nRenders the recap as a PDF that you can send to attendees.\nNeeds no connector.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
       "path": "templates/marketing/webinar-recap",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/webinar-recap.yml"
       ]
     },
     {
@@ -1341,7 +1450,9 @@
       "icon": "moon",
       "what_it_does": "Takes calls when the office is closed, so no request is lost.\nRecords the name, callback number, reason and urgency.\nReads the summary back and says when the team calls back.\nTransfers urgent cases to the emergency contact.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "phone"
       ],
       "mode": "turns",
@@ -1349,7 +1460,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/intake.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/after-hours-intake-line.yml"
       ]
     },
     {
@@ -1360,14 +1472,17 @@
       "icon": "calendar-plus",
       "what_it_does": "Answers a phone number and books appointments without a receptionist.\nChecks free slots on one calendar and offers two or three times.\nConfirms the name and the callback number, then creates the event.\nNever books outside your business hours.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "phone"
       ],
       "mode": "turns",
       "path": "templates/operations/appointment-booking-line",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/appointment-booking-line.yml"
       ]
     },
     {
@@ -1392,6 +1507,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/operations/decision-log",
       "files": [
@@ -1408,7 +1524,9 @@
       "icon": "tray",
       "what_it_does": "Turns emailed request forms into tracked intake records.\nExtracts the form type, the requester and the urgency from each attachment.\nRoutes the request to the queue for its form type.\nAnswers the sender once with the ticket reference.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -1416,7 +1534,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/intake.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/form-intake-router.yml"
       ]
     },
     {
@@ -1441,6 +1560,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/operations/meeting-actions",
       "files": [
@@ -1457,14 +1577,18 @@
       "what_it_does": "Transcribes an audio or video recording sent by email or HTTP.\nWrites minutes: attendees, decisions, actions with owners, open questions.\nRenders the minutes as a PDF file.\nNeeds no connector.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
       "path": "templates/operations/meeting-transcriber",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/meeting-transcriber.yml"
       ]
     },
     {
@@ -1481,7 +1605,9 @@
           "purpose": "Read the tasks that each person completed or has due today."
         }
       ],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "slack"
       ],
       "mode": "turns",
@@ -1489,7 +1615,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/standup.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/slack-standup-bot.yml"
       ]
     },
     {
@@ -1503,6 +1630,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/operations/sop-drafter",
       "files": [
@@ -1518,7 +1646,9 @@
       "icon": "truck",
       "what_it_does": "Extracts tax, insurance and bank details from vendor documents in one email.\nRecords the vendor in the data store with the documents it received.\nLists missing or expired documents.\nAnswers the vendor once to ask for what is missing.",
       "connectors": [],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -1526,7 +1656,8 @@
       "files": [
         "AGENTS.md",
         "_schemas/vendor.yml",
-        "agent.yml"
+        "agent.yml",
+        "doors/vendor-onboarding.yml"
       ]
     },
     {
@@ -1551,6 +1682,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/operations/weekly-status-compiler",
       "files": [
@@ -1580,6 +1712,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/product/analytics-weekly-brief",
       "files": [
@@ -1604,6 +1737,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/product/changelog-announcer",
       "files": [
@@ -1633,6 +1767,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/product/experiment-readout",
       "files": [
@@ -1654,14 +1789,17 @@
           "purpose": "Search issues, create an issue in the triage state and add comments."
         }
       ],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "slack"
       ],
       "mode": "turns",
       "path": "templates/product/feature-request-router",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/feature-request-router.yml"
       ]
     },
     {
@@ -1686,6 +1824,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/product/feedback-clusterer",
       "files": [
@@ -1711,6 +1850,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/product/spec-reviewer",
       "files": [
@@ -1736,6 +1876,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/research/competitor-watch",
       "files": [
@@ -1766,6 +1907,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/research/market-sizing-brief",
       "files": [
@@ -1790,6 +1932,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/research/news-digest",
       "files": [
@@ -1812,14 +1955,18 @@
         }
       ],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
       "path": "templates/research/paper-summarizer",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/paper-summarizer.yml"
       ]
     },
     {
@@ -1839,6 +1986,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/research/source-fact-checker",
       "files": [
@@ -1857,6 +2005,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/research/user-interview-synthesizer",
       "files": [
@@ -1880,14 +2029,18 @@
         }
       ],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
       "path": "templates/sales/call-notes-to-crm",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/call-notes-to-crm.yml"
       ]
     },
     {
@@ -1907,6 +2060,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/sales/contract-handoff",
       "files": [
@@ -1937,6 +2091,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/sales/deal-risk-review",
       "files": [
@@ -1958,7 +2113,9 @@
           "purpose": "Find the company size, industry and the title of the sender."
         }
       ],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -1966,6 +2123,7 @@
       "files": [
         "AGENTS.md",
         "agent.yml",
+        "doors/inbound-reply-drafter.yml",
         "skills/reply-style/SKILL.md"
       ]
     },
@@ -1991,6 +2149,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/sales/lead-qualifier",
       "files": [
@@ -2016,6 +2175,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/sales/meeting-prep-brief",
       "files": [
@@ -2045,6 +2205,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/sales/pipeline-hygiene",
       "files": [
@@ -2074,6 +2235,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/sales/proposal-drafter",
       "files": [
@@ -2090,7 +2252,10 @@
       "what_it_does": "Transcribes a call recording that arrives by email or HTTP.\nScores greeting, empathy, resolution and compliance phrases from 0 to 5.\nQuotes the transcript for each score.\nLists coaching points for the support agent.",
       "connectors": [],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "email"
       ],
       "mode": "zeroshot",
@@ -2098,6 +2263,7 @@
       "files": [
         "AGENTS.md",
         "agent.yml",
+        "doors/call-recording-qa.yml",
         "skills/call-scorecard/SKILL.md"
       ]
     },
@@ -2118,6 +2284,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/support/csat-digest",
       "files": [
@@ -2147,6 +2314,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/support/escalation-summary",
       "files": [
@@ -2171,6 +2339,7 @@
       "triggers": [
         "schedule"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/support/knowledge-gap-finder",
       "files": [
@@ -2194,14 +2363,18 @@
         }
       ],
       "triggers": [
-        "http",
+        "http"
+      ],
+      "channels": [
+        "console",
         "slack"
       ],
       "mode": "turns",
       "path": "templates/support/ticket-helper",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/ticket-helper.yml"
       ]
     },
     {
@@ -2221,6 +2394,7 @@
       "triggers": [
         "http"
       ],
+      "channels": [],
       "mode": "zeroshot",
       "path": "templates/support/ticket-redactor",
       "files": [
@@ -2242,14 +2416,17 @@
           "purpose": "Find the caller contact and the open conversations by email."
         }
       ],
-      "triggers": [
+      "triggers": [],
+      "channels": [
+        "console",
         "phone"
       ],
       "mode": "turns",
       "path": "templates/support/voice-support-line",
       "files": [
         "AGENTS.md",
-        "agent.yml"
+        "agent.yml",
+        "doors/voice-support-line.yml"
       ]
     }
   ]

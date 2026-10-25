@@ -2,7 +2,6 @@ name: Webinar recap
 mode: zeroshot
 triggers:
   http: true
-  email: true
 limits:
   max_steps: 25
 timeout: 20m

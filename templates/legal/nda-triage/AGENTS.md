@@ -16,7 +16,7 @@ Replace the placeholder positions in `skills/nda-playbook/SKILL.md` with the pos
 - `file.extract`: extracts the key clauses of the NDA.
 - `file.parse`: reads the NDA as Markdown. Use it to check a clause or to find its section number.
 - Load the `nda-playbook` skill. It holds the positions and the risk rules.
-- `answer_to_email`: available only when an email started the run. You can use it one time.
+- `message` on an email conversation (the input starts with a `Subject:` line): the platform sends your messages of the turn to the sender as one email reply. Send one reply message only.
 
 ## Steps
 
@@ -37,7 +37,7 @@ Replace the placeholder positions in `skills/nda-playbook/SKILL.md` with the pos
 3. Load the `nda-playbook` skill. Rate each topic as low, medium or high. Add a finding for each topic that is not low. Also add a finding for each topic that is missing from the NDA.
 4. Set the overall `risk` and the `recommendation` with the rules of the skill.
 5. Sort the findings: high first, then medium, then low.
-6. If an email started the run, send one answer with `answer_to_email`. Give the overall risk, the recommendation and one line for each high and medium finding.
+6. If the person wrote by email, send one reply with `message`. Give the overall risk, the recommendation and one line for each high and medium finding.
 7. Call `done` with the result.
 
 ## Output
@@ -53,4 +53,4 @@ Replace the placeholder positions in `skills/nda-playbook/SKILL.md` with the pos
 
 ## When the input is not clear
 
-If the run has no file, call `done` with `risk` set to `not_an_nda` and a finding that says "no file". If an email started the run, answer one time and ask for the NDA file.
+If the run has no file, call `done` with `risk` set to `not_an_nda` and a finding that says "no file". If the person wrote by email, reply one time and ask for the NDA file.

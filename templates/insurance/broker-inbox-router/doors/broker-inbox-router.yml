@@ -1,0 +1,5 @@
+name: "Broker inbox router"
+entry: broker-inbox-router
+channels:
+  email: {}
+  console: {}
