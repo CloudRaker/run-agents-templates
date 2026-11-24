@@ -1,9 +1,7 @@
 name: DSAR responder
 mode: zeroshot
 triggers:
-  email: true
-email:
-  reply: true
+  http: false
 data:
   read:
     - dsar

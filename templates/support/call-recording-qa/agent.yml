@@ -2,7 +2,6 @@ name: Call recording QA
 mode: zeroshot
 triggers:
   http: true
-  email: true
 connectors: []
 limits:
   max_steps: 25

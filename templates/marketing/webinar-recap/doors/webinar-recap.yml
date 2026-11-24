@@ -1,0 +1,5 @@
+name: "Webinar recap"
+entry: webinar-recap
+channels:
+  email: {}
+  console: {}

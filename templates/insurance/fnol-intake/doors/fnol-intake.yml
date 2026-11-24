@@ -1,0 +1,5 @@
+name: "FNOL intake"
+entry: fnol-intake
+channels:
+  email: {}
+  console: {}

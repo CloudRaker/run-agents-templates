@@ -54,5 +54,5 @@ On the `call.ended` turn, call `done` with the claim reference, `verified: true`
 
 ## Before you use this template
 
-- Replace the transfer number in `agent.yml` (`+15555550121`) with your claims team line.
+- Replace the transfer number (`+15555550121`) under `channels.phone.transfers` in `doors/claims-status-line.yml` with your claims team line.
 - Keep `_schemas/claim.yml` the same as the schema of your claim intake agents, so the status line reads their records.

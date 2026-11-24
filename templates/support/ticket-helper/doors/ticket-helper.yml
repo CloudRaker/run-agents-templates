@@ -1,0 +1,5 @@
+name: "Ticket helper"
+entry: ticket-helper
+channels:
+  slack: {}
+  console: {}

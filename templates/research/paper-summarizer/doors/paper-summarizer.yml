@@ -1,0 +1,5 @@
+name: "Paper summarizer"
+entry: paper-summarizer
+channels:
+  email: {}
+  console: {}

@@ -61,7 +61,12 @@ const TemplateSchema = z.strictObject({
   tags: z.array(z.string()).optional(),
 })
 
-const TRIGGER_KEYS = ['http', 'email', 'slack', 'teams', 'phone', 'schedule', 'inbound'] as const
+// Trigger keys of agent.yml. Phone, email, Slack and Teams are channels of a front door (doors/<id>.yml).
+const TRIGGER_KEYS = ['http', 'chat', 'schedule', 'inbound'] as const
+// The channels of a front door, in the order of the Run console.
+const CHANNEL_KEYS = ['web', 'console', 'phone', 'email', 'slack', 'teams'] as const
+// agent.yml keys that moved to a front door. There is no alias.
+const MOVED_KEYS = { phone: 'channels.phone', email: 'channels.email' } as const
 
 // ponytail: light check of the keys templates use. The Run push lint holds the full schema.
 const AgentSchema = z.looseObject({
@@ -71,10 +76,7 @@ const AgentSchema = z.looseObject({
   triggers: z
     .strictObject({
       http: z.boolean().optional(),
-      email: z.boolean().optional(),
-      slack: z.boolean().optional(),
-      teams: z.boolean().optional(),
-      phone: z.boolean().optional(),
+      chat: z.unknown().optional(),
       schedule: z
         .string()
         .refine((s) => s.trim().split(/\s+/).length === 5, 'five-field cron in UTC')
@@ -92,6 +94,15 @@ const AgentSchema = z.looseObject({
     .optional(),
   knowledge: z.array(z.string()).optional(),
   limits: z.record(z.string(), z.unknown()).optional(),
+})
+
+// ponytail: light check of a door. The Run push lint holds the full door schema.
+const DoorSchema = z.looseObject({
+  name: z.string().trim().min(1).max(80),
+  entry: z.union([z.string(), z.record(z.string(), z.string())]),
+  channels: z
+    .looseObject(Object.fromEntries(CHANNEL_KEYS.map((k) => [k, z.unknown().optional()])))
+    .refine((c) => CHANNEL_KEYS.some((k) => c[k] !== undefined), 'at least one channel'),
 })
 
 const listFiles = (dir: string): string[] =>
@@ -174,6 +185,33 @@ for (const category of dirs(TEMPLATES)) {
       continue
     }
 
+    for (const [key, door] of Object.entries(MOVED_KEYS)) {
+      if (agent.data[key] !== undefined) fail(`${path}/agent.yml`, `${key} moved to ${door} in doors/${id}.yml`)
+    }
+
+    const channels = new Set<string>()
+    for (const f of files.filter((f) => f.startsWith('doors/'))) {
+      if (f !== `doors/${id}.yml`) {
+        fail(`${path}/${f}`, `a template door must be doors/${id}.yml`)
+        continue
+      }
+      let door: unknown
+      try {
+        door = parse(readFileSync(join(dir, f), 'utf8'))
+      } catch (e) {
+        fail(`${path}/${f}`, `not valid YAML: ${(e as Error).message}`)
+        continue
+      }
+      const parsed = DoorSchema.safeParse(door)
+      if (!parsed.success) {
+        fail(`${path}/${f}`, issues(parsed.error))
+        continue
+      }
+      const entries = typeof parsed.data.entry === 'string' ? [parsed.data.entry] : Object.values(parsed.data.entry)
+      if (entries.some((e) => e !== id)) fail(`${path}/${f}`, `entry must be the template id ${id}`)
+      for (const k of CHANNEL_KEYS) if (parsed.data.channels[k] !== undefined) channels.add(k)
+    }
+
     const inAgent = new Set(agent.data.connectors ?? [])
     const inMeta = new Set(meta.data.connectors.map((c) => c.id))
     for (const c of inAgent) if (!inMeta.has(c)) fail(path, `agent.yml connector ${c} missing in template.yml`)
@@ -191,6 +229,7 @@ for (const category of dirs(TEMPLATES)) {
       what_it_does: meta.data.what_it_does,
       connectors: meta.data.connectors,
       triggers,
+      channels: CHANNEL_KEYS.filter((k) => channels.has(k)),
       mode: agent.data.mode ?? 'zeroshot',
       path,
       files,
@@ -228,9 +267,10 @@ const section = body.categories
       .filter((t) => t.category === id)
       .map((t) => {
         const connectors = t.connectors.map((c) => c.id).join(', ') || 'none'
-        return `| [${cell(t.name)}](${t.path}) | ${cell(t.description)} | ${connectors} | ${t.triggers.join(', ')} |`
+        const reach = [...t.triggers, ...t.channels.filter((c) => c !== 'console')].join(', ') || 'none'
+        return `| [${cell(t.name)}](${t.path}) | ${cell(t.description)} | ${connectors} | ${reach} |`
       })
-    return [`### ${name}`, '', '| Template | Description | Connectors | Triggers |', '| --- | --- | --- | --- |', ...rows].join('\n')
+    return [`### ${name}`, '', '| Template | Description | Connectors | Triggers and channels |', '| --- | --- | --- | --- |', ...rows].join('\n')
   })
   .join('\n\n')
 const readme = readFileSync(README, 'utf8')

@@ -1,0 +1,5 @@
+name: "Patient intake extractor"
+entry: patient-intake-extractor
+channels:
+  email: {}
+  console: {}

@@ -2,7 +2,7 @@ name: Slack standup bot
 mode: turns
 idle_ttl: 12h
 triggers:
-  slack: true
+  http: false
 connectors:
   - asana
 data:

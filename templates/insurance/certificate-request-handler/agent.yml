@@ -1,9 +1,7 @@
 name: Certificate request handler
 mode: zeroshot
 triggers:
-  email: true
-email:
-  reply: true
+  http: false
 connectors: []
 data:
   read:

@@ -2,7 +2,6 @@ name: Resume screener
 mode: zeroshot
 triggers:
   http: true
-  email: true
 data:
   read:
     - candidate

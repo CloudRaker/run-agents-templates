@@ -2,9 +2,6 @@ name: Paper summarizer
 mode: zeroshot
 triggers:
   http: true
-  email: true
-email:
-  reply: true
 connectors:
   - exa
 limits:

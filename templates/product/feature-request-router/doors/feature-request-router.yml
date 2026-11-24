@@ -1,0 +1,5 @@
+name: "Feature request router"
+entry: feature-request-router
+channels:
+  slack: {}
+  console: {}

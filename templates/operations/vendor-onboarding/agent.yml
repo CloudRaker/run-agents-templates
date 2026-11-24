@@ -1,9 +1,7 @@
 name: Vendor onboarding
 mode: zeroshot
 triggers:
-  email: true
-email:
-  reply: true
+  http: false
 connectors: []
 data:
   read:

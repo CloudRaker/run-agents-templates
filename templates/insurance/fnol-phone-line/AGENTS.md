@@ -60,5 +60,5 @@ On the `call.ended` turn, query `claim` by `source_reference`. Add the end reaso
 
 ## Before you use this template
 
-- Replace the transfer numbers in `agent.yml` (`+15555550111`, `+15555550112`) with your adjuster line and your emergency claims desk.
+- Replace the transfer numbers (`+15555550111`, `+15555550112`) under `channels.phone.transfers` in `doors/fnol-phone-line.yml` with your adjuster line and your emergency claims desk.
 - Edit the greeting if your recording notice has other words. Edit the next steps to match your service level.

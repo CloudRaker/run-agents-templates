@@ -1,10 +1,7 @@
 name: Submission triage
 mode: zeroshot
 triggers:
-  email: true
   http: true
-email:
-  reply: true
 connectors: []
 data:
   write:

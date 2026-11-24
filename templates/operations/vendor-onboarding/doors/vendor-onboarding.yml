@@ -1,0 +1,5 @@
+name: "Vendor onboarding"
+entry: vendor-onboarding
+channels:
+  email: {}
+  console: {}

@@ -1,0 +1,16 @@
+name: "Appointment reminder caller"
+entry: appointment-reminder-caller
+channels:
+  phone:
+    greeting: "Hello, this is the automated assistant of your clinic, calling about an upcoming visit. This call is recorded. May I speak with the patient, please?"
+    record: true
+    voice: marin
+    style: "Friendly, brief and clear. Say the day, the date and the time slowly. Never rush the patient. Use the first name once you confirm you speak with the patient."
+    turn_timeout: 10s
+    max_duration: 10m
+    outbound: true
+    transfers:
+      front_desk:
+        number: "+15555550110"
+        label: the front desk
+  console: {}

@@ -53,5 +53,5 @@ Edit this section for your company.
 
 ## Before you use this template
 
-- Replace the emergency number `+15555550199` in `agent.yml` with your on-call number.
+- Replace the emergency number `+15555550199` under `channels.phone.transfers` in `doors/after-hours-intake-line.yml` with your on-call number.
 - Edit the urgency examples and the callback times.

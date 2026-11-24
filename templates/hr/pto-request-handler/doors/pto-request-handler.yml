@@ -1,0 +1,5 @@
+name: "PTO request handler"
+entry: pto-request-handler
+channels:
+  slack: {}
+  console: {}

@@ -1,0 +1,5 @@
+name: "Call recording QA"
+entry: call-recording-qa
+channels:
+  email: {}
+  console: {}

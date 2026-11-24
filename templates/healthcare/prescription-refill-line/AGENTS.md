@@ -53,7 +53,7 @@ On the `call.ended` turn, check the transcript. If a request exists, add a one-l
 
 ## Before you use this template
 
-- Replace the transfer numbers in `agent.yml` (`+15555550101`, `+15555550102`) with your pharmacist and front desk lines.
+- Replace the transfer numbers (`+15555550101`, `+15555550102`) under `channels.phone.transfers` in `doors/prescription-refill-line.yml` with your pharmacist and front desk lines.
 - Edit the turnaround below. Edit the greeting if your recording notice has other words.
 
 Usual turnaround: "Most refills are ready in two business days. The pharmacy calls you if there is a problem."

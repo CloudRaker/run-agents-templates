@@ -1,9 +1,7 @@
 name: Inbound reply drafter
 mode: zeroshot
 triggers:
-  email: true
-email:
-  reply: true
+  http: false
 connectors:
   - apollo
 limits:
