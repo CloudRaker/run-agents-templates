@@ -47,6 +47,6 @@ Edit this list for your company.
 
 ## Before you use this template
 
-- Replace the transfer number `+15555550100` in `agent.yml` with the number of your support team.
+- Replace the transfer number `+15555550100` under `channels.phone.transfers` in `doors/voice-support-line.yml` with the number of your support team.
 - Edit the greeting and the common questions.
 - Add a `knowledge/<folder>` with your support articles to the project and grant it with `knowledge: [<folder>]` in `agent.yml`.
